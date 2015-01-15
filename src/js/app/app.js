@@ -10,6 +10,8 @@ define(function(require, exports, module) {
   var Backbone = require('backbone');
   var Marionette = require('marionette');
 
+  // App
+  var Router = require('../app/router');
 
   var App = Marionette.Application.extend({
     initialize: function(options) {
@@ -19,12 +21,22 @@ define(function(require, exports, module) {
 
   var app = new App({container: '#app'});
 
-  app.on("start", function(options){
-    console.log("Starting app");
+  var controller = {
+    "home": function() {
+      console.log("home");
+    }
+  };
+
+  function start(options) {
     if (Backbone.history){
       Backbone.history.start();
     }
-  });
 
+    var r = new Router({
+      controller: controller
+    });
+  }
+
+  app.on("start", start);
   return app;
 });
