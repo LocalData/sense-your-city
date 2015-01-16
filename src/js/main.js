@@ -5,7 +5,6 @@ require.config({
     'baseUrl': 'js',
 
     'paths': {
-      'app': 'app/app',
       'backbone': 'lib/backbone',
       'jquery': 'lib/jquery',
       'leaflet': 'lib/leaflet',
@@ -31,7 +30,7 @@ require.config({
     }
 });
 
-require(['jquery', 'app'],
+require(['jquery', 'app/app'],
   function ($, app) {
   'use strict';
 

@@ -11,13 +11,11 @@ define(function(require, exports, module) {
   var Marionette = require('marionette');
 
   var Router = Backbone.Marionette.AppRouter.extend({
-
-  // "someMethod" must exist at controller.someMethod
     appRoutes: {
-      "": "home"
+      '': 'home',
+      'city/:id': 'city'
     }
   });
 
   return Router;
-
 });

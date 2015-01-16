@@ -11,11 +11,14 @@ define(function(require, exports, module) {
   var Marionette = require('marionette');
 
   // App
+  var CityModule = require('app/cityModule');
 
   // Templatess
   var template = require('text!templates/home.html');
 
   var App = new Marionette.Application();
+
+  App.module('CityModule', CityModule);
 
   App.addRegions({
     mainRegion: "#main"
@@ -26,8 +29,11 @@ define(function(require, exports, module) {
   });
 
   function start(options) {
-    var staticView = new App.StaticView();
-    App.mainRegion.show(staticView);
+    if(Backbone.history){
+      Backbone.history.start();
+    }
+    // var staticView = new App.StaticView();
+    // App.mainRegion.show(staticView);
   }
 
   App.on("start", start);

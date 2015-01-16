@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>LocalData</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Sense Your City</title>
 
     <link href="css/leaflet.css" rel="stylesheet" media="screen">
     <link href="css/app.css" rel="stylesheet" media="screen">
@@ -9,11 +12,38 @@
     <script data-main="js/main" src="js/lib/require.js"></script>
   </head>
   <body>
-    <div id="app">
+    <div class="header">
+      <div class="pure-menu pure-menu-open pure-menu-horizontal">
+          <a class="pure-menu-heading" href="">Data Canvas</a>
+
+          <ul>
+              <li class="pure-menu-selected"><a href="#">Access Data</a></li>
+              <li><a href="#">About Data Canvas</a></li>
+              <li><a href="#">Resources &amp; Tools</a></li>
+          </ul>
+      </div>
+    </div>
+
+    <div class="pure-g">
+        <div class="pure-u-1"><div id="map"></div></div>
+    </div>
+
+    <div class="pure-g">
+        <div class="pure-u-1">Stuff</div>
+    </div>
+
+    <div class="pure-g graph">
+        <div class="pure-u-1"><div class="tools">Tools</div></div>
+        <div class="pure-u-1">Graph 1</div>
+    </div>
+
+
+
+    <!--<div id="app">
       <h1>Header here</h1>
       <div id="main">
         Getting started...
       </div>
-    </div>
+    </div>-->
   </body>
 </html>
