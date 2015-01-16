@@ -2,12 +2,16 @@
 /*globals require: true */
 
 require.config({
-    'baseUrl': 'js/lib',
+    'baseUrl': 'js',
 
     'paths': {
-      'app': '../app',
-      'underscore': 'lodash.underscore', // Backbone needs "underscore"
-      'marionette': 'backbone.marionette'
+      'app': 'app/app',
+      'backbone': 'lib/backbone',
+      'jquery': 'lib/jquery',
+      'leaflet': 'lib/leaflet',
+      'marionette': 'lib/backbone.marionette',
+      'text': 'lib/text',
+      'underscore': 'lib/lodash.underscore' // Backbone needs "underscore"
     },
 
     'shim': {
@@ -27,7 +31,7 @@ require.config({
     }
 });
 
-require(['jquery', '../app/app'],
+require(['jquery', 'app'],
   function ($, app) {
   'use strict';
 

@@ -11,32 +11,25 @@ define(function(require, exports, module) {
   var Marionette = require('marionette');
 
   // App
-  var Router = require('../app/router');
 
-  var App = Marionette.Application.extend({
-    initialize: function(options) {
-      console.log("Init app with options", options.container);
-    }
+  // Templatess
+  var template = require('text!templates/home.html');
+
+  var App = new Marionette.Application();
+
+  App.addRegions({
+    mainRegion: "#main"
   });
 
-  var app = new App({container: '#app'});
-
-  var controller = {
-    "home": function() {
-      console.log("home");
-    }
-  };
+  App.StaticView = Marionette.ItemView.extend({
+    template: template
+  });
 
   function start(options) {
-    if (Backbone.history){
-      Backbone.history.start();
-    }
-
-    var r = new Router({
-      controller: controller
-    });
+    var staticView = new App.StaticView();
+    App.mainRegion.show(staticView);
   }
 
-  app.on("start", start);
-  return app;
+  App.on("start", start);
+  return App;
 });
