@@ -8,14 +8,9 @@ define(function(require, exports, module) {
   var $ = require('jquery');
   var _ = require('underscore');
   var Backbone = require('backbone');
-  var Marionette = require('marionette');
 
-  var Router = Backbone.Marionette.AppRouter.extend({
-    appRoutes: {
-      'home': 'home',
-      'city/:id': 'city'
-    }
+  var City = Backbone.Model.extend({
   });
 
-  return Router;
+  return City;
 });
