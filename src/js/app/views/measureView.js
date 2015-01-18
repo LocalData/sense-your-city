@@ -8,24 +8,30 @@ define(function(require, exports, module) {
   var $ = require('jquery');
   var _ = require('underscore');
   var Backbone = require('backbone');
+  var Chartist = require('chartist');
   var L = require('leaflet');
   var Marionette = require('marionette');
 
   // App
   var settings = require('app/settings');
-  var MapView = require('app/views/map');
 
   // Templates
-  var template = require('text!templates/mapRegion.html');
+  var template = require('text!templates/measure.html');
 
-
-  var MapRegionView = Marionette.ItemView.extend({
+  var MeasureView = Marionette.ItemView.extend({
     template: _.template(template),
 
-    onAttach: function() {
-      var mapView = new MapView({ id: 'map' });
+    onRender: function() {
+      var graphEl = this.$el.find('.measure-graph').get(0);
+
+      this.graph = new Chartist.Line(graphEl, {
+        labels: this.model.get('labels'),
+        series: [
+          this.model.get('values')
+        ]
+      });
     }
   });
 
-  return MapRegionView;
+  return MeasureView;
 });

@@ -6,6 +6,7 @@ require.config({
 
     'paths': {
       'backbone': 'lib/backbone',
+      'chartist': 'lib/chartist',
       'jquery': 'lib/jquery',
       'leaflet': 'lib/leaflet',
       'marionette': 'lib/backbone.marionette',

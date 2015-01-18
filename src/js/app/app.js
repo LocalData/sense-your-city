@@ -13,6 +13,7 @@ define(function(require, exports, module) {
   // App
   var settings = require('app/settings');
   var HomeModule = require('app/modules/homeModule');
+  var MapRegionView = require('app/views/mapRegion');
 
   // Templates
   var template = require('text!templates/home.html');
@@ -22,6 +23,7 @@ define(function(require, exports, module) {
 
   App.addRegions({
     mapRegion: "#map-region",
+    sparklineRegion: "#sparkline-region",
     graphsRegion: "#graphs-region"
   });
 
@@ -32,6 +34,10 @@ define(function(require, exports, module) {
     if(Backbone.history){
       Backbone.history.start();
     }
+
+    // Start the map region for any page
+    App.mapRegionView = new MapRegionView();
+    App.mapRegion.show(App.mapRegionView);
   }
 
   App.on("start", start);

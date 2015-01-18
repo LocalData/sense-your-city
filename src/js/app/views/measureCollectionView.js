@@ -13,19 +13,12 @@ define(function(require, exports, module) {
 
   // App
   var settings = require('app/settings');
-  var MapView = require('app/views/map');
+  var MeasureView = require('app/views/measureView');
 
-  // Templates
-  var template = require('text!templates/mapRegion.html');
-
-
-  var MapRegionView = Marionette.ItemView.extend({
-    template: _.template(template),
-
-    onAttach: function() {
-      var mapView = new MapView({ id: 'map' });
-    }
+  var MeasureCollectionView = Backbone.Marionette.CollectionView.extend({
+    tagName: 'div',
+    childView: MeasureView
   });
 
-  return MapRegionView;
+  return MeasureCollectionView;
 });

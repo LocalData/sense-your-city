@@ -9,7 +9,7 @@ define(function(require, exports, module) {
   var _ = require('underscore');
   var Backbone = require('backbone');
 
-  var Entry = Backbone.Model.extend({});
+  var Measure = Backbone.Model.extend({});
 
-  return Entry;
+  return Measure;
 });

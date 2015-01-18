@@ -13,7 +13,14 @@ define(function(require, exports, module) {
   var Entry = require('app/models/entry');
 
   var EntryCollection = Backbone.Collection.extend({
-    model: Entry
+    model: Entry,
+
+    url: 'http://localdata-sensors.herokuapp.com/api/v1/sources/ci4lr75oi000202ypmtgrudhs/entries?startIndex=0&count=10&sort=desc',
+
+    parse: function(data) {
+      console.log("data", data);
+      return data;
+    }
   });
 
   return EntryCollection;

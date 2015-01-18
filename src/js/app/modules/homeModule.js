@@ -4,7 +4,16 @@
 define(function(require, exports, module) {
   'use strict';
 
-  var MapRegionView = require('app/views/mapRegion');
+  var settings = require('app/settings');
+
+  // Models
+  var MeasureCollection = require('app/models/measureCollection');
+
+  // Views
+  var MeasureView = require('app/views/measure');
+  var MeasureCollectionView = require('app/views/measureCollectionView');
+
+  // Templates
   var template = require('text!templates/home.html');
 
   var HomeModule = function(HomeModule, App, Backbone, Marionette, $, _) {
@@ -16,11 +25,13 @@ define(function(require, exports, module) {
 
     var routeController = {
       home: function() {
-        // Set up the map
-        var mapRegionView = new MapRegionView();
-        App.mapRegion.show(mapRegionView);
-
-        // TODO: Set up the graphs
+        var measuresCollection = new MeasureCollection();
+        measuresCollection.fetch();
+        var measuresView = new MeasureCollectionView({
+          collection: measuresCollection
+        });
+        //console.log("Home view", measuresView.render());
+        App.graphsRegion.show(measuresView);
       }
     };
 
