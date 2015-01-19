@@ -17,8 +17,7 @@ define(function(require, exports, module) {
   var HomeModule = function(HomeModule, App, Backbone, Marionette, $, _) {
     HomeModule.Router = Backbone.Marionette.AppRouter.extend({
       appRoutes: {
-        '': 'home',
-        '!/cities/:name': 'city'
+        '': 'home'
       }
     });
 
@@ -32,15 +31,6 @@ define(function(require, exports, module) {
           collection: measuresCollection
         });
         App.mainRegion.show(measuresView);
-      },
-      city: function(name) {
-        console.log("Going to city", name);
-
-        var city = new CityModel({name: name});
-        var cityView = new CityView({
-          model: city
-        });
-        App.mainRegion.show(cityView);
       }
     };
 

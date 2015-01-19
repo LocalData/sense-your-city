@@ -1,0 +1,29 @@
+#header {
+  position: relative;
+}
+
+#sparkline-region .measures {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 300px;
+  z-index: 10000;
+  background: $body-color;
+  color: $primary-color;
+
+  .ct-chart .ct-line {
+    stroke-width: 2;
+  }
+
+  .ct-chart .ct-series.ct-series-a .ct-bar,
+  .ct-chart .ct-series.ct-series-a .ct-line,
+  .ct-chart .ct-series.ct-series-a .ct-point,
+  .ct-chart .ct-series.ct-series-a .ct-slice.ct-donut {
+    stroke: #fff;
+  }
+
+  .measure-graph {
+    height: 50px;
+  }
+}
+

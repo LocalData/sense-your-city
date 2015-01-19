@@ -14,6 +14,8 @@
 @import "lib/_menus.scss";
 @import "lib/_chartist.scss";
 
+@import "components.scss";
+
 body {
   background: $background-color;
 }
@@ -22,6 +24,11 @@ html, button, input, select, textarea,
 .pure-g [class *= "pure-u"] {
     /* Set your content font stack here: */
     font-family: "Source Sans Pro", sans-serif;
+}
+
+h1, h2, h3, h4 {
+  margin: 0;
+  padding: 0;
 }
 
 p {
@@ -41,7 +48,7 @@ a:active {
 
 
 #map {
-  height: 300px;
+  height: 350px;
   background: $primary-color;
 }
 

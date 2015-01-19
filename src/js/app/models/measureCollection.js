@@ -15,11 +15,9 @@ define(function(require, exports, module) {
   var MeasureCollection = Backbone.Collection.extend({
     model: Measure,
 
-    url: 'http://localdata-sensors.herokuapp.com/api/v1/sources/ci4x0rtb9000h02tcfa5qov33/entries?startIndex=0&count=10&sort=desc',
+    url: 'http://localdata-sensors.herokuapp.com/api/v1/sources/ci4x0rtb9000h02tcfa5qov33/entries?startIndex=0&count=30&sort=desc',
 
     parse: function(entries) {
-      console.log("data", entries);
-
       var measures = {};
 
       _.each(entries, function(entry) {
