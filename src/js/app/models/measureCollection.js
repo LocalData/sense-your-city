@@ -15,20 +15,8 @@ define(function(require, exports, module) {
   var MeasureCollection = Backbone.Collection.extend({
     model: Measure,
 
-    url: 'http://localdata-sensors.herokuapp.com/api/v1/sources/ci4lr75oi000202ypmtgrudhs/entries?startIndex=0&count=10&sort=desc',
+    url: 'http://localdata-sensors.herokuapp.com/api/v1/sources/ci4x0rtb9000h02tcfa5qov33/entries?startIndex=0&count=10&sort=desc',
 
-    /*
-    Transform a list of entries into the format:
-    [
-      {
-        name: 'Airquality-raw',
-        measures: [
-          { timestamp: abc, value: 123 }
-          ...
-        ]
-      }
-    ]
-     */
     parse: function(entries) {
       console.log("data", entries);
 

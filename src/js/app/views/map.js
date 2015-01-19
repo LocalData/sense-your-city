@@ -12,12 +12,15 @@ define(function(require, exports, module) {
 
   // App
   var settings = require('app/settings');
+  var template = require('text!templates/popup.html');
 
   var MapView = Backbone.View.extend({
     map: null,
     markers: {},
+    template: _.template(template),
 
     initialize: function(options) {
+      _.bindAll(this, 'addPopup');
       L.Icon.Default.imagePath = '/js/lib/leaflet/images';
       this.id = options.id || 'map';
       this.render();
@@ -35,6 +38,27 @@ define(function(require, exports, module) {
       this.map.addLayer(this.baseLayer);
 
       return this;
+    },
+
+    clear: function() {
+      this.map.clearLayers();
+    },
+
+    addPopup: function(feature, layer) {
+      // does this feature have a property named popupContent?
+      if (feature.properties && feature.properties.name) {
+          layer.bindPopup(this.template(feature.properties));
+      }
+    },
+
+    addLocations: function(data) {
+      var layer = L.geoJson(data, {
+        pointToLayer: function (feature, latlng) {
+            return L.circleMarker(latlng, settings.geojsonMarkerOptions);
+        },
+        onEachFeature: this.addPopup
+      }).addTo(this.map);
+      this.map.fitBounds(layer.getBounds());
     }
   });
 

@@ -8,16 +8,19 @@ define(function(require, exports, module) {
   var $ = require('jquery');
   var _ = require('underscore');
   var Backbone = require('backbone');
+  var Chartist = require('chartist');
   var L = require('leaflet');
   var Marionette = require('marionette');
 
   // App
   var settings = require('app/settings');
-  var MeasureView = require('app/views/measureView');
 
-  var MeasureCollectionView = Backbone.Marionette.CollectionView.extend({
-    childView: MeasureView
+  // Templates
+  var template = require('text!templates/overview.html');
+
+  var OverviewView = Marionette.ItemView.extend({
+    template: _.template(template)
   });
 
-  return MeasureCollectionView;
+  return OverviewView;
 });

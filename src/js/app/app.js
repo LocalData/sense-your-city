@@ -13,7 +13,7 @@ define(function(require, exports, module) {
   // App
   var settings = require('app/settings');
   var HomeModule = require('app/modules/homeModule');
-  var MapRegionView = require('app/views/mapRegion');
+  var MapView = require('app/views/map');
 
   // Templates
   var template = require('text!templates/home.html');
@@ -22,9 +22,8 @@ define(function(require, exports, module) {
   var App = new Marionette.Application();
 
   App.addRegions({
-    mapRegion: "#map-region",
     sparklineRegion: "#sparkline-region",
-    graphsRegion: "#graphs-region"
+    mainRegion: "#main-region"
   });
 
   App.module('HomeModule', HomeModule);
@@ -34,11 +33,12 @@ define(function(require, exports, module) {
     if(Backbone.history){
       Backbone.history.start();
     }
-
-    // Start the map region for any page
-    App.mapRegionView = new MapRegionView();
-    App.mapRegion.show(App.mapRegionView);
   }
+
+  // Start the map region before anything else
+  App.on('before:start', function() {
+    App.mapView = new MapView({ id: 'map' });
+  });
 
   App.on("start", start);
   return App;

@@ -8,30 +8,39 @@ define(function(require, exports, module) {
 
   // Models
   var MeasureCollection = require('app/models/measureCollection');
+  var CityModel = require('app/models/city');
 
   // Views
-  var MeasureView = require('app/views/measure');
+  var CityView = require('app/views/cityView');
   var MeasureCollectionView = require('app/views/measureCollectionView');
-
-  // Templates
-  var template = require('text!templates/home.html');
 
   var HomeModule = function(HomeModule, App, Backbone, Marionette, $, _) {
     HomeModule.Router = Backbone.Marionette.AppRouter.extend({
       appRoutes: {
-        '': 'home'
+        '': 'home',
+        '!/cities/:name': 'city'
       }
     });
 
     var routeController = {
       home: function() {
+        App.mapView.addLocations(settings.cities);
+
         var measuresCollection = new MeasureCollection();
         measuresCollection.fetch();
         var measuresView = new MeasureCollectionView({
           collection: measuresCollection
         });
-        //console.log("Home view", measuresView.render());
-        App.graphsRegion.show(measuresView);
+        App.mainRegion.show(measuresView);
+      },
+      city: function(name) {
+        console.log("Going to city", name);
+
+        var city = new CityModel({name: name});
+        var cityView = new CityView({
+          model: city
+        });
+        App.mainRegion.show(cityView);
       }
     };
 
