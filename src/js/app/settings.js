@@ -8,11 +8,13 @@ function() {
 
   var settings = {};
 
+  settings.delay = 10000; // ms between entries
+
   settings.api = {
     baseurl: '/api'
   };
 
-  settings.baseLayer = '//a.tiles.mapbox.com/v3/matth.01691638/{z}/{x}/{y}.png'; // LocalData
+  settings.baseLayer = '//{s}.tiles.mapbox.com/v3/matth.01691638/{z}/{x}/{y}.png'; // LocalData
 
   settings.geojsonMarkerOptions = {
     radius: 10,

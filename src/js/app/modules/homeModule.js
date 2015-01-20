@@ -13,6 +13,7 @@ define(function(require, exports, module) {
   // Views
   var CityView = require('app/views/cityView');
   var MeasureCollectionView = require('app/views/measureCollectionView');
+  var SparklineCollectionView = require('app/views/sparklineCollectionView');
 
   var HomeModule = function(HomeModule, App, Backbone, Marionette, $, _) {
     HomeModule.Router = Backbone.Marionette.AppRouter.extend({
@@ -33,9 +34,12 @@ define(function(require, exports, module) {
         App.mainRegion.show(measuresView);
 
         // Show sparklines
-        var sparklineView = new MeasureCollectionView({
-          collection: measuresCollection,
-          sparklines: true
+        var city = new CityModel({name: 'San Francisco'});
+        var sparklineMeasuresCollection = new MeasureCollection();
+        sparklineMeasuresCollection.autoUpdate();
+        var sparklineView = new SparklineCollectionView({
+          model: city,
+          collection: sparklineMeasuresCollection
         });
         App.sparklineRegion.show(sparklineView);
       }

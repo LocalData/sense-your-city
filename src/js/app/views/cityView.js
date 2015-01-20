@@ -23,6 +23,7 @@ define(function(require, exports, module) {
   // Views
   var MeasureCollectionView = require('app/views/measureCollectionView');
   var OverviewView = require('app/views/overviewView');
+  var ToolsView = require('app/views/toolsView');
 
   // Templates
   var template = require('text!templates/city.html');
@@ -39,29 +40,31 @@ define(function(require, exports, module) {
     },
 
     onBeforeShow: function() {
-
-      // Get the top stats
+      // Get the latest stats
       var entry = new EntryModel();
       entry.fetch();
       var overviewView = new OverviewView({
         model: entry
       });
 
-      // TODO
-      // Ugly
-      // Find a better way to show sync
       entry.on("sync", function(){
         this.getRegion('overviewRegion').show(overviewView);
       }.bind(this));
 
 
       // Get the graphs
+      // First, get the stats for each of the
       var measuresCollection = new MeasureCollection();
       measuresCollection.fetch();
       var measuresView = new MeasureCollectionView({
         collection: measuresCollection
       });
       this.getRegion('graphsRegion').show(measuresView);
+
+      // Show the tools view
+      var toolsView = new ToolsView({
+      });
+      this.getRegion('toolsRegion').show(toolsView);
     }
   });
 

@@ -5,7 +5,7 @@
 #main-region {
 
   .measures {
-    padding: $pad;
+    padding: $minipad $pad $pad $pad;
 
     .measure {
       background: #fff;
@@ -68,9 +68,40 @@
       }
     }
   }
+
+  .tools {
+    padding: $minipad $pad - $minipad 0 $pad;
+
+    .toolbox {
+      background: #fff;
+      padding: $minipad;
+      margin-right: $minipad;
+
+      h3 {
+        font-size: 1em;
+        font-weight: normal;
+        color: $inactive-color;
+      }
+
+      .button {
+        display: inline-block;
+        padding: 3px 5px;
+        border-radius: 3px;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: lighten($body-color, 30%);
+      }
+
+      .button:hover,
+      .button.active {
+        background: $background-color;
+        color: $body-color;
+      }
+    }
+  }
 }
 
-#sparkline-region .measures {
+.sparklines {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -78,6 +109,11 @@
   z-index: 10000;
   background: $body-color;
   color: $primary-color;
+
+  h2 {
+    color: #fff;
+    padding: 12px 12px 0 12px;
+  }
 
   .sparkline {
     padding: 12px 12px 0px 12px;

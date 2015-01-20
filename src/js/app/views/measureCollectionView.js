@@ -14,17 +14,10 @@ define(function(require, exports, module) {
   // App
   var settings = require('app/settings');
   var MeasureView = require('app/views/measureView');
-  var SparklineView = require('app/views/sparklineView');
 
-  var MeasureCollectionView = Backbone.Marionette.CollectionView.extend({
+  var MeasureCollectionView = Marionette.CollectionView.extend({
     className: 'measures',
-
-    getChildView: function(item) {
-      if (this.options.sparklines === true) {
-        return SparklineView;
-      }
-      return MeasureView;
-    }
+    childView: MeasureView
   });
 
   return MeasureCollectionView;

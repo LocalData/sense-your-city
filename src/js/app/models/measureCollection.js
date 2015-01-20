@@ -16,7 +16,9 @@ define(function(require, exports, module) {
   var MeasureCollection = Backbone.Collection.extend({
     model: Measure,
 
-    url: 'http://localdata-sensors.herokuapp.com/api/v1/sources/ci4rb6392000102wddchkqctq/entries?startIndex=0&count=30&sort=desc',
+    url: function() {
+      return 'http://localdata-sensors.herokuapp.com/api/v1/sources/ci4rb6392000102wddchkqctq/entries?startIndex=0&count=30&sort=desc';
+    },
 
     parse: function(entries) {
       var measures = {};
@@ -39,6 +41,12 @@ define(function(require, exports, module) {
       });
 
       return _.values(measures);
+    },
+
+    autoUpdate: function() {
+      this.fetch();
+      var autoUpdate = _.bind(this.autoUpdate, this);
+      _.delay(autoUpdate, settings.delay);
     }
   });
 
