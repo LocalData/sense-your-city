@@ -16,6 +16,7 @@ define(function(require, exports, module) {
   // Modules & Views
   var HomeModule = require('app/modules/homeModule');
   var CityModule = require('app/modules/cityModule');
+  var SourceModule = require('app/modules/sourceModule');
   var MapView = require('app/views/map');
 
   // Templates
@@ -31,6 +32,7 @@ define(function(require, exports, module) {
 
   App.module('HomeModule', HomeModule);
   App.module('CityModule', CityModule);
+  App.module('SourceModule', SourceModule);
 
   // Wait for the app to start
   function start(options) {
