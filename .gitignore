@@ -1,6 +1,7 @@
 node_modules
 publish
 dev-settings.json
+build
 temp
 staging
 .sass-cache
