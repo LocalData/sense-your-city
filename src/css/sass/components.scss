@@ -2,28 +2,115 @@
   position: relative;
 }
 
+#main-region {
+
+  .measures {
+    padding: $pad;
+
+    .measure {
+      background: #fff;
+      padding: $pad;
+      margin-bottom: $pad;
+
+
+      .header {
+        padding-bottom: $pad;
+        h3 {
+          display: inline-block;
+        }
+      }
+
+      /* Graph styles */
+      .ct-chart .ct-line {
+        stroke-width: 2;
+      }
+
+      .ct-chart .ct-series.ct-series-a .ct-bar,
+      .ct-chart .ct-series.ct-series-a .ct-line,
+      .ct-chart .ct-series.ct-series-a .ct-point,
+      .ct-chart .ct-series.ct-series-a .ct-slice.ct-donut {
+        stroke: $primary-color;
+      }
+    }
+  }
+
+  #city-overview {
+    padding: 10px 40px;
+    background: #fff;
+
+    h2 {
+      font-size: $hsize;
+      float: left;
+      padding-right: $pad * 1.5;
+      line-height: 1.5em;
+    }
+  }
+
+  .overview {
+    display: inline-block;
+
+    .measure {
+      display: inline-block;
+      padding-right: $pad;
+
+      h3 {
+      }
+
+      .name {
+        font-weight: normal;
+        font-size: 1em;
+        color: $inactive-color;
+      }
+
+      .value {
+        font-size: 1.5em;
+        color: $orange;
+      }
+    }
+  }
+}
+
 #sparkline-region .measures {
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 300px;
+  width: 275px;
   z-index: 10000;
   background: $body-color;
   color: $primary-color;
 
-  .ct-chart .ct-line {
-    stroke-width: 2;
-  }
+  .sparkline {
+    padding: 12px 12px 0px 12px;
 
-  .ct-chart .ct-series.ct-series-a .ct-bar,
-  .ct-chart .ct-series.ct-series-a .ct-line,
-  .ct-chart .ct-series.ct-series-a .ct-point,
-  .ct-chart .ct-series.ct-series-a .ct-slice.ct-donut {
-    stroke: #fff;
-  }
+    .name {
+      color: #fff;
+      font-size: 0.9rem;
+      font-weight: normal;
+    }
 
-  .measure-graph {
-    height: 50px;
+    .value {
+      font-size: 1.5rem;
+    }
+
+    .unit {
+      font-weight: normal;
+      font-size: 0.75rem;
+    }
+
+    .ct-chart .ct-line {
+      stroke-width: 2;
+    }
+
+    .ct-chart .ct-series.ct-series-a .ct-bar,
+    .ct-chart .ct-series.ct-series-a .ct-line,
+    .ct-chart .ct-series.ct-series-a .ct-point,
+    .ct-chart .ct-series.ct-series-a .ct-slice.ct-donut {
+      stroke: #fff;
+    }
+
+    .measure-graph {
+      height: 50px;
+    }
   }
 }
 

@@ -20,7 +20,7 @@ define(function(require, exports, module) {
     template: _.template(template),
 
     initialize: function(options) {
-      _.bindAll(this, 'addPopup');
+      _.bindAll(this, 'addPopup', 'addLocations');
       L.Icon.Default.imagePath = '/js/lib/leaflet/images';
       this.id = options.id || 'map';
       this.render();
@@ -41,7 +41,9 @@ define(function(require, exports, module) {
     },
 
     clear: function() {
-      this.map.clearLayers();
+      if (this.layer) {
+        this.map.removeLayer(this.layer);
+      }
     },
 
     addPopup: function(feature, layer) {
@@ -52,13 +54,15 @@ define(function(require, exports, module) {
     },
 
     addLocations: function(data) {
-      var layer = L.geoJson(data, {
+      this.clear();
+      this.layer = L.geoJson(data, {
         pointToLayer: function (feature, latlng) {
             return L.circleMarker(latlng, settings.geojsonMarkerOptions);
         },
         onEachFeature: this.addPopup
       }).addTo(this.map);
-      this.map.fitBounds(layer.getBounds());
+      console.log("setting bounds", data, this.layer.getBounds());
+      this.map.fitBounds(this.layer.getBounds());
     }
   });
 

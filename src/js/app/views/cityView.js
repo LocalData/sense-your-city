@@ -16,6 +16,7 @@ define(function(require, exports, module) {
   var settings = require('app/settings');
 
   // Models
+  var EntryModel = require('app/models/entry');
   var MeasureModel = require('app/models/measure');
   var MeasureCollection = require('app/models/measureCollection');
 
@@ -29,20 +30,30 @@ define(function(require, exports, module) {
   var CityView = Marionette.LayoutView.extend({
     template: _.template(template),
 
+    className: 'city',
+
     regions: {
       overviewRegion: '#overview-region',
-      graphsRegion: '#graphs-region'
+      graphsRegion: '#graphs-region',
+      toolsRegion: '#tools-region'
     },
 
     onBeforeShow: function() {
+
       // Get the top stats
-      var measure = new MeasureModel();
-      measure.fetch();
+      var entry = new EntryModel();
+      entry.fetch();
       var overviewView = new OverviewView({
-        model: measure
+        model: entry
       });
-      console.log(overviewView);
-      this.getRegion('overviewRegion').show(overviewView);
+
+      // TODO
+      // Ugly
+      // Find a better way to show sync
+      entry.on("sync", function(){
+        this.getRegion('overviewRegion').show(overviewView);
+      }.bind(this));
+
 
       // Get the graphs
       var measuresCollection = new MeasureCollection();

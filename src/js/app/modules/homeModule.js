@@ -31,6 +31,13 @@ define(function(require, exports, module) {
           collection: measuresCollection
         });
         App.mainRegion.show(measuresView);
+
+        // Show sparklines
+        var sparklineView = new MeasureCollectionView({
+          collection: measuresCollection,
+          sparklines: true
+        });
+        App.sparklineRegion.show(sparklineView);
       }
     };
 

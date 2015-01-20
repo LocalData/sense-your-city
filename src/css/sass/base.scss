@@ -31,6 +31,10 @@ h1, h2, h3, h4 {
   padding: 0;
 }
 
+h3 {
+  font-size: 2rem;
+}
+
 p {
   margin-bottom: 1em;
 }
@@ -48,7 +52,7 @@ a:active {
 
 
 #map {
-  height: 350px;
+  height: 474px;
   background: $primary-color;
 }
 
@@ -62,7 +66,6 @@ a:active {
     color: #fff;
   }
 }
-
 
 .print{
   display: none;

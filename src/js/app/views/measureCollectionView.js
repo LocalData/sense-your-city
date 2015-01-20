@@ -18,11 +18,9 @@ define(function(require, exports, module) {
 
   var MeasureCollectionView = Backbone.Marionette.CollectionView.extend({
     className: 'measures',
-    getChildView: function(item) {
-      console.log("Creating measure item view", this);
-      if (this.options.sparklines === true) {
-              console.log("Creating SPARKLINE view", this);
 
+    getChildView: function(item) {
+      if (this.options.sparklines === true) {
         return SparklineView;
       }
       return MeasureView;

@@ -21,15 +21,28 @@ define(function(require, exports, module) {
   var MeasureView = Marionette.ItemView.extend({
     template: _.template(template),
 
+    className: 'measure',
+
     onRender: function() {
       var graphEl = this.$el.find('.measure-graph').get(0);
+
+      var chartOptions = {
+        showPoint: false,
+        axisY: {
+          // Fixes problem with tiny value legends
+          // (https://github.com/gionkunz/chartist-js/issues/110)
+          labelInterpolationFnc: function(value) {
+            return Math.round(value * 100) / 100;
+          }
+        }
+      };
 
       this.graph = new Chartist.Line(graphEl, {
         labels: this.model.get('labels'),
         series: [
           this.model.get('values')
         ]
-      });
+      }, chartOptions);
     }
   });
 

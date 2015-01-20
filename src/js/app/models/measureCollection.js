@@ -10,12 +10,13 @@ define(function(require, exports, module) {
   var Backbone = require('backbone');
 
   // App
+  var settings = require('app/settings');
   var Measure = require('app/models/measure');
 
   var MeasureCollection = Backbone.Collection.extend({
     model: Measure,
 
-    url: 'http://localdata-sensors.herokuapp.com/api/v1/sources/ci4x0rtb9000h02tcfa5qov33/entries?startIndex=0&count=30&sort=desc',
+    url: 'http://localdata-sensors.herokuapp.com/api/v1/sources/ci4rb6392000102wddchkqctq/entries?startIndex=0&count=30&sort=desc',
 
     parse: function(entries) {
       var measures = {};
@@ -26,6 +27,7 @@ define(function(require, exports, module) {
           if (!_.has(measures, name)) {
             measures[name] = {
               name: name,
+              meta: settings.measureLabels[name],
               labels: [],
               values: []
             };
@@ -36,7 +38,6 @@ define(function(require, exports, module) {
         });
       });
 
-      console.log("Returning", _.values(measures));
       return _.values(measures);
     }
   });

@@ -23,6 +23,82 @@ function() {
     fillOpacity: 1
   };
 
+  settings.measureLabels = {
+    'airquality_raw': {
+      name: 'Air quality',
+      units: 'mV'
+    },
+    'dust': {
+      name: 'Dust',
+      units: 'mVpcs/238mL'
+    },
+    'humidity': {
+      name: 'Humidity',
+      units: '%'
+    },
+    'light': {
+      name: 'Light',
+      units: 'Lux'
+    },
+    'sound': {
+      name: 'Sound',
+      units: 'mV'
+    },
+    'temperature': {
+      name: 'Temp',
+      units: 'C'
+    },
+    'uv': {
+      name: 'Uv',
+      units: 'mV'
+    }
+  };
+
+  settings.fakeSF = {
+    name: "San Francisco",
+    sensors: [{
+      properties: {
+        name: 'mapsense',
+        id: 'ci4usvryz000202s7llxjafaf'
+      },
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [-122.413782, 37.775660]
+      }
+    },{
+      properties: {
+        name: 'ClimateNinja9000',
+        id: 'ci4yf50s5000c03zzt4h2tnsq'
+      },
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [-122.433497, 37.769870]
+      }
+    },{
+      properties: {
+        name: 'DataDonut',
+        id: 'ci54gryz30003032pmcjifsqi'
+      },
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [-122.394303, 37.782413]
+      }
+    },{
+      properties: {
+        name: 'a-streetcar-named-desire',
+        id: 'ci4vuo52c000j02s7rrrjlake'
+      },
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [-122.511216, 37.760082]
+      }
+    }]
+  };
+
   settings.cities = [{
     properties: {
       name: 'Bangalore'

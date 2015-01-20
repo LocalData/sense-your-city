@@ -26,6 +26,10 @@ define(function(require, exports, module) {
       city: function(name) {
         console.log("Going to city", name);
 
+        // Update the map
+        console.log(settings.fakeSF);
+        App.mapView.addLocations(settings.fakeSF.sensors);
+
         // Show the main city data
         var city = new CityModel({name: name});
         var cityView = new CityView({

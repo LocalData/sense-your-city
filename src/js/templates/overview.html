@@ -1,1 +1,11 @@
-Stats go here...
+<% _.each(data, function(measure) { %>
+  <div class="measure">
+    <h3 class="name">
+      <%= measure.meta.name %>
+      <span class="unit"><%= measure.meta.units %></span>
+    </h3>
+    <h3 class="value">
+      <%= measure.value %>
+    </h3>
+  </div>
+<% }); %>

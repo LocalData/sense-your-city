@@ -19,7 +19,13 @@ define(function(require, exports, module) {
   var template = require('text!templates/overview.html');
 
   var OverviewView = Marionette.ItemView.extend({
-    template: _.template(template)
+    template: _.template(template),
+
+    className: 'overview',
+
+    onBeforeRender: function() {
+      console.log("before render", this.model.toJSON());
+    }
   });
 
   return OverviewView;
