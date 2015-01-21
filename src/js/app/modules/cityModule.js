@@ -4,6 +4,10 @@
 define(function(require, exports, module) {
   'use strict';
 
+  // Libs
+  var _ = require('underscore');
+
+  // App
   var settings = require('app/settings');
 
   // Models
@@ -13,6 +17,34 @@ define(function(require, exports, module) {
   // Views
   var CityView = require('app/views/cityView');
   var SparklineCollectionView = require('app/views/sparklineCollectionView');
+
+  // Templates
+  var sourcePopup = require('text!templates/sourcePopup.html');
+
+
+  // TODO
+  // This will be replaced with a real list of sensors, properly formatted
+  function prepFakeSensors(city) {
+    var sensors = settings.sensors;
+    var geojson = [];
+    sensors = _.where(sensors, { city: city });
+    console.log("Working with", sensors);
+
+    _.each(sensors, function(sensor, index) {
+      var geo = {
+        properties: sensor,
+        type: 'Feature',
+        geometry: {
+          type: 'Point',
+          coordinates: sensor.location
+        }
+      };
+      geojson.push(geo);
+    });
+
+    console.log("Got geojson", geojson);
+    return geojson;
+  }
 
   var CityModule = function(CityModule, App, Backbone, Marionette, $, _) {
     CityModule.Router = Backbone.Marionette.AppRouter.extend({
@@ -26,8 +58,10 @@ define(function(require, exports, module) {
         console.log("Going to city", name);
 
         // Update the map
-        console.log(settings.fakeSF);
-        App.mapView.addLocations(settings.fakeSF.sensors);
+        var sensors = prepFakeSensors(name);
+        App.mapView.addLocations(sensors, {
+          template: _.template(sourcePopup)
+        });
 
         // Show the main city data
         var city = new CityModel({name: name});

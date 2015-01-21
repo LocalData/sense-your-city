@@ -28,77 +28,39 @@ function() {
   settings.measureLabels = {
     'airquality_raw': {
       name: 'Air quality',
-      units: 'mV'
+      units: 'mV',
+      description: 'Description goes here'
     },
     'dust': {
       name: 'Dust',
-      units: 'mVpcs/238mL'
+      units: 'mVpcs/238mL',
+      description: 'Description goes here'
     },
     'humidity': {
       name: 'Humidity',
-      units: '%'
+      units: '%',
+      description: 'Description goes here'
     },
     'light': {
       name: 'Light',
-      units: 'Lux'
+      units: 'Lux',
+      description: 'Description goes here'
     },
     'sound': {
       name: 'Sound',
-      units: 'mV'
+      units: 'mV',
+      description: 'Description goes here'
     },
     'temperature': {
       name: 'Temp',
-      units: 'C'
+      units: 'C',
+      description: 'Description goes here'
     },
     'uv': {
       name: 'Uv',
-      units: 'mV'
+      units: 'mV',
+      description: 'Description goes here'
     }
-  };
-
-  settings.fakeSF = {
-    name: "San Francisco",
-    sensors: [{
-      properties: {
-        name: 'mapsense',
-        id: 'ci4usvryz000202s7llxjafaf'
-      },
-      type: 'Feature',
-      geometry: {
-        type: 'Point',
-        coordinates: [-122.413782, 37.775660]
-      }
-    },{
-      properties: {
-        name: 'ClimateNinja9000',
-        id: 'ci4yf50s5000c03zzt4h2tnsq'
-      },
-      type: 'Feature',
-      geometry: {
-        type: 'Point',
-        coordinates: [-122.433497, 37.769870]
-      }
-    },{
-      properties: {
-        name: 'DataDonut',
-        id: 'ci54gryz30003032pmcjifsqi'
-      },
-      type: 'Feature',
-      geometry: {
-        type: 'Point',
-        coordinates: [-122.394303, 37.782413]
-      }
-    },{
-      properties: {
-        name: 'a-streetcar-named-desire',
-        id: 'ci4vuo52c000j02s7rrrjlake'
-      },
-      type: 'Feature',
-      geometry: {
-        type: 'Point',
-        coordinates: [-122.511216, 37.760082]
-      }
-    }]
   };
 
   settings.cities = [{
@@ -171,8 +133,8 @@ function() {
   "name": "Firefly",
   "city": "Bangalore",
   "location": [
-    12.9408029,
-    77.6259827
+    77.6259827,
+    12.9408029
   ],
   "id": "ci4y3qjzq000603zzg8bdbkde"
 },
@@ -198,8 +160,8 @@ function() {
   "name": "Geekstorm",
   "city": "Bangalore",
   "location": [
-    12.96145,
-    77.644259
+    77.644259,
+    12.96145
   ],
   "id": "ci4x8lumr000l02tco6291y1u"
 },
@@ -216,8 +178,8 @@ function() {
   "name": "Laddoo",
   "city": "Bangalore",
   "location": [
-    12.910474,
-    77.589195
+    77.589195,
+    12.910474
   ],
   "id": "ci4xvuiqf000503zz1bah2he8"
 },
@@ -234,8 +196,8 @@ function() {
   "name": "Claptrap",
   "city": "Bangalore",
   "location": [
-    12.956511,
-    77.6383672
+    77.6383672,
+    12.956511
   ],
   "id": "ci541fl410002032pbifg5o7a"
 },
@@ -262,7 +224,7 @@ function() {
   "city": "Bangalore",
   "location": [
     77.551852,
-    -13.043354
+    13.043354
   ],
   "id": "ci4z5dc2a0000032zfasduiyb"
 },
@@ -513,8 +475,8 @@ function() {
   "name": "PadulaNiteroiRJ",
   "city": "Rio de Janeiro",
   "location": [
-    -22.8994585,
-    -43.1281207
+    -43.1281207,
+    -22.8994585
   ],
   "id": "ci4vye225000n02s7rxjdfxa1"
 },
@@ -549,8 +511,8 @@ function() {
   "name": "GaveaDataCanvas",
   "city": "Rio de Janeiro",
   "location": [
-    -22.980901,
-    -43.234095
+    -43.234095,
+    -22.980901
   ],
   "id": "ci4wsj9if000c02tcrquen3bl"
 },
@@ -576,8 +538,8 @@ function() {
   "name": "BarraDaTijucaCanvas",
   "city": "Rio de Janeiro",
   "location": [
-    -23.002739,
-    -43.337678
+    -43.337678,
+    -23.002739
   ],
   "id": "ci4q0adco000002t9qu491siy"
 },
@@ -612,8 +574,8 @@ function() {
   "name": "Crisp Cookie",
   "city": "Rio de Janeiro",
   "location": [
-    -22.9273149,
-    -43.2401755
+    -43.2401755,
+    -22.9273149
   ],
   "id": "ci4vxorfp000l02s7nv4mlefu"
 },
@@ -621,8 +583,8 @@ function() {
   "name": "valeriab",
   "city": "Rio de Janeiro",
   "location": [
-    -22.9431045,
-    -43.338334499999995
+    -43.338334499999995,
+    -22.9431045
   ],
   "id": "ci4yf41wg000b03zz1sg9c2yb"
 },
@@ -639,8 +601,8 @@ function() {
   "name": "a-streetcar-named-data-sensor",
   "city": "San Francisco",
   "location": [
-    37.7648,
-    -122.42
+    -122.42,
+    37.7648
   ],
   "id": "ci4usss1t000102s7hkg0rpqg"
 },
@@ -743,27 +705,18 @@ function() {
   ],
   "id": "ci4yfbbdb000d03zzoq8kjdl0"
 },
-{
-  "name": "Boxtroll",
-  "city": "San Francisco",
-  "location": [
-    -0.127625,
-    51.503363
-  ],
-  "id": "ci51oxznm00000347ar9rv1ii"
-},
-{
-  "name": "no name",
-  "city": "San Francisco",
-  "location": [
-    -122.413649,
-    37.775641
-  ],
-  "id": "ci4n6pg6s000002ymxnkrqkru"
-},
+// {
+//   "name": "Boxtroll",
+//   "city": "San Francisco",
+//   "location": [
+//     -0.127625,
+//     51.503363
+//   ],
+//   "id": "ci51oxznm00000347ar9rv1ii"
+// },
 {
   "name": "chinotto",
-  "city": "shanghai",
+  "city": "Shanghai",
   "location": [
     121.4580891,
     31.2353115
@@ -862,10 +815,10 @@ function() {
 },
 {
   "name": "killingjackysbox",
-  "city": "Shanghai",
+  "city": "San Francisco",
   "location": [
-    37.790237,
-    -122.230081
+    -122.230081,
+    37.790237
   ],
   "id": "ci53h7ry60000032pfrgyjdug"
 },

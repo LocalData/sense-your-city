@@ -23,6 +23,15 @@ define(function(require, exports, module) {
 
     className: 'measure',
 
+    ui: {
+      'showInfo': '.action-show-info',
+      'description': '.description'
+    },
+
+    events: {
+      'click @ui.showInfo': 'showInfo'
+    },
+
     onRender: function() {
       var graphEl = this.$el.find('.measure-graph').get(0);
 
@@ -43,6 +52,11 @@ define(function(require, exports, module) {
           this.model.get('values')
         ]
       }, chartOptions);
+    },
+
+    showInfo: function(event) {
+      this.ui.showInfo.toggleClass('active');
+      this.ui.description.toggleClass('active');
     }
   });
 

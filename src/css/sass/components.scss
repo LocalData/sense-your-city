@@ -1,5 +1,5 @@
 .pure-menu.pure-menu-open {
-  background: $body-color;
+  background: $background-color;
   color: $landmass-white;
   font-size: 1.1rem;
   font-weight: bold;
@@ -9,7 +9,7 @@
   a,
   .pure-menu-selected a,
   .pure-menu-selected {
-    background: $body-color;
+    background: $background-color;
     color: $landmass-white;
   }
 }
@@ -34,6 +34,15 @@
         padding-bottom: $pad;
         h3 {
           display: inline-block;
+        }
+
+        .description {
+          display: none;
+          padding-bottom: $pad;
+        }
+
+        .description.active {
+          display: block;
         }
       }
 
@@ -111,7 +120,7 @@
 
       .button:hover,
       .button.active {
-        background: $background-color;
+        background: $background-light-color;
         color: $body-color;
       }
     }
@@ -124,7 +133,7 @@
   bottom: 0;
   width: 275px;
   z-index: 10000;
-  background: $body-color;
+  background: $background-color;
   color: $primary-color;
 
   h2 {
@@ -168,10 +177,12 @@
 }
 
 .action {
+  cursor: pointer;
   color: $inactive-color;
   font-size: 0.75em; // slightly smaller than its parent
 }
 
+.action.active,
 .action:hover {
   color: $active-color;
 }

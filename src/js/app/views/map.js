@@ -53,7 +53,11 @@ define(function(require, exports, module) {
       }
     },
 
-    addLocations: function(data) {
+    addLocations: function(data, options) {
+      if (options && options.template) {
+        this.template = options.template;
+      }
+
       this.clear();
       this.layer = L.geoJson(data, {
         pointToLayer: function (feature, latlng) {

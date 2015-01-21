@@ -9,7 +9,8 @@
  ******************************************************************************/
 
 body {
-  background: $background-color;
+  background: $background-light-color;
+  color: $body-color;
 }
 
 html, button, input, select, textarea,
@@ -47,6 +48,7 @@ a:active {
 #map {
   height: 514px;
   background: $primary-color;
+  margin-left: 275px;
 }
 
 .graph {
