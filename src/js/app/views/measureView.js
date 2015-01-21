@@ -11,6 +11,7 @@ define(function(require, exports, module) {
   var Chartist = require('chartist');
   var L = require('leaflet');
   var Marionette = require('marionette');
+  var moment = require('moment');
 
   // App
   var settings = require('app/settings');
@@ -42,6 +43,12 @@ define(function(require, exports, module) {
           // (https://github.com/gionkunz/chartist-js/issues/110)
           labelInterpolationFnc: function(value) {
             return Math.round(value * 100) / 100;
+          }
+        },
+
+        axisX: {
+          labelInterpolationFnc: function(value) {
+            return moment(value).format("ddd hA");
           }
         }
       };

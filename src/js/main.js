@@ -10,6 +10,7 @@ require.config({
       'jquery': 'lib/jquery',
       'leaflet': 'lib/leaflet',
       'marionette': 'lib/backbone.marionette',
+      'moment': 'lib/moment.min',
       'text': 'lib/text',
       'underscore': 'lib/lodash.underscore' // Backbone needs "underscore"
     },

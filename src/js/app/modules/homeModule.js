@@ -18,7 +18,9 @@ define(function(require, exports, module) {
   var HomeModule = function(HomeModule, App, Backbone, Marionette, $, _) {
     HomeModule.Router = Backbone.Marionette.AppRouter.extend({
       appRoutes: {
-        '': 'home'
+        '': 'home',
+        '!': 'home',
+        '!/': 'home'
       }
     });
 

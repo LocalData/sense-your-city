@@ -40,6 +40,26 @@ define(function(require, exports, module) {
       return this;
     },
 
+    // Add a buffer to a bounds object.
+    bufferedBounds: function() {
+      var bounds = this.layer.getBounds();
+
+      var sw = bounds.getSouthWest();
+      var ne = bounds.getNorthEast();
+
+      var lngDiff = ne.lng - sw.lng;
+      var latDiff = ne.lat - sw.lat;
+
+      var lngMod = lngDiff / 2;
+      var latMod = latDiff / 2;
+
+      var newSW = new L.LatLng(sw.lat - latMod, sw.lng - lngMod);
+      var newNE = new L.LatLng(ne.lat + latMod, ne.lng + lngMod);
+
+      console.log("setting new bounds", sw, ne, newSW, newNE);
+      return new L.LatLngBounds(newSW, newNE);
+    },
+
     clear: function() {
       if (this.layer) {
         this.map.removeLayer(this.layer);
@@ -47,6 +67,7 @@ define(function(require, exports, module) {
     },
 
     addPopup: function(feature, layer) {
+      console.log("adding popup", feature.properties);
       // does this feature have a property named popupContent?
       if (feature.properties && feature.properties.name) {
           layer.bindPopup(this.template(feature.properties));
@@ -67,7 +88,7 @@ define(function(require, exports, module) {
         },
         onEachFeature: this.addPopup
       }).addTo(this.map);
-      this.map.fitBounds(this.layer.getBounds());
+      this.map.fitBounds(this.bufferedBounds());
     }
   });
 

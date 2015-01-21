@@ -24,7 +24,7 @@ define(function(require, exports, module) {
 
   // TODO
   // This will be replaced with a real list of sensors, properly formatted
-  function prepFakeSensors(city) {
+  function prepSources(city) {
     var sensors = settings.sources;
     var geojson = [];
     sensors = _.where(sensors, { city: city });
@@ -58,13 +58,20 @@ define(function(require, exports, module) {
         console.log("Going to city", name);
 
         // Update the map
-        var sensors = prepFakeSensors(name);
+        var sensors = prepSources(name);
         App.mapView.addLocations(sensors, {
           template: _.template(sourcePopup)
         });
 
+
         // Show the main city data
-        var city = new CityModel({name: name});
+        // TODO
+        // Get the city from settings
+        var city = new CityModel({
+          properties: {
+            name: name
+          }
+        });
         var cityView = new CityView({
           model: city
         });
