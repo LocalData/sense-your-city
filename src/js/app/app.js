@@ -26,8 +26,9 @@ define(function(require, exports, module) {
   var App = new Marionette.Application();
 
   App.addRegions({
-    sparklineRegion: "#sparkline-region",
-    mainRegion: "#main-region"
+    sparklineRegion: '#sparkline-region',
+    mainRegion: '#main-region',
+    toolsRegion: '#tools-region'
   });
 
   App.module('HomeModule', HomeModule);
@@ -46,6 +47,6 @@ define(function(require, exports, module) {
     App.mapView = new MapView({ id: 'map' });
   });
 
-  App.on("start", start);
+  App.on('start', start);
   return App;
 });

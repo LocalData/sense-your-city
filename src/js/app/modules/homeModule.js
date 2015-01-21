@@ -11,7 +11,7 @@ define(function(require, exports, module) {
   var CityModel = require('app/models/city');
 
   // Views
-  var CityView = require('app/views/cityView');
+  var HomeView = require('app/views/homeView');
   var MeasureCollectionView = require('app/views/measureCollectionView');
   var SparklineCollectionView = require('app/views/sparklineCollectionView');
 
@@ -26,15 +26,11 @@ define(function(require, exports, module) {
       home: function() {
         App.mapView.addLocations(settings.cities);
 
-        var measuresCollection = new MeasureCollection();
-        measuresCollection.fetch();
-        var measuresView = new MeasureCollectionView({
-          collection: measuresCollection
-        });
-        App.mainRegion.show(measuresView);
+        var homeView = new HomeView({});
+        App.mainRegion.show(homeView);
 
         // Show sparklines
-        var city = new CityModel({name: 'San Francisco'});
+        var city = new CityModel({ properties: { name: 'San Francisco'}});
         var sparklineMeasuresCollection = new MeasureCollection();
         sparklineMeasuresCollection.autoUpdate();
         var sparklineView = new SparklineCollectionView({

@@ -25,7 +25,7 @@ define(function(require, exports, module) {
   // TODO
   // This will be replaced with a real list of sensors, properly formatted
   function prepFakeSensors(city) {
-    var sensors = settings.sensors;
+    var sensors = settings.sources;
     var geojson = [];
     sensors = _.where(sensors, { city: city });
     console.log("Working with", sensors);

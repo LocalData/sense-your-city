@@ -110,6 +110,7 @@
       }
 
       .button {
+        cursor: pointer;
         display: inline-block;
         padding: 3px 5px;
         border-radius: 3px;
@@ -118,10 +119,27 @@
         color: lighten($body-color, 30%);
       }
 
+      .city {
+        display: inline-block;
+
+        .button {
+          border-left: 3px solid $background-color;
+          font-weight: normal;
+          text-transform: none;
+          background: $background-light-color;
+          margin-right: $minipad;
+        }
+      }
+
       .button:hover,
       .button.active {
         background: $background-light-color;
         color: $body-color;
+      }
+
+      .button.selected {
+        color: $body-color;
+        background: $background-light-color;
       }
     }
   }

@@ -12,7 +12,14 @@ define(function(require, exports, module) {
   var settings = require('app/settings');
 
   var Entry = Backbone.Model.extend({
-    url: 'http://localdata-sensors.herokuapp.com/api/v1/sources/ci4x0rtb9000h02tcfa5qov33/entries?startIndex=0&count=1&sort=desc',
+    url: function() {
+      if (this.get('id')) {
+        return settings.baseUrl + 'sources/' + this.get('id') + '/entries?startIndex=0&count=1&sort=desc';
+      }
+
+      // Fallback
+      return 'http://localdata-sensors.herokuapp.com/api/v1/sources/ci4x0rtb9000h02tcfa5qov33/entries?startIndex=0&count=1&sort=desc';
+    },
 
     defaults: {
       data: {}
@@ -32,8 +39,13 @@ define(function(require, exports, module) {
           value: value
         };
       });
-      console.log("Returning entry", entry);
       return entry;
+    },
+
+    autoUpdate: function() {
+      this.fetch();
+      var autoUpdate = _.bind(this.autoUpdate, this);
+      _.delay(autoUpdate, settings.delay);
     }
   });
 

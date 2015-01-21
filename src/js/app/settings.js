@@ -8,6 +8,8 @@ function() {
 
   var settings = {};
 
+  settings.baseUrl = 'http://localdata-sensors.herokuapp.com/api/v1/';
+
   settings.delay = 10000; // ms between entries
 
   settings.api = {
@@ -65,7 +67,8 @@ function() {
 
   settings.cities = [{
     properties: {
-      name: 'Bangalore'
+      name: 'Bangalore',
+      color: '#26e3b9'
     },
     type: 'Feature',
     geometry: {
@@ -74,7 +77,8 @@ function() {
     }
   },{
     properties: {
-      name: 'Boston'
+      name: 'Boston',
+      color: '#26e3b9'
     },
     type: 'Feature',
     geometry: {
@@ -83,7 +87,8 @@ function() {
     }
   },{
     properties: {
-      name: 'Geneva'
+      name: 'Geneva',
+      color: '#26e3b9'
     },
     type: 'Feature',
     geometry: {
@@ -92,7 +97,8 @@ function() {
     }
   },{
     properties: {
-      name: 'Rio de Janeiro'
+      name: 'Rio de Janeiro',
+      color: '#26e3b9'
     },
     type: 'Feature',
     geometry: {
@@ -101,7 +107,8 @@ function() {
     }
   },{
     properties: {
-      name: 'San Francisco'
+      name: 'San Francisco',
+      color: '#26e3b9'
     },
     type: 'Feature',
     geometry: {
@@ -110,7 +117,8 @@ function() {
     }
   },{
     properties: {
-      name: 'Shanghai'
+      name: 'Shanghai',
+      color: '#26e3b9'
     },
     type: 'Feature',
     geometry: {
@@ -119,7 +127,8 @@ function() {
     }
   },{
     properties: {
-      name: 'Singapore'
+      name: 'Singapore',
+      color: '#26e3b9'
     },
     type: 'Feature',
     geometry: {
@@ -129,7 +138,7 @@ function() {
   }];
 
 
-  settings.sensors = [{
+  settings.sources = [{
   "name": "Firefly",
   "city": "Bangalore",
   "location": [
@@ -255,15 +264,15 @@ function() {
   ],
   "id": "ci4q6h7dw000202t98p48w6z4"
 },
-{
-  "name": "firehazard",
-  "city": "Boston",
-  "location": [
-    -0.127625,
-    51.503363
-  ],
-  "id": "ci530o426000003v9a6uxvc2l"
-},
+// {
+//   "name": "firehazard",
+//   "city": "Boston",
+//   "location": [
+//     -0.127625,
+//     51.503363
+//   ],
+//   "id": "ci530o426000003v9a6uxvc2l"
+// },
 {
   "name": "Pineapple",
   "city": "Boston",
@@ -314,7 +323,7 @@ function() {
   "city": "Boston",
   "location": [
     -71.1196326,
-    -42.3900055
+    42.3900055
   ],
   "id": "ci4rb6392000102wddchkqctq"
 },

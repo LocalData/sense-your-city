@@ -10,11 +10,13 @@ define(function(require, exports, module) {
   var Backbone = require('backbone');
 
   var Measure = Backbone.Model.extend({
-    url: 'http://localdata-sensors.herokuapp.com/api/v1/sources/ci4x0rtb9000h02tcfa5qov33/entries?startIndex=0&count=1&sort=desc'
+    url: 'http://localdata-sensors.herokuapp.com/api/v1/sources/ci4x0rtb9000h02tcfa5qov33/entries?startIndex=0&count=1&sort=desc',
 
-    // parse: function(data) {
-    //   return data;
-    // }
+    defaults: {
+      meta: {},
+      values: [],
+      labels: []
+    }
   });
 
   return Measure;

@@ -15,24 +15,30 @@ define(function(require, exports, module) {
   // App
   var settings = require('app/settings');
 
-  var ToolView = require('app/views/toolView');
-
   // Templates
-  var template = require('text!templates/tools.html');
+  var template = require('text!templates/toolCity.html');
 
-  var OverviewView = Marionette.CompositeView.extend({
+  var ToolView = Marionette.ItemView.extend({
     template: _.template(template),
-    childView: ToolView,
-    childViewContainer: '.city-list',
-    className: 'tools',
 
-    childEvents: {
-      'select:city': function(view) {
-        this.children.apply('deselect');
-        view.select();
-      }
+    className: 'city',
+
+    ui: {
+      'button': '.button'
+    },
+
+    triggers: {
+      "click @ui.button": "select:city"
+    },
+
+    select: function() {
+      this.ui.button.addClass('selected');
+    },
+
+    deselect: function() {
+      this.ui.button.removeClass('selected');
     }
   });
 
-  return OverviewView;
+  return ToolView;
 });

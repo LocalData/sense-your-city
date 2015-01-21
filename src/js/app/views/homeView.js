@@ -16,42 +16,28 @@ define(function(require, exports, module) {
   var settings = require('app/settings');
 
   // Models
-  var EntryModel = require('app/models/entry');
   var MeasureCollection = require('app/models/measureCollection');
+  var CityCollection = require('app/models/cityCollection');
 
   // Views
   var MeasureCollectionView = require('app/views/measureCollectionView');
-  var OverviewView = require('app/views/overviewView');
   var ToolsView = require('app/views/toolsView');
 
   // Templates
-  var template = require('text!templates/city.html');
+  var template = require('text!templates/home.html');
 
-  var CityView = Marionette.LayoutView.extend({
+  var HomeView = Marionette.LayoutView.extend({
     template: _.template(template),
 
-    className: 'city',
+    className: 'home',
 
     regions: {
-      overviewRegion: '#overview-region',
       graphsRegion: '#graphs-region',
       toolsRegion: '#tools-region'
     },
 
     onBeforeShow: function() {
-      // Get the latest stats
-      var entry = new EntryModel();
-      entry.fetch();
-      var overviewView = new OverviewView({
-        model: entry
-      });
-
-      entry.on("sync", function(){
-        this.getRegion('overviewRegion').show(overviewView);
-      }.bind(this));
-
       // Get the graphs
-      // First, get the stats for each of the
       var measuresCollection = new MeasureCollection();
       measuresCollection.fetch();
       var measuresView = new MeasureCollectionView({
@@ -60,11 +46,19 @@ define(function(require, exports, module) {
       this.getRegion('graphsRegion').show(measuresView);
 
       // Show the tools view
+      var cityCollection = new CityCollection(settings.cities);
       var toolsView = new ToolsView({
+        collection: cityCollection
+      });
+      toolsView.on("childview:select:city", function(args){
+        // TODO
+        // Highlight the graph
+        console.log("City selected", args);
       });
       this.getRegion('toolsRegion').show(toolsView);
+
     }
   });
 
-  return CityView;
+  return HomeView;
 });

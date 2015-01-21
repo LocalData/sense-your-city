@@ -12,7 +12,7 @@ define(function(require, exports, module) {
   var SourceModel = require('app/models/source');
 
   // Views
-  var CityView = require('app/views/cityView');
+  var SourceView = require('app/views/sourceView');
   var SparklineCollectionView = require('app/views/sparklineCollectionView');
 
   var SourceModule = function(SourceModule, App, Backbone, Marionette, $, _) {
@@ -26,24 +26,32 @@ define(function(require, exports, module) {
       source: function(id) {
         console.log("Going to source", id);
 
+        var rawSource = _.findWhere(settings.sources, { id: id});
+        console.log("Got raw source", rawSource);
         var source = new SourceModel({
-          id: 'ci4x0rtb9000h02tcfa5qov33'
+          properties: rawSource,
+          type: 'Feature',
+          geometry: {
+            type: 'Point',
+            coordinates: rawSource.location
+          }
         });
 
         // Update the map
-        // console.log(settings.fakeSF);
-        // App.mapView.addLocations(settings.fakeSF.sensors);
+        // TODO: Just zoom to the selected source
+        App.mapView.addLocations(source.toJSON());
 
         // Show the main city data
-        // var city = new CityModel({name: id});
-        // var cityView = new CityView({
-        //   model: city
-        // });
-        // App.mainRegion.show(cityView);
+        var sourceView = new SourceView({
+          model: source
+        });
+        App.mainRegion.show(sourceView);
 
         // Show the sparklines
-        var measuresCollection = new MeasureCollection();
-        measuresCollection.fetch();
+        var measuresCollection = new MeasureCollection({
+          id: source.get('properties').id
+        });
+        measuresCollection.autoUpdate();
         var sparklineView = new SparklineCollectionView({
           model: source,
           collection: measuresCollection

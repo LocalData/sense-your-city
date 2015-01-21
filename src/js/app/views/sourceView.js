@@ -27,10 +27,10 @@ define(function(require, exports, module) {
   // Templates
   var template = require('text!templates/city.html');
 
-  var CityView = Marionette.LayoutView.extend({
+  var SoureView = Marionette.LayoutView.extend({
     template: _.template(template),
 
-    className: 'city',
+    className: 'source',
 
     regions: {
       overviewRegion: '#overview-region',
@@ -40,7 +40,9 @@ define(function(require, exports, module) {
 
     onBeforeShow: function() {
       // Get the latest stats
-      var entry = new EntryModel();
+      var entry = new EntryModel({
+        id: this.model.get('properties').id
+      });
       entry.fetch();
       var overviewView = new OverviewView({
         model: entry
@@ -49,6 +51,10 @@ define(function(require, exports, module) {
       entry.on("sync", function(){
         this.getRegion('overviewRegion').show(overviewView);
       }.bind(this));
+      entry.on("change", function(){
+        this.getRegion('overviewRegion').show(overviewView);
+      }.bind(this));
+
 
       // Get the graphs
       // First, get the stats for each of the
@@ -66,5 +72,5 @@ define(function(require, exports, module) {
     }
   });
 
-  return CityView;
+  return SoureView;
 });

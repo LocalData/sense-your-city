@@ -56,6 +56,8 @@ define(function(require, exports, module) {
     addLocations: function(data, options) {
       if (options && options.template) {
         this.template = options.template;
+      } else {
+        this.template = _.template(template);
       }
 
       this.clear();
@@ -65,7 +67,6 @@ define(function(require, exports, module) {
         },
         onEachFeature: this.addPopup
       }).addTo(this.map);
-      console.log("setting bounds", data, this.layer.getBounds());
       this.map.fitBounds(this.layer.getBounds());
     }
   });
