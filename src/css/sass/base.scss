@@ -8,14 +8,6 @@
  * items, collapsible fieldsets and messages should be included in this partial.
  ******************************************************************************/
 
-@import "lib/_base.scss";
-@import "lib/_grids.scss";
-@import "lib/_grids-responsive.scss";
-@import "lib/_menus.scss";
-@import "lib/_chartist.scss";
-
-@import "components.scss";
-
 body {
   background: $background-color;
 }
@@ -48,6 +40,7 @@ a:visited,
 a:active {
   text-decoration: none;
   cursor: pointer;
+  color: $primary-color;
 }
 
 
@@ -70,3 +63,4 @@ a:active {
 .print{
   display: none;
 }
+

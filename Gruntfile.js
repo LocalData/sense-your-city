@@ -120,7 +120,7 @@ module.exports = function(grunt) {
             cwd: '<%= dirs.staging %>',
             src: [
               'index.html',
-              'js/require.js',
+              'js/lib/require.js',
               'img/**',
               '**/*.png', // Leaflet looks for PNGs in a funny spot
               '**/*.gif',
@@ -141,7 +141,7 @@ module.exports = function(grunt) {
             expand: true,
             cwd: '<%= dirs.temp %>',
             src: [
-              'js/require.js',
+              'js/lib/require.js',
               '**/*.css',
               'css/**',
               '*.html',

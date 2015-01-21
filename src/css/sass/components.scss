@@ -1,3 +1,20 @@
+.pure-menu.pure-menu-open {
+  background: $body-color;
+  color: $landmass-white;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-bottom: 1px solid $landmass-white;
+  padding: $minipad inherit;
+
+  a,
+  .pure-menu-selected a,
+  .pure-menu-selected {
+    background: $body-color;
+    color: $landmass-white;
+  }
+}
+
+
 #header {
   position: relative;
 }
@@ -150,3 +167,11 @@
   }
 }
 
+.action {
+  color: $inactive-color;
+  font-size: 0.75em; // slightly smaller than its parent
+}
+
+.action:hover {
+  color: $active-color;
+}
