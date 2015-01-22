@@ -88,7 +88,8 @@ define(function(require, exports, module) {
         },
         onEachFeature: this.addPopup
       }).addTo(this.map);
-      this.map.fitBounds(this.bufferedBounds());
+      // this.map.fitBounds(this.bufferedBounds());
+      this.map.fitBounds(this.layer.getBounds());
     }
   });
 

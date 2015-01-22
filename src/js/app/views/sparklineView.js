@@ -24,7 +24,7 @@ define(function(require, exports, module) {
     className: 'sparkline',
 
     onBeforeRender: function() {
-      console.log("Sparkline view", this);
+      // console.log("Sparkline view", this);
     },
 
     onRender: function() {
