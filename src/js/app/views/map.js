@@ -67,10 +67,8 @@ define(function(require, exports, module) {
     },
 
     addPopup: function(feature, layer) {
-      console.log("adding popup", feature.properties);
-      // does this feature have a property named popupContent?
       if (feature.properties && feature.properties.name) {
-          layer.bindPopup(this.template(feature.properties));
+        layer.bindPopup(this.template(feature.properties));
       }
     },
 

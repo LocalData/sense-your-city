@@ -10,12 +10,20 @@ define(function(require, exports, module) {
   var Backbone = require('backbone');
 
   // App
+  var settings = require('app/settings');
   var Entry = require('app/models/entry');
 
   var EntryCollection = Backbone.Collection.extend({
     model: Entry,
 
-    url: 'http://localdata-sensors.herokuapp.com/api/v1/sources/ci4lr75oi000202ypmtgrudhs/entries?startIndex=0&count=10&sort=desc',
+    initialize: function(options) {
+      this.id = options.id;
+    },
+
+    url: function() {
+      console.log("Getting specific entries?", this.id);
+      return settings.baseUrl + 'sources/' + this.id + '/entries?startIndex=0&count=30&sort=desc';
+    },
 
     parse: function(data) {
       console.log("data", data);

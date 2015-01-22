@@ -11,34 +11,18 @@ define(function(require, exports, module) {
   var Chartist = require('chartist');
   var L = require('leaflet');
   var Marionette = require('marionette');
+  var moment = require('moment');
 
   // App
   var settings = require('app/settings');
 
   // Templates
-  var template = require('text!templates/toolCity.html');
+  var template = require('text!templates/entryRow.html');
 
-  var ToolView = Marionette.ItemView.extend({
+  var EntryTableView = Marionette.ItemView.extend({
     template: _.template(template),
-
-    className: 'city',
-
-    ui: {
-      'button': '.button'
-    },
-
-    triggers: {
-      "click @ui.button": "select:city"
-    },
-
-    select: function() {
-      this.ui.button.addClass('active');
-    },
-
-    deselect: function() {
-      this.ui.button.removeClass('active');
-    }
+    tagName: 'tr'
   });
 
-  return ToolView;
+  return EntryTableView;
 });

@@ -97,16 +97,19 @@
 
   .tools {
     padding: $minipad $pad - $minipad 0 $pad;
+    overflow: auto;
 
     .toolbox {
       background: #fff;
       padding: $minipad;
-      margin-right: $minipad;
+      border-right: $minipad solid $background-light-color;
+      float: left;
 
       h3 {
-        font-size: 1em;
+        font-size: 0.8em;
         font-weight: normal;
         color: $inactive-color;
+        padidng-bottom: $minipad;
       }
 
       .button {
@@ -136,11 +139,11 @@
         background: $background-light-color;
         color: $body-color;
       }
+    }
 
-      .button.selected {
-        color: $body-color;
-        background: $background-light-color;
-      }
+    .toolbox.city-list {
+      float: none; // expand to fill the remaining space
+      overflow: auto;
     }
   }
 }

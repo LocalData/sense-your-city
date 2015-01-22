@@ -17,10 +17,12 @@ define(function(require, exports, module) {
 
   // Models
   var EntryModel = require('app/models/entry');
+  var EntryCollection = require('app/models/entryCollection');
   var MeasureCollection = require('app/models/measureCollection');
 
   // Views
   var MeasureCollectionView = require('app/views/measureCollectionView');
+  var EntriesTableView = require('app/views/entriesTableView');
   var OverviewView = require('app/views/overviewView');
   var ToolsView = require('app/views/toolsView');
 
@@ -55,9 +57,7 @@ define(function(require, exports, module) {
         this.getRegion('overviewRegion').show(overviewView);
       }.bind(this));
 
-
       // Get the graphs
-      // First, get the stats for each of the
       var measuresCollection = new MeasureCollection();
       measuresCollection.fetch();
       var measuresView = new MeasureCollectionView({
@@ -65,9 +65,25 @@ define(function(require, exports, module) {
       });
       this.getRegion('graphsRegion').show(measuresView);
 
-      // Show the tools view
-      var toolsView = new ToolsView({
+      // Create a tableView, but don't display it yet
+      var entryCollection = new EntryCollection({
+        id: this.model.get('properties').id
       });
+      entryCollection.fetch();
+      var entriesView = new EntriesTableView({
+        collection: entryCollection
+      });
+
+      // Show the tools view
+      // TODO
+      // break out a bit
+      var toolsView = new ToolsView({ });
+      toolsView.on('display:table', function(args) {
+        this.getRegion('graphsRegion').show(entriesView, {preventDestroy: true});
+      }.bind(this));
+      toolsView.on('display:graphs', function(args) {
+        this.getRegion('graphsRegion').show(measuresView, {preventDestroy: true});
+      }.bind(this));
       this.getRegion('toolsRegion').show(toolsView);
     }
   });

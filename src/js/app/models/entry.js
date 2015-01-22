@@ -26,7 +26,10 @@ define(function(require, exports, module) {
     },
 
     parse: function(entry) {
-      entry = entry[0];
+      // First, handle raw entries
+      if (entry[0]) {
+        entry = entry[0];
+      }
 
       entry.location = entry.data.location;
 
