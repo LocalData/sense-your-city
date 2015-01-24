@@ -16,9 +16,6 @@ define(function(require, exports, module) {
       if (this.get('id')) {
         return settings.baseUrl + 'sources/' + this.get('id') + '/entries?startIndex=0&count=1&sort=desc';
       }
-
-      // Fallback
-      return 'http://localdata-sensors.herokuapp.com/api/v1/sources/ci4x0rtb9000h02tcfa5qov33/entries?startIndex=0&count=1&sort=desc';
     },
 
     defaults: {

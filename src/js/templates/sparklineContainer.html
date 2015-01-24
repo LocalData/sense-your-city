@@ -1,1 +1,6 @@
 <h2><%= properties.name %></h2>
+<% if (properties.type) { %>
+<a class="button" href="#!/<%= properties.type %>/<%= properties.name %>">
+  View <%= properties.type %>
+</a>
+<% } %>

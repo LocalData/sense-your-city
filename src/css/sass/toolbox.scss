@@ -1,0 +1,52 @@
+  .tools {
+    // padding: $minipad $pad - $minipad 0 $pad;
+    padding: $pad 0 $pad - $minipad $pad;
+    overflow: auto;
+
+    .toolbox {
+      background: #fff;
+      padding: $minipad;
+      border-right: $pad solid $background-light-color;
+      float: left;
+
+      h3 {
+        font-size: 0.8em;
+        font-weight: normal;
+        color: $inactive-color;
+        padidng-bottom: $minipad;
+      }
+
+      .button {
+        cursor: pointer;
+        display: inline-block;
+        padding: 3px 5px;
+        border-radius: 3px;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: lighten($body-color, 30%);
+      }
+
+      .city {
+        display: inline-block;
+
+        .button {
+          border-left: 3px solid $background-color;
+          font-weight: normal;
+          text-transform: none;
+          background: $background-light-color;
+          margin-right: $minipad;
+        }
+      }
+
+      .button:hover,
+      .button.active {
+        background: $background-light-color;
+        color: $body-color;
+      }
+    }
+
+    .toolbox.city-list {
+      float: none; // expand to fill the remaining space
+      overflow: auto;
+    }
+  }

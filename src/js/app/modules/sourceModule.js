@@ -38,7 +38,6 @@ define(function(require, exports, module) {
         });
 
         // Update the map
-        // TODO: Just zoom to the selected source
         App.mapView.addLocations(source.toJSON());
 
         // Show the main city data
@@ -49,7 +48,7 @@ define(function(require, exports, module) {
 
         // Show the sparklines
         var measuresCollection = new MeasureCollection({
-          id: source.get('properties').id
+          id: id
         });
         measuresCollection.autoUpdate();
         var sparklineView = new SparklineCollectionView({

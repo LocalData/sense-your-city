@@ -16,18 +16,16 @@ define(function(require, exports, module) {
   var settings = require('app/settings');
 
   // Models
-  var EntryModel = require('app/models/entry');
   var EntryCollection = require('app/models/entryCollection');
   var MeasureCollection = require('app/models/measureCollection');
 
   // Views
   var MeasureCollectionView = require('app/views/measureCollectionView');
   var EntriesTableView = require('app/views/entriesTableView');
-  var OverviewView = require('app/views/overviewView');
   var ToolsView = require('app/views/toolsView');
 
   // Templates
-  var template = require('text!templates/city.html');
+  var template = require('text!templates/source.html');
 
   var SoureView = Marionette.LayoutView.extend({
     template: _.template(template),
@@ -35,30 +33,15 @@ define(function(require, exports, module) {
     className: 'source',
 
     regions: {
-      overviewRegion: '#overview-region',
       graphsRegion: '#graphs-region',
       toolsRegion: '#tools-region'
     },
 
     onBeforeShow: function() {
-      // Get the latest stats
-      var entry = new EntryModel({
+      // Get the graphs
+      var measuresCollection = new MeasureCollection({
         id: this.model.get('properties').id
       });
-      entry.fetch();
-      var overviewView = new OverviewView({
-        model: entry
-      });
-
-      entry.on("sync", function(){
-        this.getRegion('overviewRegion').show(overviewView);
-      }.bind(this));
-      entry.on("change", function(){
-        this.getRegion('overviewRegion').show(overviewView);
-      }.bind(this));
-
-      // Get the graphs
-      var measuresCollection = new MeasureCollection();
       measuresCollection.fetch();
       var measuresView = new MeasureCollectionView({
         collection: measuresCollection
@@ -83,6 +66,9 @@ define(function(require, exports, module) {
       }.bind(this));
       toolsView.on('display:graphs', function(args) {
         this.getRegion('graphsRegion').show(measuresView, {preventDestroy: true});
+      }.bind(this));
+      toolsView.on('display:time', function(args) {
+        console.log("Display time", args);
       }.bind(this));
       this.getRegion('toolsRegion').show(toolsView);
     }

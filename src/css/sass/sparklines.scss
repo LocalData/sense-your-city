@@ -1,0 +1,48 @@
+.sparklines {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 275px;
+  z-index: 10000;
+  background: $background-color;
+  color: $primary-color;
+
+  h2 {
+    color: #fff;
+    padding: 12px 12px 0 12px;
+  }
+
+  .sparkline {
+    padding: 12px 12px 0px 12px;
+
+    .name {
+      color: #fff;
+      font-size: 0.9rem;
+      font-weight: normal;
+    }
+
+    .value {
+      font-size: 1.5rem;
+    }
+
+    .unit {
+      font-weight: normal;
+      font-size: 0.75rem;
+    }
+
+    .ct-chart .ct-line {
+      stroke-width: 2;
+    }
+
+    .ct-chart .ct-series.ct-series-a .ct-bar,
+    .ct-chart .ct-series.ct-series-a .ct-line,
+    .ct-chart .ct-series.ct-series-a .ct-point,
+    .ct-chart .ct-series.ct-series-a .ct-slice.ct-donut {
+      stroke: #fff;
+    }
+
+    .measure-graph {
+      height: 50px;
+    }
+  }
+}

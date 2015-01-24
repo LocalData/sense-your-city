@@ -16,11 +16,18 @@ define(function(require, exports, module) {
   var MeasureCollection = Backbone.Collection.extend({
     model: Measure,
 
+    initialize: function(options) {
+      this.id = options.id;
+    },
+
     url: function() {
-      console.log("Init measure collection", this);
+      if (this.id) {
+        return settings.baseUrl + 'sources/' + this.id + '/entries?startIndex=0&count=30&sort=desc';
+      }
 
       // TODO
       // Remove fallback
+      console.log("Warning - using fallback URL");
       return 'http://localdata-sensors.herokuapp.com/api/v1/sources/ci4rb6392000102wddchkqctq/entries?startIndex=0&count=30&sort=desc';
     },
 
@@ -30,7 +37,7 @@ define(function(require, exports, module) {
       entries = entries.reverse();
 
       _.each(entries, function(entry) {
-        var data = _.omit(entry.data, 'location', 'airquality');
+        var data = _.omit(entry.data, 'location', 'airquality', 'uv');
         _.each(data, function(measure, name) {
           if (!_.has(measures, name)) {
             measures[name] = {

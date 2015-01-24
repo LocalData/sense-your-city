@@ -14,13 +14,23 @@
   }
 }
 
-
-#header {
+header {
   position: relative;
 }
 
-#main-region {
+footer {
+  background: $background-color;
+  padding: $pad;
+  overflow: auto;
+  color: $landmass-white;
 
+  .logo {
+    float: right;
+    background: $background-light-color;
+  }
+}
+
+#main-region {
   .measures {
     padding: $minipad $pad $pad $pad;
 
@@ -29,21 +39,23 @@
       padding: $pad;
       margin-bottom: $pad;
 
-
       .header {
-        padding-bottom: $pad;
-        h3 {
-          display: inline-block;
-        }
-
         .description {
-          display: none;
           padding-bottom: $pad;
         }
 
         .description.active {
           display: block;
         }
+
+        .action-minimize,
+        .action-maximize {
+          float: right;
+        }
+      }
+
+      .measure-graph {
+        margin-top: $pad;
       }
 
       /* Graph styles */
@@ -61,7 +73,7 @@
   }
 
   #city-overview {
-    padding: 10px 40px;
+    padding: $pad/2 $pad;
     background: #fff;
 
     h2 {
@@ -71,131 +83,62 @@
       line-height: 1.5em;
     }
   }
-
-  .overview {
-    display: inline-block;
-
-    .measure {
-      display: inline-block;
-      padding-right: $pad;
-
-      h3 {
-      }
-
-      .name {
-        font-weight: normal;
-        font-size: 1em;
-        color: $inactive-color;
-      }
-
-      .value {
-        font-size: 1.5em;
-        color: $orange;
-      }
-    }
-  }
-
-  .tools {
-    padding: $minipad $pad - $minipad 0 $pad;
-    overflow: auto;
-
-    .toolbox {
-      background: #fff;
-      padding: $minipad;
-      border-right: $minipad solid $background-light-color;
-      float: left;
-
-      h3 {
-        font-size: 0.8em;
-        font-weight: normal;
-        color: $inactive-color;
-        padidng-bottom: $minipad;
-      }
-
-      .button {
-        cursor: pointer;
-        display: inline-block;
-        padding: 3px 5px;
-        border-radius: 3px;
-        font-weight: bold;
-        text-transform: uppercase;
-        color: lighten($body-color, 30%);
-      }
-
-      .city {
-        display: inline-block;
-
-        .button {
-          border-left: 3px solid $background-color;
-          font-weight: normal;
-          text-transform: none;
-          background: $background-light-color;
-          margin-right: $minipad;
-        }
-      }
-
-      .button:hover,
-      .button.active {
-        background: $background-light-color;
-        color: $body-color;
-      }
-    }
-
-    .toolbox.city-list {
-      float: none; // expand to fill the remaining space
-      overflow: auto;
-    }
-  }
 }
 
-.sparklines {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 275px;
-  z-index: 10000;
-  background: $background-color;
-  color: $primary-color;
 
-  h2 {
-    color: #fff;
-    padding: 12px 12px 0 12px;
-  }
+.overview {
+  display: inline-block;
 
-  .sparkline {
-    padding: 12px 12px 0px 12px;
+  .measure {
+    display: inline-block;
+    padding-right: $pad;
+
+    h3 {
+    }
 
     .name {
-      color: #fff;
-      font-size: 0.9rem;
       font-weight: normal;
+      font-size: 1em;
+      color: $inactive-color;
     }
 
     .value {
-      font-size: 1.5rem;
-    }
-
-    .unit {
-      font-weight: normal;
-      font-size: 0.75rem;
-    }
-
-    .ct-chart .ct-line {
-      stroke-width: 2;
-    }
-
-    .ct-chart .ct-series.ct-series-a .ct-bar,
-    .ct-chart .ct-series.ct-series-a .ct-line,
-    .ct-chart .ct-series.ct-series-a .ct-point,
-    .ct-chart .ct-series.ct-series-a .ct-slice.ct-donut {
-      stroke: #fff;
-    }
-
-    .measure-graph {
-      height: 50px;
+      font-size: 1.5em;
+      color: $orange;
     }
   }
 }
+
+
+.entry-table {
+  padding: 0 $pad $pad $pad;
+
+  table {
+    width: 100%;
+
+    td,
+    th {
+      line-height: 2em;
+      padding-left: $minipad
+    }
+
+    th {
+      text-align: left;
+      border-bottom: 4px solid $background-color;
+      padding-right: $pad;
+    }
+
+    tbody tr:nth-child(odd) {
+       background: #fff;
+    }
+
+    tbody tr:hover {
+      background: $primary-light-color;
+    }
+  }
+}
+
+
 
 .action {
   cursor: pointer;

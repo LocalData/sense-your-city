@@ -26,9 +26,8 @@ define(function(require, exports, module) {
     childViewContainer: '.city-list',
     className: 'tools',
 
-    // TODO
-    // For some reason, these UI hooks aren't working
     ui: {
+      'timeTools': '.time-tools .button',
       'displayTools': '.display-tools .button',
       'selectGraphs:': '.action-select-graphs',
       'selectTable:': '.action-select-table'
@@ -36,18 +35,31 @@ define(function(require, exports, module) {
 
     triggers: {
       'click .action-select-graphs': 'display:graphs',
-      'click .action-select-table': 'display:table'
+      'click .action-select-table': 'display:table',
+      'click .time-tools .button': {
+        event: "display:time",
+        preventDefault: true,
+        stopPropagation: false
+      }
     },
 
     // TODO:
     // For some reason, events that duplicate triggers don't fire.
     events: {
-      'click @ui.displayTools': 'show'
+      'click @ui.displayTools': 'showDisplay',
+      'click .time-tools .button': 'showTime'
     },
 
-    show: function(event) {
+    showDisplay: function(event) {
       this.ui.displayTools.removeClass('active');
       $(event.target).addClass('active');
+    },
+
+    showTime: function(event) {
+      console.log("TIME TOOOLZ", event);
+      this.ui.timeTools.removeClass('active');
+      $(event.target).addClass('active');
+      this.trigger('display:time');
     },
 
     childEvents: {

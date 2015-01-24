@@ -25,12 +25,34 @@ define(function(require, exports, module) {
     className: 'measure',
 
     ui: {
+      'graphs': '.measure-graph',
       'showInfo': '.action-show-info',
+      'minimize': '.action-minimize',
+      'maximize': '.action-maximize',
       'description': '.description'
     },
 
     events: {
-      'click @ui.showInfo': 'showInfo'
+      'click @ui.showInfo': 'showInfo',
+      'click @ui.minimize': 'minimize',
+      'click @ui.maximize': 'maximize'
+    },
+
+    showInfo: function(event) {
+      this.ui.showInfo.toggleClass('active');
+      this.ui.description.toggleClass('active');
+    },
+
+    minimize: function() {
+      this.ui.minimize.hide();
+      this.ui.maximize.show();
+      this.ui.graphs.hide();
+    },
+
+    maximize: function() {
+      this.ui.minimize.show();
+      this.ui.maximize.hide();
+      this.ui.graphs.show();
     },
 
     onRender: function() {
@@ -59,11 +81,6 @@ define(function(require, exports, module) {
           this.model.get('values')
         ]
       }, chartOptions);
-    },
-
-    showInfo: function(event) {
-      this.ui.showInfo.toggleClass('active');
-      this.ui.description.toggleClass('active');
     }
   });
 

@@ -30,11 +30,12 @@ define(function(require, exports, module) {
       this.map = new L.map(this.id, {
         zoom: 15,
         center: [37.77585785035733, -122.41362811351655],
-        zoomControl: false
+        zoomControl: false,
+        attributionControl: 'LocalData'
       });
 
       this.map.addControl(L.control.zoom({ position: 'topright' }));
-      this.baseLayer = L.tileLayer(settings.baseLayer);
+      this.baseLayer = L.tileLayer(settings.baseLayer, { attribution: 'LocalData' });
       this.map.addLayer(this.baseLayer);
 
       return this;

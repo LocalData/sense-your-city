@@ -57,6 +57,7 @@ define(function(require, exports, module) {
       city: function(name) {
         console.log("Going to city", name);
 
+
         // Update the map
         var sensors = prepSources(name);
         App.mapView.addLocations(sensors, {
@@ -77,8 +78,11 @@ define(function(require, exports, module) {
         });
         App.mainRegion.show(cityView);
 
-        // Show the sparklines
-        var measuresCollection = new MeasureCollection();
+        // Show the sparkline of a random source in this city
+        var source = _.findWhere(settings.sources, {
+          city: name
+        });
+        var measuresCollection = new MeasureCollection({ id: source.id });
         measuresCollection.fetch();
         var sparklineView = new SparklineCollectionView({
           model: city,
