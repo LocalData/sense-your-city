@@ -28,6 +28,10 @@ define(function(require, exports, module) {
 
     ui: {
       'timeTools': '.time-tools .button',
+      'selectHourly': '.time-tools .select-hourly',
+      'selectDaily': '.time-tools .select-daily',
+      'selectWeekly': '.time-tools .select-weekly',
+
       'displayTools': '.display-tools .button',
       'selectGraphs:': '.action-select-graphs',
       'selectTable:': '.action-select-table'
@@ -36,18 +40,16 @@ define(function(require, exports, module) {
     triggers: {
       'click .action-select-graphs': 'display:graphs',
       'click .action-select-table': 'display:table',
-      'click .time-tools .button': {
-        event: "display:time",
-        preventDefault: true,
-        stopPropagation: false
-      }
+      'click .time-tools .button': 'display:time'
     },
 
     // TODO:
     // For some reason, events that duplicate triggers don't fire.
     events: {
       'click @ui.displayTools': 'showDisplay',
-      'click .time-tools .button': 'showTime'
+      'click @ui.selectHourly': 'showTime',
+      'click @ui.selectDaily': 'showTime',
+      'click @ui.selectWeekly': 'showTime'
     },
 
     showDisplay: function(event) {
@@ -56,7 +58,6 @@ define(function(require, exports, module) {
     },
 
     showTime: function(event) {
-      console.log("TIME TOOOLZ", event);
       this.ui.timeTools.removeClass('active');
       $(event.target).addClass('active');
       this.trigger('display:time');
