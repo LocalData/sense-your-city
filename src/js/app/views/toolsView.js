@@ -27,26 +27,27 @@ define(function(require, exports, module) {
     className: 'tools',
 
     ui: {
+      // Display styles
+      'displayTools': '.display-tools .button',
+      'selectGraphs:': '.action-select-graphs',
+      'selectTable:': '.action-select-table',
+
+      // Time ranges
       'timeTools': '.time-tools .button',
       'selectHourly': '.time-tools .select-hourly',
       'selectDaily': '.time-tools .select-daily',
-      'selectWeekly': '.time-tools .select-weekly',
-
-      'displayTools': '.display-tools .button',
-      'selectGraphs:': '.action-select-graphs',
-      'selectTable:': '.action-select-table'
+      'selectWeekly': '.time-tools .select-weekly'
     },
 
     triggers: {
       'click .action-select-graphs': 'display:graphs',
-      'click .action-select-table': 'display:table',
-      'click .time-tools .button': 'display:time'
+      'click .action-select-table': 'display:table'
     },
 
-    // TODO:
-    // For some reason, events that duplicate triggers don't fire.
     events: {
       'click @ui.displayTools': 'showDisplay',
+
+      // Time ranges
       'click @ui.selectHourly': 'showTime',
       'click @ui.selectDaily': 'showTime',
       'click @ui.selectWeekly': 'showTime'
@@ -60,7 +61,7 @@ define(function(require, exports, module) {
     showTime: function(event) {
       this.ui.timeTools.removeClass('active');
       $(event.target).addClass('active');
-      this.trigger('display:time');
+      this.trigger('display:time', $(event.target).attr('data-action'));
     },
 
     childEvents: {

@@ -2,32 +2,45 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 275px;
+  width: 20%;
   z-index: 10000;
   background: $background-color;
-  color: $primary-color;
+  color: #fff;
 
   h2 {
     color: #fff;
-    padding: 12px 12px 0 12px;
+    padding: $midpad $pad 0 $pad;
+  }
+
+  p {
+    font-size: $minisize;
+    margin: $minipad $pad;
+    color: $inactive-color;
   }
 
   .sparkline {
-    padding: 12px 12px 0px 12px;
+    background: lighten($background-color, 3%);
+    padding: $minipad $pad $minipad $pad;
 
     .name {
       color: #fff;
-      font-size: 0.9rem;
+      font-size: $minisize;
       font-weight: normal;
     }
 
     .value {
-      font-size: 1.5rem;
+      color: $primary-color;
+      font-size: 2rem;
+      line-height: 1em;
+      padding-left: $pad;
     }
 
     .unit {
+      color: $inactive-color;
+      display: block;
       font-weight: normal;
-      font-size: 0.75rem;
+      font-size: $minisize;
+      line-height: 1em;
     }
 
     .ct-chart .ct-line {
@@ -38,11 +51,16 @@
     .ct-chart .ct-series.ct-series-a .ct-line,
     .ct-chart .ct-series.ct-series-a .ct-point,
     .ct-chart .ct-series.ct-series-a .ct-slice.ct-donut {
-      stroke: #fff;
+      stroke: $primary-color;
+      opacity: 0.8;
     }
 
     .measure-graph {
-      height: 50px;
+      height: 40px;
     }
   }
+}
+
+.sparkline:nth-child(even) {
+  background: lighten($background-color, 8%);
 }

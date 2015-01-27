@@ -48,7 +48,56 @@ a:active {
 #map {
   height: 514px;
   background: $primary-color;
-  margin-left: 275px;
+  margin-left: 20%;
+
+  .leaflet-popup-tip,
+  .leaflet-popup-content-wrapper {
+    font-family: $font-family;
+    background: $background-color;
+    border-radius: 0;
+    font-size: 1rem;
+
+    .leaflet-popup-content {
+      width: auto !important;
+    }
+
+    a {
+     border-bottom: 1px solid $primary-color;
+    }
+  }
+
+  .leaflet-control-zoom {
+    overflow: auto;
+    box-shadow: none;
+    border-radius: 0;
+    border: 1px solid $background-color;
+
+    .leaflet-control-zoom-in,
+    .leaflet-control-zoom-out {
+      float: left;
+      height: 40px;
+      width: 40px;
+      line-height: 40px;
+      border-radius: 0;
+      color: $body-color;
+      border: 0px none;
+    }
+
+    .leaflet-control-zoom-in:hover,
+    .leaflet-control-zoom-out:hover {
+      background: $background-color;
+      color: $primary-color
+    }
+
+    .leaflet-disabled.leaflet-control-zoom-in,
+    .leaflet-disabled.leaflet-control-zoom-out,
+    .leaflet-disabled.leaflet-control-zoom-in:hover,
+    .leaflet-disabled.leaflet-control-zoom-out:hover {
+      background: #fff;
+      color: $inactive-color;
+      border: 0px none;
+    }
+  }
 }
 
 .graph {

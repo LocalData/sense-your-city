@@ -1,16 +1,21 @@
 .pure-menu.pure-menu-open {
   background: $background-color;
-  color: $landmass-white;
+  color: $background-light-color;
   font-size: 1.1rem;
   font-weight: bold;
   border-bottom: 1px solid $landmass-white;
   padding: $minipad inherit;
 
   a,
+  li,
   .pure-menu-selected a,
   .pure-menu-selected {
     background: $background-color;
-    color: $landmass-white;
+    color: $background-light-color;
+  }
+
+  a:hover {
+    color: $primary-color;
   }
 }
 
@@ -73,13 +78,10 @@ footer {
   }
 
   #city-overview {
-    padding: $pad/2 $pad;
-    background: #fff;
+    padding: $pad $pad $pad/2 $pad;
 
     h2 {
       font-size: $hsize;
-      float: left;
-      padding-right: $pad * 1.5;
       line-height: 1.5em;
     }
   }

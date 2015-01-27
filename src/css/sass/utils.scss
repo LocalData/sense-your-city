@@ -16,6 +16,8 @@
  *      - Layout and grid sizing.
  ******************************************************************************/
 
+$font-family: "Source Sans Pro", Helvetica, sans-serif;
+
 $background-color: #231f20;
 $background-light-color: #e6e7e8;
 $body-color: #414042; // was
@@ -26,8 +28,11 @@ $inactive-color: #bcbfc0;
 $orange: #f9af48;
 $landmass-white: #f3f3f3;
 
-$pad: 20px;
+$pad: 16px;
+$midpad: 12px;
 $minipad: 6px;
+
+$minisize: 0.9rem;
 $hsize: 2rem;
 
 @import "font-awesome.min.css";

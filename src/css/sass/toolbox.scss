@@ -45,6 +45,11 @@
       }
     }
 
+    .toolbox.last-updated-tools {
+      color: $inactive-color;
+      background: $background-light-color;
+    }
+
     .toolbox.city-list {
       float: none; // expand to fill the remaining space
       overflow: auto;

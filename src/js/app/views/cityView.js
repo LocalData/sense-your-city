@@ -43,15 +43,11 @@ define(function(require, exports, module) {
       // TODO: use the latest stat for this city?
       var source = _.findWhere(settings.sources, { city: this.model.get('properties').name });
       // console.log("Source", source, this.model.get('properties'));
-      // var entry = new EntryModel({ id: source.id });
-      // entry.fetch();
+      // var entry = new EntryModel({ name: "Foo" });
       // var overviewView = new OverviewView({
       //   model: entry
       // });
-
-      // entry.on("sync", function(){
-      //   this.getRegion('overviewRegion').show(overviewView);
-      // }.bind(this));
+      // this.getRegion('overviewRegion').show(overviewView);
 
       // Get the graphs
       var measuresCollection = new MeasureCollection({ id: source.id });
