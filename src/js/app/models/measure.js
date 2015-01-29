@@ -16,6 +16,11 @@ define(function(require, exports, module) {
       meta: {},
       values: [],
       labels: []
+    },
+
+    parse: function(data) {
+      console.log("GOt data", data);
+      return data;
     }
   });
 

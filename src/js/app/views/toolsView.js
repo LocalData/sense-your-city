@@ -23,7 +23,6 @@ define(function(require, exports, module) {
   var ToolsView = Marionette.CompositeView.extend({
     template: _.template(template),
     childView: ToolView,
-    childViewContainer: '.city-list',
     className: 'tools',
 
     ui: {

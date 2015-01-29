@@ -6,6 +6,10 @@
   border-bottom: 1px solid $landmass-white;
   padding: $minipad inherit;
 
+  .hamburger {
+    display: none;
+  }
+
   a,
   a:hover,
   li,
@@ -17,6 +21,34 @@
 
   a:hover {
     color: $primary-color;
+  }
+
+  @media only screen
+  and (max-width : 768px) {
+    ul {
+      display: none;
+
+      li {
+        display: block;
+      }
+
+      -moz-transition: opacity 1.0s ease-in-out;
+      -o-transition: opacity 1.0s ease-in-out;
+      -webkit-transition: opacity 1.0s ease-in-out;
+      transition: opacity 1.0s ease-in-out;
+    }
+
+    ul.show {
+      display: block;
+      -moz-transition: opacity 1.0s ease-in-out;
+      -o-transition: opacity 1.0s ease-in-out;
+      -webkit-transition: opacity 1.0s ease-in-out;
+      transition: opacity 1.0s ease-in-out;
+    }
+
+    .hamburger {
+      display: inline-block;
+    }
   }
 }
 
@@ -78,40 +110,40 @@ footer {
     }
   }
 
-  #city-overview {
-    padding: $pad $pad $pad/2 $pad;
-
-    h2 {
-      font-size: $hsize;
-      line-height: 1.5em;
-    }
-  }
 }
-
 
 .overview {
-  display: inline-block;
+  padding: $pad $pad $pad/2 $pad;
 
-  .measure {
+  h2 {
     display: inline-block;
-    padding-right: $pad;
+    font-size: $hsize;
+    line-height: 1.5em;
+    margin-right: $pad;
+  }
 
-    h3 {
-    }
+  a,
+  a:visited {
+    color: $body-color;
+    border-bottom: 1px solid $body-color;
+  }
 
-    .name {
-      font-weight: normal;
-      font-size: 1em;
+  a:hover {
+    color: $primary-color;
+    border-bottom-color: $primary-color;
+  }
+
+  .crumbs {
+    color: $inactive-color;
+
+    a,
+    a:visited {
       color: $inactive-color;
-    }
-
-    .value {
-      font-size: 1.5em;
-      color: $orange;
+      text-transform: uppercase;
+      border-bottom: 1px solid $inactive-color;
     }
   }
 }
-
 
 .entry-table {
   padding: 0 $pad $pad $pad;

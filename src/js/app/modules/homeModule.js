@@ -33,7 +33,7 @@ define(function(require, exports, module) {
 
         // Show sparklines
         var city = new CityModel({ properties: { name: 'San Francisco'}});
-        var sparklineMeasuresCollection = new MeasureCollection();
+        var sparklineMeasuresCollection = new MeasureCollection({ source: 'ci4ooqbyw0001021o7p4qiedw'});
         sparklineMeasuresCollection.autoUpdate();
         var sparklineView = new SparklineCollectionView({
           model: city,

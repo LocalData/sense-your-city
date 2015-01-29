@@ -16,6 +16,10 @@ function() {
     baseurl: '/api'
   };
 
+  // List of fields we want to select
+  settings.fieldsString = 'temperature,light,airquality_raw,sound,humidity,dust';
+  settings.fieldsToOmit = ['location', 'airquality', 'uv'];
+
   settings.baseLayer = '//{s}.tiles.mapbox.com/v3/matth.01691638/{z}/{x}/{y}.png'; // LocalData
 
   settings.geojsonMarkerOptions = {

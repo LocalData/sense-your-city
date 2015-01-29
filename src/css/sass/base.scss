@@ -38,7 +38,9 @@ strong {
 a,
 a:hover,
 a:visited,
-a:active {
+a:active,
+.leaflet-container a,
+.leaflet-container a:visited {
   text-decoration: none;
   cursor: pointer;
   color: $primary-color;
@@ -58,12 +60,16 @@ a:active {
     font-size: 1rem;
 
     .leaflet-popup-content {
-      width: auto !important;
+      // width: auto !important;
     }
 
     a {
      border-bottom: 1px solid $primary-color;
     }
+  }
+
+  .leaflet-right .leaflet-control-zoom {
+    display: none; // hack -- can't seem to manually hide this zoom control
   }
 
   .leaflet-control-zoom {
@@ -97,6 +103,12 @@ a:active {
       color: $inactive-color;
       border: 0px none;
     }
+  }
+
+  @media only screen
+  and (max-width : 768px) {
+    margin: 0;
+    height: 300px;
   }
 }
 

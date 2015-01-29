@@ -17,6 +17,7 @@ define(function(require, exports, module) {
 
   // Models
   var MeasureCollection = require('app/models/measureCollection');
+  var AggregationCollection = require('app/models/aggregationCollection');
   var CityCollection = require('app/models/cityCollection');
 
   // Views
@@ -37,22 +38,33 @@ define(function(require, exports, module) {
     },
 
     onBeforeShow: function() {
-      // Get the graphs
-      var measuresCollection = new MeasureCollection();
-      measuresCollection.fetch();
-      var measuresView = new MeasureCollectionView({
-        collection: measuresCollection
+      // Get graphs for each city
+      // var source = _.findWhere(settings.sources, { id: 'ci4ooqbyw0001021o7p4qiedw' });
+      // var measuresCollection = new MeasureCollection({ source: source.id });
+      // measuresCollection.fetch();
+      //
+      var aggregationCollection = new AggregationCollection({
+        type: 'world',
+        op: 'mean',
+        fields: settings.fieldsString,
+        from: '2015-01-20T00:00:00Z',
+        before: '2015-01-27T00:00:00Z',
+        resolution: '6h'
       });
+      var measuresView = new MeasureCollectionView({
+        collection: aggregationCollection
+      });
+      measuresView.on('', function() {
+        console.log(measuresView.getMeasureModels());
+      });
+
       this.getRegion('graphsRegion').show(measuresView);
 
       // Show the tools view
       var cityCollection = new CityCollection(settings.cities);
       var toolsView = new ToolsView({
-        collection: cityCollection
       });
       toolsView.on("childview:select:city", function(args){
-        // TODO
-        // Highlight the graph
         console.log("City selected", args);
       });
       this.getRegion('toolsRegion').show(toolsView);

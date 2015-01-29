@@ -31,8 +31,9 @@ define(function(require, exports, module) {
         zoom: 15,
         center: [37.77585785035733, -122.41362811351655],
         zoomControl: false,
-        attributionControl: false
+        attributionControl: 'LocalData'
       });
+      console.log(this.map);
       new L.Control.Zoom({ position: 'topleft' }).addTo(this.map);
 
       this.map.addControl(L.control.zoom({ position: 'topright' }));
