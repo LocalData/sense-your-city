@@ -108,7 +108,7 @@ define(function(require, exports, module) {
       $chart.on('mouseleave', '.ct-point', function() {
         var $point = $(this);
 
-        $point.animate({'stroke-width': '2px'}, 300, easeOutQuad);
+        $point.animate({'stroke-width': '4px'}, 300, easeOutQuad);
         $toolTip.hide();
       });
 

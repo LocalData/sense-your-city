@@ -113,9 +113,31 @@ footer {
         }
       }
 
+
       .measure-graph {
         margin-top: $pad;
         position: relative; // for tooltip positioning
+
+        .action-time {
+          font-weight: 400;
+          color: $body-color;
+          position: absolute;
+          display: inline-block;
+          cursor: pointer;
+          height: 40px;
+          width: 40px;
+          text-align: center;
+          font-size: 2rem;
+          z-index: 9999;
+          top: -10px;
+          left: -10px;
+        }
+
+        .graph-forward {
+          left: auto;
+          right: -10px;
+        }
+
       }
 
       /* Graph styles */
@@ -126,6 +148,7 @@ footer {
 
         .ct-point {
           stroke-width: 4;
+          cursor: pointer;
         }
 
         .ct-series .ct-bar,
@@ -137,29 +160,29 @@ footer {
       }
 
       /* Tooltip styles */
-      .tooltip{
-        position:absolute;
-        display:inline-block;
-        min-width:5em;
-        padding:.5em;
-        background:#F4C63D;
-        color:#453D3F;
-        font-weight:700;
-        text-align:center;
-        pointer-events:none;
-        z-index:1
+      .tooltip {
+        position: absolute;
+        display: inline-block;
+        min-width: 5em;
+        padding: 0.5em;
+        background: $orange;
+        color: $body-color;
+        font-weight: 700;
+        text-align: center;
+        pointer-events: none;
+        z-index: 1;
       }
 
-      .tooltip:after{
-        content:"";
-        position:absolute;
-        top:100%;
-        left:50%;
-        width:0;
-        height:0;
-        margin-left:-15px;
-        border:15px solid transparent;
-        border-top-color:#F4C63D
+      .tooltip:after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        margin-left: -15px;
+        border: 15px solid transparent;
+        border-top-color: $orange;
       }
     }
   }
@@ -245,7 +268,18 @@ footer {
   }
 }
 
+.tweet {
+  background: $body-color;
+  color: $background-light-color;
+  font-size: $hsize;
+  text-align: center;
+  line-height: 1.4em;
+  padding: $pad * 2;
 
+  .source {
+    font-size: 1rem;
+  }
+}
 
 .action {
   cursor: pointer;

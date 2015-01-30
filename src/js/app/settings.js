@@ -24,8 +24,8 @@ function() {
 
   settings.geojsonMarkerOptions = {
     radius: 10,
-    fillColor: "#f07caa",
-    color: "#a21c51",
+    fillColor: "#eed162",
+    color: "#f9af48",
     weight: 3,
     opacity: 1,
     fillOpacity: 1

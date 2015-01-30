@@ -39,10 +39,10 @@ define(function(require, exports, module) {
 
     onBeforeShow: function() {
       // Get graphs for each city
-      // var source = _.findWhere(settings.sources, { id: 'ci4ooqbyw0001021o7p4qiedw' });
-      // var measuresCollection = new MeasureCollection({ source: source.id });
-      // measuresCollection.fetch();
-      //
+      var source = _.findWhere(settings.sources, { id: 'ci4ooqbyw0001021o7p4qiedw' });
+      var measuresCollection = new MeasureCollection({ source: source.id });
+      measuresCollection.fetch();
+
       var aggregationCollection = new AggregationCollection([], {
         type: 'world',
         op: 'mean',

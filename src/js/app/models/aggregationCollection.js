@@ -31,7 +31,6 @@ define(function(require, exports, module) {
     // Create a model with the data and add it to this collection
     getDataForURL: function(url) {
       var req = $.get(url).done(function(data){
-        console.log("Got aggregation", data);
         this.add({ data: data }, { parse: true});
       }.bind(this)).fail(function(error){
         console.log("Error getting aggregation", error);
@@ -68,7 +67,6 @@ define(function(require, exports, module) {
       var measures = {};
 
       this.each(function(data) {
-        console.log("Processing data", data);
         _.each(data.toJSON(), function(measure, name) {
           if (!_.has(measures, name)) {
             measures[name] = {
@@ -86,7 +84,6 @@ define(function(require, exports, module) {
         });
       });
 
-      // console.log("Got measures converted:", measures);
       return _.values(measures);
     }
 

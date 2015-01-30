@@ -18,7 +18,6 @@ define(function(require, exports, module) {
     },
 
     parse: function(entries) {
-      console.log("Parsing aggregation model", entries);
       entries = entries.data;
       entries = entries.reverse();
 
