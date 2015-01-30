@@ -15,24 +15,6 @@ define(function(require, exports, module) {
   var Aggregation = Backbone.Model.extend({
 
     initialize: function(options) {
-      // console.log("Creating aggregation with options", options);
-      this.fetch();
-    },
-
-    url: function() {
-      console.log("Getting city aggregation", this.get('city'));
-      var options = {
-        op: this.get('mean'),
-        city: this.get('city'),
-        fields: settings.fieldsString,
-        from: '2015-01-20T00:00:00Z',
-        before: '2015-01-27T00:00:00Z',
-        resolution: this.get('resolution')
-      };
-
-      var params = $.param(options);
-
-      return 'http://localdata-sensors-beta.herokuapp.com/api/v1/aggregations?' + params;
     },
 
     defaults: {
@@ -42,7 +24,8 @@ define(function(require, exports, module) {
     },
 
     parse: function(entries) {
-      console.log("Got entries", entries);
+      console.log("Parsing aggregation model", entries);
+      entries = entries.data;
       var measures = {};
 
       entries = entries.reverse();

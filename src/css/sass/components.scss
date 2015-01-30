@@ -23,6 +23,27 @@
     color: $primary-color;
   }
 
+  a.logo,
+  a.logo:hover {
+    font-size: $minisize;
+    color: $active-color;
+    background: transparent url(../img/logo.png) no-repeat 21px $minipad;
+    background-size: auto 43px;
+
+    display: inline-block;
+    padding-top: 45px;
+  }
+
+  a.logo.logo-grayscale {
+    background: transparent url(../img/logo-grayscale.png) no-repeat 21px $minipad;
+    background-size: auto 43px;
+    float: right;
+    text-transform: lowercase;
+    color: #fff;
+    font-weight: 400;
+    margin-right: $pad;
+  }
+
   @media only screen
   and (max-width : 768px) {
     ul {

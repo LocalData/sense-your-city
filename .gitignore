@@ -4,6 +4,7 @@ dev-settings.json
 build
 temp
 staging
+assets
 .sass-cache
 .sass-cache/
 .sass-cache/*

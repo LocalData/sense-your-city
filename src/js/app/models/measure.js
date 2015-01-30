@@ -19,7 +19,6 @@ define(function(require, exports, module) {
     },
 
     parse: function(data) {
-      console.log("GOt data", data);
       return data;
     }
   });

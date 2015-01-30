@@ -7,6 +7,7 @@ define(function(require, exports, module) {
   // Libs
   var $ = require('jquery');
   var _ = require('underscore');
+  var async = require('async');
   var Backbone = require('backbone');
 
   // App
@@ -25,16 +26,14 @@ define(function(require, exports, module) {
       }
     },
 
-    done: function(data){
-      console.log("Got aggregation", data);
-    },
-
-    fail: function(error) {
-      console.log("Error getting aggregation", error);
-    },
-
-    getModel: function(url) {
-      var req = $.get(url).done(this.done).fail(this.fail);
+    getModel: function(url, callback) {
+      var req = $.get(url).done(function(data){
+        console.log("Got aggregation", data);
+        this.add({ data: data }, { parse: true});
+        callback();
+      }.bind(this)).fail(function(error){
+        callback(error);
+      });
     },
 
     createWorldModels: function() {
@@ -50,12 +49,17 @@ define(function(require, exports, module) {
       }.bind(this));
 
       console.log("urls", urls);
-      _.each(urls, this.getModel);
+      async.each(urls, this.getModel, function() {
+        console.log("DONE");
+        this.trigger('loaded');
+      });
     },
 
     getMeasureModels: function() {
+      var datas = { }
       this.each(function(data) {
         console.log("In collection, I have", data);
+
       });
     }
 

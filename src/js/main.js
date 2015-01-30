@@ -5,6 +5,7 @@ require.config({
     'baseUrl': 'js',
 
     'paths': {
+      'async': 'lib/async',
       'backbone': 'lib/backbone',
       'chartist': 'lib/chartist',
       'jquery': 'lib/jquery',
