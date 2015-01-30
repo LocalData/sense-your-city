@@ -17,18 +17,12 @@ define(function(require, exports, module) {
     initialize: function(options) {
     },
 
-    defaults: {
-      meta: {},
-      values: [],
-      labels: []
-    },
-
     parse: function(entries) {
       console.log("Parsing aggregation model", entries);
       entries = entries.data;
-      var measures = {};
-
       entries = entries.reverse();
+
+      var measures = {};
 
       _.each(entries, function(entry) {
         var data = _.omit(entry, settings.fieldsToOmit);
@@ -36,6 +30,8 @@ define(function(require, exports, module) {
           if (!_.has(measures, name)) {
             measures[name] = {
               name: name,
+              source: entry.city, // we're overloading the "source" here
+                                  // and "city" will break down for sources too
               meta: settings.measureLabels[name],
               labels: [],
               values: []
@@ -46,7 +42,7 @@ define(function(require, exports, module) {
           measures[name].values.push(measure);
         });
       });
-      return _.values(measures);
+      return measures;
     }
   });
 

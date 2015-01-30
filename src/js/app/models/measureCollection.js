@@ -28,8 +28,6 @@ define(function(require, exports, module) {
         return settings.baseUrl + 'sources/' + this.id + '/entries?startIndex=0&count=30&sort=desc';
       }
 
-
-
       var options = {
         op: 'mean',
         city: 'San Francisco',

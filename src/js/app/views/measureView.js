@@ -58,8 +58,9 @@ define(function(require, exports, module) {
     onRender: function() {
       var graphEl = this.$el.find('.measure-graph').get(0);
 
+      // Set up the chart options
       var chartOptions = {
-        showPoint: false,
+        // showPoint: false,
         axisY: {
           // Fixes problem with tiny value legends
           // (https://github.com/gionkunz/chartist-js/issues/110)
@@ -75,12 +76,48 @@ define(function(require, exports, module) {
         }
       };
 
+      // var values = this.model.get('values');
       this.graph = new Chartist.Line(graphEl, {
         labels: this.model.get('labels'),
-        series: [
-          this.model.get('values')
-        ]
+        series: this.model.get('values')
       }, chartOptions);
+
+
+
+      // Set up the tooltips
+      var easeOutQuad = function (x, t, b, c, d) {
+        return -c * (t /= d) * (t - 2) + b;
+      };
+
+      var $chart = this.$el.find('.ct-chart');
+
+      var $toolTip = $chart
+        .append('<div class="tooltip"></div>')
+        .find('.tooltip')
+        .hide();
+
+      $chart.on('mouseenter', '.ct-point', function() {
+        var $point = $(this),
+          value = $point.attr('ct:value'),
+          seriesName = $point.parent().attr('ct:series-name');
+
+        $point.animate({'stroke-width': '10px'}, 300, easeOutQuad);
+        $toolTip.html(seriesName + '<br>' + value).show();
+      });
+
+      $chart.on('mouseleave', '.ct-point', function() {
+        var $point = $(this);
+
+        $point.animate({'stroke-width': '2px'}, 300, easeOutQuad);
+        $toolTip.hide();
+      });
+
+      $chart.on('mousemove', function(event) {
+        $toolTip.css({
+          left: (event.offsetX || event.originalEvent.layerX) - $toolTip.width() / 2 - 10,
+          top: (event.offsetY || event.originalEvent.layerY) - $toolTip.height() - 40
+        });
+      });
     }
   });
 

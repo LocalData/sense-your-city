@@ -51,7 +51,8 @@ define(function(require, exports, module) {
         controller: routeController
       });
 
-      console.log("Header region", App.headerRegion.$el.hide());
+      // TODO: find a way to effectively hide the header region.
+      // console.log("Header region", App.headerRegion.$el.hide());
     });
   };
 

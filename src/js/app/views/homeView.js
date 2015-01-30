@@ -43,7 +43,7 @@ define(function(require, exports, module) {
       // var measuresCollection = new MeasureCollection({ source: source.id });
       // measuresCollection.fetch();
       //
-      var aggregationCollection = new AggregationCollection({
+      var aggregationCollection = new AggregationCollection([], {
         type: 'world',
         op: 'mean',
         fields: settings.fieldsString,
@@ -51,14 +51,13 @@ define(function(require, exports, module) {
         before: '2015-01-27T00:00:00Z',
         resolution: '6h'
       });
-      var measuresView = new MeasureCollectionView({
-        collection: aggregationCollection
-      });
-      measuresView.on('', function() {
-        console.log(measuresView.getMeasureModels());
-      });
-
-      this.getRegion('graphsRegion').show(measuresView);
+      aggregationCollection.on('add', function() {
+        var measureCollection = new MeasureCollection(aggregationCollection.getMeasures());
+        var measuresView = new MeasureCollectionView({
+          collection: measureCollection
+        });
+        this.getRegion('graphsRegion').show(measuresView);
+      }.bind(this));
 
       // Show the tools view
       var cityCollection = new CityCollection(settings.cities);
@@ -68,7 +67,6 @@ define(function(require, exports, module) {
         console.log("City selected", args);
       });
       this.getRegion('toolsRegion').show(toolsView);
-
     }
   });
 

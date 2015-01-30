@@ -115,18 +115,51 @@ footer {
 
       .measure-graph {
         margin-top: $pad;
+        position: relative; // for tooltip positioning
       }
 
       /* Graph styles */
-      .ct-chart .ct-line {
-        stroke-width: 2;
+      .ct-chart {
+        .ct-line {
+          stroke-width: 2;
+        }
+
+        .ct-point {
+          stroke-width: 4;
+        }
+
+        .ct-series .ct-bar,
+        .ct-series .ct-line,
+        .ct-series .ct-point,
+        .ct-series .ct-slice.ct-donut {
+          stroke: $primary-color;
+        }
       }
 
-      .ct-chart .ct-series.ct-series-a .ct-bar,
-      .ct-chart .ct-series.ct-series-a .ct-line,
-      .ct-chart .ct-series.ct-series-a .ct-point,
-      .ct-chart .ct-series.ct-series-a .ct-slice.ct-donut {
-        stroke: $primary-color;
+      /* Tooltip styles */
+      .tooltip{
+        position:absolute;
+        display:inline-block;
+        min-width:5em;
+        padding:.5em;
+        background:#F4C63D;
+        color:#453D3F;
+        font-weight:700;
+        text-align:center;
+        pointer-events:none;
+        z-index:1
+      }
+
+      .tooltip:after{
+        content:"";
+        position:absolute;
+        top:100%;
+        left:50%;
+        width:0;
+        height:0;
+        margin-left:-15px;
+        border:15px solid transparent;
+        border-top-color:#F4C63D
       }
     }
   }
