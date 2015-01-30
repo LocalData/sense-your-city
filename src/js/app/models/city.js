@@ -10,6 +10,7 @@ define(function(require, exports, module) {
   var Backbone = require('backbone');
 
   var City = Backbone.Model.extend({
+
   });
 
   return City;

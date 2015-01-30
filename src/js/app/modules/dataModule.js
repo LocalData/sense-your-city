@@ -11,23 +11,38 @@ define(function(require, exports, module) {
   var CityModel = require('app/models/city');
 
   // Views
-  var HomeView = require('app/views/homeView');
-  var MeasureCollectionView = require('app/views/measureCollectionView');
-  var SparklineCollectionView = require('app/views/sparklineCollectionView');
+  var DataView = require('app/views/dataView');
 
   var DataModule = function(DataModule, App, Backbone, Marionette, $, _) {
     DataModule.Router = Backbone.Marionette.AppRouter.extend({
       appRoutes: {
         '!/data': 'home',
         '!/data/cities/:city': 'home',
-        '!/data/cities/:city/sources/:source': 'home'
+        '!/data/cities/:city/': 'home',
+        '!/data/cities/:city/sources/:source': 'home',
+        '!/data/cities/:city/sources/:source/': 'home'
       }
     });
 
     var routeController = {
       home: function(city, source) {
-        console.log("Showing data page for", city, source);
-        // App.homeRegion.show(sparklineView);
+        var dataView = new DataView({});
+        App.mainRegion.show(dataView);
+
+        // Handle scrolling to the correct position:
+        var $elt;
+        if (city) {
+          $elt = $('#data-region .city .' + _.camelCase(city));
+        }
+        if (source) {
+          $elt = $('#data-region .source .' + _.camelCase(source));
+        }
+
+        if (city) {
+          var top = $elt.position().top;
+          console.log("Scrolling to city", $elt, top);
+          window.scrollTo( 0, top);
+        }
       }
     };
 
@@ -35,6 +50,8 @@ define(function(require, exports, module) {
       var router = new DataModule.Router({
         controller: routeController
       });
+
+      console.log("Header region", App.headerRegion.$el.hide());
     });
   };
 

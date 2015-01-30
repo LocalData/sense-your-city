@@ -28,6 +28,7 @@ define(function(require, exports, module) {
   var App = new Marionette.Application();
 
   App.addRegions({
+    headerRegion: 'header',
     sparklineRegion: '#sparkline-region',
     mainRegion: '#main-region',
     toolsRegion: '#tools-region'

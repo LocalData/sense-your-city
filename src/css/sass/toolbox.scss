@@ -3,6 +3,11 @@
     padding: $pad 0 $pad - $minipad $pad;
     overflow: auto;
 
+    @media only screen
+    and (max-width : 768px) {
+      padding-top: 0;
+    }
+
     .toolbox {
       background: #fff;
       padding: $minipad;

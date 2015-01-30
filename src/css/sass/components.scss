@@ -130,7 +130,25 @@ footer {
       }
     }
   }
+}
 
+.data-downloads {
+  margin: $pad;
+  padding: $pad;
+  background: #fff;
+
+  .city {
+    padding: $pad 0;
+    background: #fff;
+  }
+
+  .source {
+    padding: $pad 0;
+
+    h3 {
+      font-size: 1rem;
+    }
+  }
 }
 
 .overview {
