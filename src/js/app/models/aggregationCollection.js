@@ -95,6 +95,14 @@ define(function(require, exports, module) {
     getMeasures: function() {
       var measures = {};
 
+      var longest = [];
+      this.each(function(data) {
+        var labels = data.get('sound').labels;
+        if (labels.length > longest.length) {
+          longest = labels;
+        }
+      });
+
       // Go over each source
       this.each(function(data) {
 
@@ -109,10 +117,30 @@ define(function(require, exports, module) {
             };
           }
 
+          // Connect measuers and timestamps
+          var times = {};
+          _.each(measure.labels, function(timestamp, i) {
+            times[timestamp] = measure.values[i];
+          });
+
+          // Reconstitute the values in order
+          // Filling in missing values
+          var values = [];
+          _.each(longest, function(timestamp) {
+            if (_.has(times, timestamp)) {
+              values.push(times[timestamp]);
+            } else {
+              values.push(0);
+            }
+          });
+
+          console.log("Using values", values);
+
           // Store the measures
+          measures[name].labels = longest;
           measures[name].values.push({
             name: measure.source,
-            data: measure.values
+            data: values // measure.values
           });
         });
       });
