@@ -71,7 +71,7 @@ define(function(require, exports, module) {
 
         axisX: {
           labelInterpolationFnc: function(value) {
-            return moment(value).format("ddd hA");
+            return moment(value).format("hA") + '<br />' + moment(value).format("ddd");
           }
         }
       };
@@ -82,13 +82,13 @@ define(function(require, exports, module) {
         series: this.model.get('values')
       }, chartOptions);
 
-
-
       // Set up the tooltips
       var easeOutQuad = function (x, t, b, c, d) {
         return -c * (t /= d) * (t - 2) + b;
       };
 
+      // TODO: Improve tooltips?
+      // http://stackoverflow.com/questions/22633718/get-points-y-coordinate-on-svg-path
       var $chart = this.$el.find('.ct-chart');
 
       var $toolTip = $chart

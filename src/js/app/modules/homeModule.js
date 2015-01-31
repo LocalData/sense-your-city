@@ -32,8 +32,9 @@ define(function(require, exports, module) {
         App.mainRegion.show(homeView);
 
         // Show sparklines
+        // Show the sparkline of a random source in this city
         var city = new CityModel({ properties: { name: 'San Francisco'}});
-        var sparklineMeasuresCollection = new MeasureCollection({ source: 'ci4ooqbyw0001021o7p4qiedw'});
+        var sparklineMeasuresCollection = new MeasureCollection({ id: 'ci4ooqbyw0001021o7p4qiedw'});
         sparklineMeasuresCollection.autoUpdate();
         var sparklineView = new SparklineCollectionView({
           model: city,

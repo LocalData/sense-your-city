@@ -18,20 +18,47 @@ define(function(require, exports, module) {
     model: Aggregation,
 
     initialize: function(data, options) {
-      _.bindAll(this, 'getDataForURL', 'ready');
+      _.bindAll(this, 'getCityData', 'getSourceData');
       console.log("Init", options);
       this.options = options;
 
-      if(options.type === 'world') {
+      // If we are getting aggregations of all cities in the world
+      if (options.type === 'cities') {
         this.createWorldModels();
       }
+
+      // If we are getting aggregations for a list of sources
+      if (options.type === 'sources') {
+        this.sources = options.sources;
+        this.createCityModels();
+      }
+    },
+
+    getSourceData: function(url) {
+      var req = $.get(url).done(function(data) {
+        data = _.groupBy(data, 'source');
+        _.each(data, function(d) {
+          this.add({ data: d }, { parse: true });
+        }.bind(this));
+      }.bind(this)).fail(function(error){
+        console.log("Error getting aggregation", error);
+      });
+    },
+
+    createCityModels: function() {
+      var params, url;
+      var options = this.options;
+      options.sources = this.sources.join(',');
+      params = $.param(options);
+      url = 'http://localdata-sensors-beta.herokuapp.com/api/v1/aggregations?' + params;
+      this.getSourceData(url);
     },
 
     // Fetch the aggreation at a given URL
     // Create a model with the data and add it to this collection
-    getDataForURL: function(url) {
+    getCityData: function(url) {
       var req = $.get(url).done(function(data){
-        this.add({ data: data }, { parse: true});
+        this.add({ data: data }, { parse: true });
       }.bind(this)).fail(function(error){
         console.log("Error getting aggregation", error);
       });
@@ -52,7 +79,7 @@ define(function(require, exports, module) {
       }.bind(this));
 
       // Get the data for all of the aggregations.
-      _.each(urls.slice(4,6), this.getDataForURL);
+      _.each(urls, this.getCityData);
 
       // Alternatively, we can wait until all the data is loaded:
       // async.each(urls, this.getDataForURL, this.ready);
@@ -63,20 +90,26 @@ define(function(require, exports, module) {
       this.trigger('ready');
     },
 
+
+    // Get the aggregations grouped by measure (rather than by source)
     getMeasures: function() {
       var measures = {};
 
+      // Go over each source
       this.each(function(data) {
+
+        // Go over each measure from the source
         _.each(data.toJSON(), function(measure, name) {
           if (!_.has(measures, name)) {
             measures[name] = {
               name: name,
               meta: settings.measureLabels[name],
               labels: measure.labels,
-              values: [],
-              sources: []
+              values: []
             };
           }
+
+          // Store the measures
           measures[name].values.push({
             name: measure.source,
             data: measure.values
@@ -84,9 +117,12 @@ define(function(require, exports, module) {
         });
       });
 
+      // _.max(this.toJSON(), function(d) {
+      //   return d[measure].length;
+      // });
+
       return _.values(measures);
     }
-
   });
 
   return AggregationCollection;

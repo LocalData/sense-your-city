@@ -18,7 +18,11 @@ function() {
 
   // List of fields we want to select
   settings.fieldsString = 'temperature,light,airquality_raw,sound,humidity,dust';
-  settings.fieldsToOmit = ['location', 'airquality', 'uv', 'city', 'timestamp'];
+
+  // Fields we don't graph
+  // Some of these are administrative (source, location), some are not useful
+  // at the moment (uv, airquality string)
+  settings.fieldsToOmit = ['location', 'airquality', 'uv', 'city', 'timestamp', 'source'];
 
   settings.baseLayer = '//{s}.tiles.mapbox.com/v3/matth.01691638/{z}/{x}/{y}.png'; // LocalData
 

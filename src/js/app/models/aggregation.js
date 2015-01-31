@@ -19,18 +19,23 @@ define(function(require, exports, module) {
 
     parse: function(entries) {
       entries = entries.data;
-      entries = entries.reverse();
 
       var measures = {};
 
       _.each(entries, function(entry) {
         var data = _.omit(entry, settings.fieldsToOmit);
         _.each(data, function(measure, name) {
+          var source = entry.city;
+
+          // If this isn't a city, get the name of the sensor
+          if (!source) {
+            source = _.find(settings.sources, {id: entry.source}).name;
+          }
+
           if (!_.has(measures, name)) {
             measures[name] = {
               name: name,
-              source: entry.city, // we're overloading the "source" here
-                                  // and "city" will break down for sources too
+              source: source, // we're overloading "source" here
               meta: settings.measureLabels[name],
               labels: [],
               values: []

@@ -16,9 +16,9 @@ define(function(require, exports, module) {
   var settings = require('app/settings');
 
   // Models
-  var MeasureCollection = require('app/models/measureCollection');
   var AggregationCollection = require('app/models/aggregationCollection');
   var CityCollection = require('app/models/cityCollection');
+  var MeasureCollection = require('app/models/measureCollection');
 
   // Views
   var MeasureCollectionView = require('app/views/measureCollectionView');
@@ -44,7 +44,7 @@ define(function(require, exports, module) {
       measuresCollection.fetch();
 
       var aggregationCollection = new AggregationCollection([], {
-        type: 'world',
+        type: 'cities',
         op: 'mean',
         fields: settings.fieldsString,
         from: '2015-01-20T00:00:00Z',

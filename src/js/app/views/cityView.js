@@ -16,6 +16,7 @@ define(function(require, exports, module) {
   var settings = require('app/settings');
 
   // Models
+  var AggregationCollection = require('app/models/aggregationCollection');
   var EntryModel = require('app/models/entry');
   var MeasureCollection = require('app/models/measureCollection');
 
@@ -41,21 +42,34 @@ define(function(require, exports, module) {
     onBeforeShow: function() {
       // Get the latest stats for a random node in this city
       // TODO: use the latest stat for this city?
-      var source = _.findWhere(settings.sources, { city: this.model.get('properties').name });
-      // console.log("Source", source, this.model.get('properties'));
-      // var entry = new EntryModel({ name: "Foo" });
-      // var overviewView = new OverviewView({
-      //   model: entry
-      // });
-      // this.getRegion('overviewRegion').show(overviewView);
+      var sources = _.filter(settings.sources, { city: this.model.get('properties').name });
+      console.log("Using sources", sources);
 
       // Get the graphs
-      var measuresCollection = new MeasureCollection({ id: source.id });
-      measuresCollection.fetch();
-      var measuresView = new MeasureCollectionView({
-        collection: measuresCollection
+      var aggregationCollection = new AggregationCollection([], {
+        type: 'sources',
+        sources: _.pluck(sources, 'id'),
+        op: 'mean',
+        fields: settings.fieldsString,
+        from: '2015-01-20T00:00:00Z',
+        before: '2015-01-27T00:00:00Z',
+        resolution: '6h'
       });
-      this.getRegion('graphsRegion').show(measuresView);
+      aggregationCollection.on('add', function() {
+        var measureCollection = new MeasureCollection(aggregationCollection.getMeasures());
+        var measuresView = new MeasureCollectionView({
+          collection: measureCollection
+        });
+        this.getRegion('graphsRegion').show(measuresView);
+      }.bind(this));
+
+
+      // var measuresCollection = new MeasureCollection({ id: source.id });
+      // measuresCollection.fetch();
+      // var measuresView = new MeasureCollectionView({
+      //   collection: measuresCollection
+      // });
+      // this.getRegion('graphsRegion').show(measuresView);
 
       // Show the tools view
       var toolsView = new ToolsView({ });

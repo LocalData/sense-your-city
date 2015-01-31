@@ -117,6 +117,7 @@ footer {
       .measure-graph {
         margin-top: $pad;
         position: relative; // for tooltip positioning
+        min-height: 150px; // todo -- temporary to make loading look smoother
 
         .action-time {
           font-weight: 400;
@@ -155,6 +156,11 @@ footer {
         .ct-series .ct-line,
         .ct-series .ct-point,
         .ct-series .ct-slice.ct-donut {
+          stroke: $inactive-color;
+        }
+
+        .ct-series .ct-line:hover,
+        .ct-series .ct-point:hover {
           stroke: $primary-color;
         }
       }
