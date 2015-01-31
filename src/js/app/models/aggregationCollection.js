@@ -92,9 +92,15 @@ define(function(require, exports, module) {
 
 
     // Get the aggregations grouped by measure (rather than by source)
+    // TODO
+    // Rewrite this to be simpler & quicker
     getMeasures: function() {
       var measures = {};
 
+      // Get the longest list of timestamps
+      // TODO
+      // should compute this using the daterange...
+      // With this stupid method we might lose timepoints...
       var longest = [];
       this.each(function(data) {
         var labels = data.get('sound').labels;
@@ -108,6 +114,8 @@ define(function(require, exports, module) {
 
         // Go over each measure from the source
         _.each(data.toJSON(), function(measure, name) {
+
+          // See if we've already started recording data for this measure
           if (!_.has(measures, name)) {
             measures[name] = {
               name: name,
@@ -123,20 +131,18 @@ define(function(require, exports, module) {
             times[timestamp] = measure.values[i];
           });
 
-          // Reconstitute the values in order
-          // Filling in missing values
+          // Reconstitute the values in order, filling in missing values
           var values = [];
           _.each(longest, function(timestamp) {
             if (_.has(times, timestamp)) {
               values.push(times[timestamp]);
             } else {
+              // Stopgap vor missing values. Ideally we'd support undefined ranges
               values.push(0);
             }
           });
 
-          console.log("Using values", values);
-
-          // Store the measures
+          // Store the values for this measure
           measures[name].labels = longest;
           measures[name].values.push({
             name: measure.source,
@@ -144,10 +150,6 @@ define(function(require, exports, module) {
           });
         });
       });
-
-      // _.max(this.toJSON(), function(d) {
-      //   return d[measure].length;
-      // });
 
       return _.values(measures);
     }
