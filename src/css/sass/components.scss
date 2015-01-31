@@ -23,27 +23,6 @@
     color: $primary-color;
   }
 
-  a.logo,
-  a.logo:hover {
-    font-size: $minisize;
-    color: $active-color;
-    background: transparent url(../img/logo.png) no-repeat 21px $minipad;
-    background-size: auto 43px;
-
-    display: inline-block;
-    padding-top: 45px;
-  }
-
-  a.logo.logo-grayscale {
-    background: transparent url(../img/logo-grayscale.png) no-repeat 21px $minipad;
-    background-size: auto 43px;
-    float: right;
-    text-transform: lowercase;
-    color: #fff;
-    font-weight: 400;
-    margin-right: $pad;
-  }
-
   @media only screen
   and (max-width : 768px) {
     ul {
@@ -85,9 +64,37 @@ footer {
 
   .logo {
     float: right;
-    background: $background-light-color;
   }
 }
+
+.pure-menu.pure-menu-open,
+footer {
+  p {
+    display: inline-block;
+    font-size: 1.2em;
+  }
+  a.logo,
+  a.logo:hover {
+    font-size: $minisize;
+    color: $active-color;
+    background: transparent url(../img/logo.png) no-repeat 21px $minipad;
+    background-size: auto 43px;
+
+    display: inline-block;
+    padding: 45px 20px 5px 20px;
+  }
+
+  a.logo.logo-grayscale {
+    background: transparent url(../img/logo-grayscale.png) no-repeat 21px $minipad;
+    background-size: auto 43px;
+    float: right;
+    text-transform: lowercase;
+    color: #fff;
+    font-weight: 400;
+    margin-right: $pad;
+  }
+}
+
 
 #main-region {
   .measures {
