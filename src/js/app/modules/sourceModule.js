@@ -7,6 +7,7 @@ define(function(require, exports, module) {
   var settings = require('app/settings');
 
   // Models
+  var AggregationCollection = require('app/models/aggregationCollection');
   var MeasureCollection = require('app/models/measureCollection');
   var CityModel = require('app/models/city');
   var SourceModel = require('app/models/source');
@@ -47,15 +48,27 @@ define(function(require, exports, module) {
         App.mainRegion.show(sourceView);
 
         // Show the sparklines
-        var measuresCollection = new MeasureCollection({
-          id: id
-        });
-        measuresCollection.autoUpdate();
-        var sparklineView = new SparklineCollectionView({
-          model: source,
-          collection: measuresCollection
-        });
-        App.sparklineRegion.show(sparklineView);
+        var collectionOptions = {
+          type: 'sources',
+          sources: [id],
+          op: 'mean',
+          fields: settings.fieldsString,
+          from: '2015-01-20T00:00:00Z',
+          before: '2015-01-27T00:00:00Z',
+          resolution: '6h'
+        };
+
+        var aggregationCollection = new AggregationCollection([], collectionOptions);
+        aggregationCollection.on('add', function() {
+          var measureCollection = new MeasureCollection(aggregationCollection.getMeasures());
+          var sparklineView = new SparklineCollectionView({
+            model: source,
+            collection: measureCollection
+          });
+          App.sparklineRegion.show(sparklineView);
+        }.bind(this));
+
+
       }
     };
 

@@ -45,6 +45,7 @@ define(function(require, exports, module) {
 
       var aggregationCollection = new AggregationCollection([], {
         type: 'cities',
+        cities: settings.cities,
         op: 'mean',
         fields: settings.fieldsString,
         from: '2015-01-20T00:00:00Z',
@@ -62,9 +63,6 @@ define(function(require, exports, module) {
       // Show the tools view
       var cityCollection = new CityCollection(settings.cities);
       var toolsView = new ToolsView({
-      });
-      toolsView.on("childview:select:city", function(args){
-        console.log("City selected", args);
       });
       this.getRegion('toolsRegion').show(toolsView);
     }

@@ -108,6 +108,10 @@ footer {
       .header {
         .description {
           padding-bottom: $pad;
+
+          p {
+            max-width: 600px;
+          }
         }
 
         .description.active {
@@ -206,6 +210,12 @@ footer {
   padding: $pad;
   background: #fff;
 
+  .button {
+    display: inline-block;
+    padding: 5px;
+    margin-right: $pad;
+  }
+
   .city {
     padding: $pad 0;
     background: #fff;
@@ -221,7 +231,15 @@ footer {
 }
 
 .overview {
-  padding: $pad $pad $pad/2 $pad;
+  padding: $pad $pad 0 $pad;
+
+  .avatar {
+    background: $body-color;
+    float: left;
+    margin-right: $minipad;
+    height: 4rem;
+    width: 4rem;
+  }
 
   h2 {
     display: inline-block;

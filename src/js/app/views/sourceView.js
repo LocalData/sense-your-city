@@ -16,6 +16,7 @@ define(function(require, exports, module) {
   var settings = require('app/settings');
 
   // Models
+  var AggregationCollection = require('app/models/aggregationCollection');
   var EntryCollection = require('app/models/entryCollection');
   var MeasureCollection = require('app/models/measureCollection');
 
@@ -52,15 +53,37 @@ define(function(require, exports, module) {
     },
 
     onBeforeShow: function() {
+      var collectionOptions = {
+        type: 'sources',
+        sources: [this.model.get('properties').id],
+        op: 'mean',
+        fields: settings.fieldsString,
+        from: '2015-01-20T00:00:00Z',
+        before: '2015-01-27T00:00:00Z',
+        resolution: '6h'
+      };
+
+      //collectionOptions = _.assign(collectionOptions, options);
+      console.log("using options", collectionOptions);
+
+      var aggregationCollection = new AggregationCollection([], collectionOptions);
+      aggregationCollection.on('add', function() {
+        var measureCollection = new MeasureCollection(aggregationCollection.getMeasures());
+        var measuresView = new MeasureCollectionView({
+          collection: measureCollection
+        });
+        this.getRegion('graphsRegion').show(measuresView);
+      }.bind(this));
+
       // Get the graphs
-      var measuresCollection = new MeasureCollection({
-        id: this.model.get('properties').id
-      });
-      measuresCollection.fetch();
-      this.measuresView = new MeasureCollectionView({
-        collection: measuresCollection
-      });
-      this.getRegion('graphsRegion').show(this.measuresView);
+      //var measuresCollection = new MeasureCollection({
+      //  id: this.model.get('properties').id
+      //});
+      //measuresCollection.fetch();
+      //this.measuresView = new MeasureCollectionView({
+      //  collection: measuresCollection
+      //});
+      //this.getRegion('graphsRegion').show(this.measuresView);
 
       // Create a tableView, but don't display it yet
       var entryCollection = new EntryCollection({
@@ -73,8 +96,6 @@ define(function(require, exports, module) {
 
       // Create the tools view
       var toolsView = new ToolsView({ });
-      toolsView.on('display:table', this.displayTable);
-      toolsView.on('display:graphs', this.displayGraphs);
       toolsView.on('display:time', this.displayTime);
 
       this.getRegion('toolsRegion').show(toolsView);

@@ -28,6 +28,7 @@ define(function(require, exports, module) {
     },
 
     onRender: function() {
+      console.log("Sparkline:", this.model.toJSON(), this.model.get('name'));
       var graphEl = this.$el.find('.measure-graph').get(0);
 
       var chartOptions = {
@@ -48,10 +49,8 @@ define(function(require, exports, module) {
 
       this.graph = new Chartist.Line(graphEl, {
         labels: this.model.get('labels'),
-        series: [
-          this.model.get('values')
-        ]}, chartOptions
-      );
+        series: this.model.get('values')
+      }, chartOptions);
     }
   });
 

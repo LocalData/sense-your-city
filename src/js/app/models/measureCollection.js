@@ -61,6 +61,8 @@ define(function(require, exports, module) {
             };
           }
 
+          measure = measure.toFixed(0);
+
           measures[name].labels.push(entry.timestamp);
           measures[name].values.push(measure);
         });

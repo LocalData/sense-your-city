@@ -7,6 +7,7 @@ define(function(require, exports, module) {
   var settings = require('app/settings');
 
   // Models
+  var AggregationCollection = require('app/models/aggregationCollection');
   var MeasureCollection = require('app/models/measureCollection');
   var CityModel = require('app/models/city');
 
@@ -34,13 +35,29 @@ define(function(require, exports, module) {
         // Show sparklines
         // Show the sparkline of a random source in this city
         var city = new CityModel({ properties: { name: 'San Francisco'}});
-        var sparklineMeasuresCollection = new MeasureCollection({ id: 'ci4ooqbyw0001021o7p4qiedw'});
-        sparklineMeasuresCollection.autoUpdate();
-        var sparklineView = new SparklineCollectionView({
-          model: city,
-          collection: sparklineMeasuresCollection
-        });
-        App.sparklineRegion.show(sparklineView);
+
+        // Show the sparkline of the city
+        var collectionOptions = {
+          type: 'cities',
+          cities: [city.toJSON()],
+          op: 'mean',
+          fields: settings.fieldsString,
+          from: '2015-01-20T00:00:00Z',
+          before: '2015-01-27T00:00:00Z',
+          resolution: '6h'
+        };
+
+        var aggregationCollection = new AggregationCollection([], collectionOptions);
+        aggregationCollection.on('add', function() {
+          var measureCollection = new MeasureCollection(aggregationCollection.getMeasures());
+          console.log("Got measures", measureCollection.toJSON());
+          var sparklineView = new SparklineCollectionView({
+            model: city,
+            collection: measureCollection
+          });
+          App.sparklineRegion.show(sparklineView);
+        }.bind(this));
+
       }
     };
 

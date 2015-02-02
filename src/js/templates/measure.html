@@ -3,9 +3,11 @@
       <div class="header">
         <h3>
           <%= meta.name %>
+          <% if(meta.description) { %>
           <span class="action action-show-info">
             <i class="fa fa-info-circle"></i>
           </span>
+          <% } %>
           <span class="action action-minimize">
             <i class="fa fa-minus-square-o"></i>
           </span>
@@ -13,6 +15,7 @@
             <i class="fa fa-plus-square-o"></i>
           </span>
         </h3>
+
 
         <div class="description start-hidden">
           <p><%= meta.description %></p>

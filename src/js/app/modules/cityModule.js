@@ -11,6 +11,7 @@ define(function(require, exports, module) {
   var settings = require('app/settings');
 
   // Models
+  var AggregationCollection = require('app/models/aggregationCollection');
   var MeasureCollection = require('app/models/measureCollection');
   var CityModel = require('app/models/city');
 
@@ -57,17 +58,15 @@ define(function(require, exports, module) {
       city: function(name) {
         console.log("Going to city", name);
 
-
         // Update the map
         var sensors = prepSources(name);
         App.mapView.addLocations(sensors, {
           template: _.template(sourcePopup)
         });
 
-
         // Show the main city data
         // TODO
-        // Get the city from settings
+        // Get the city from settings?
         var city = new CityModel({
           properties: {
             name: name
@@ -78,17 +77,28 @@ define(function(require, exports, module) {
         });
         App.mainRegion.show(cityView);
 
-        // Show the sparkline of a random source in this city
-        var source = _.findWhere(settings.sources, {
-          city: name
-        });
-        var measuresCollection = new MeasureCollection({ id: source.id });
-        measuresCollection.fetch();
-        var sparklineView = new SparklineCollectionView({
-          model: city,
-          collection: measuresCollection
-        });
-        App.sparklineRegion.show(sparklineView);
+        // Show the sparkline of the city
+        var collectionOptions = {
+          type: 'cities',
+          cities: [city.toJSON()],
+          op: 'mean',
+          fields: settings.fieldsString,
+          from: '2015-01-20T00:00:00Z',
+          before: '2015-01-27T00:00:00Z',
+          resolution: '6h'
+        };
+
+        var aggregationCollection = new AggregationCollection([], collectionOptions);
+        aggregationCollection.on('add', function() {
+          var measureCollection = new MeasureCollection(aggregationCollection.getMeasures());
+          console.log("Got measures", measureCollection.toJSON());
+          var sparklineView = new SparklineCollectionView({
+            model: city,
+            collection: measureCollection
+          });
+          App.sparklineRegion.show(sparklineView);
+        }.bind(this));
+
       }
     };
 

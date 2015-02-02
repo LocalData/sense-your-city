@@ -31,13 +31,14 @@ define(function(require, exports, module) {
         zoom: 15,
         center: [37.77585785035733, -122.41362811351655],
         zoomControl: false,
-        attributionControl: 'LocalData'
+        attributionControl: false
       });
+      L.control.attribution({ prefix: '<a href="http://localdata.com">LocalData</a>'}).addTo(this.map);
       console.log(this.map);
       new L.Control.Zoom({ position: 'topleft' }).addTo(this.map);
 
       this.map.addControl(L.control.zoom({ position: 'topright' }));
-      this.baseLayer = L.tileLayer(settings.baseLayer, { attribution: 'LocalData' });
+      this.baseLayer = L.tileLayer(settings.baseLayer);
       this.map.addLayer(this.baseLayer);
 
       return this;

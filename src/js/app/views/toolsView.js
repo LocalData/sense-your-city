@@ -60,7 +60,7 @@ define(function(require, exports, module) {
     showTime: function(event) {
       this.ui.timeTools.removeClass('active');
       $(event.target).addClass('active');
-      this.trigger('display:time', $(event.target).attr('data-action'));
+      this.trigger('time:setRange', $(event.target).attr('data-action'));
     },
 
     childEvents: {

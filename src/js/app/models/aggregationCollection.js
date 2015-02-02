@@ -19,7 +19,7 @@ define(function(require, exports, module) {
 
     initialize: function(data, options) {
       _.bindAll(this, 'getCityData', 'getSourceData');
-      console.log("Init", options);
+      console.log("Init aggregation collection", options);
       this.options = options;
 
       // If we are getting aggregations of all cities in the world
@@ -29,7 +29,6 @@ define(function(require, exports, module) {
 
       // If we are getting aggregations for a list of sources
       if (options.type === 'sources') {
-        this.sources = options.sources;
         this.createCityModels();
       }
     },
@@ -48,9 +47,10 @@ define(function(require, exports, module) {
     createCityModels: function() {
       var params, url;
       var options = this.options;
-      options.sources = this.sources.join(',');
+      options['each.sources'] = options.sources.join(',');
+      delete options.sources;
       params = $.param(options);
-      url = 'http://localdata-sensors-beta.herokuapp.com/api/v1/aggregations?' + params;
+      url = settings.baseUrl + 'aggregations?' + params;
       this.getSourceData(url);
     },
 
@@ -70,11 +70,11 @@ define(function(require, exports, module) {
       urls = [];
 
       // Generate a list of URLs from the list of cities.
-      _.each(settings.cities, function(city) {
+      _.each(this.options.cities, function(city) {
         var options = this.options;
-        options.city = city.properties.name;
+        options['over.city'] = city.properties.name;
         params = $.param(options);
-        url = 'http://localdata-sensors-beta.herokuapp.com/api/v1/aggregations?' + params;
+        url = settings.baseUrl + 'aggregations?' + params;
         urls.push(url);
       }.bind(this));
 
@@ -135,7 +135,7 @@ define(function(require, exports, module) {
           var values = [];
           _.each(longest, function(timestamp) {
             if (_.has(times, timestamp)) {
-              values.push(times[timestamp]);
+              values.push(times[timestamp].toFixed(0));
             } else {
               // Stopgap vor missing values. Ideally we'd support undefined ranges
               values.push(0);
