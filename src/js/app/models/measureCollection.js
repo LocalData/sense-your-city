@@ -30,12 +30,13 @@ define(function(require, exports, module) {
 
       var options = {
         op: 'mean',
-        city: 'San Francisco',
         fields: settings.fieldsString,
         from: '2015-01-20T00:00:00Z',
         before: '2015-01-27T00:00:00Z',
         resolution: '20m'
       };
+
+      options['over.city'] = 'San Francisco';
 
       var params = $.param(options);
 

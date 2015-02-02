@@ -124,6 +124,12 @@ footer {
         }
       }
 
+      .measure-graph {
+        width: 100%;
+        overflow: auto;
+      }
+
+      // Old chart stuff ==================================================
 
       .measure-graph {
         margin-top: $pad;

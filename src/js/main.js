@@ -27,6 +27,11 @@ require.config({
         exports: 'Backbone'
       },
 
+      highcharts: {
+        exports: 'Highcharts',
+        deps: ['jquery']
+      },
+
       marionette: {
        deps: ['backbone', 'underscore'],
        exports: 'Marionette'

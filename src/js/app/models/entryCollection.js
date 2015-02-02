@@ -21,12 +21,10 @@ define(function(require, exports, module) {
     },
 
     url: function() {
-      console.log("Getting specific entries?", this.id);
       return settings.baseUrl + 'sources/' + this.id + '/entries?startIndex=0&count=30&sort=desc';
     },
 
     parse: function(data) {
-      console.log("data", data);
       return data;
     }
   });

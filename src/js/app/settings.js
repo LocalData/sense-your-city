@@ -9,8 +9,9 @@ function() {
   var settings = {};
 
   settings.baseUrl = '//localdata-sensors-beta.herokuapp.com/api/v1/';
-
-  settings.delay = 10000; // ms between entries
+  settings.delay = 10000; // ms between entries (10 seconds)
+  settings.baseColor = '#414042';
+  settings.primaryColor = '#2fcdd1';
 
   settings.api = {
     baseurl: '/api'
@@ -62,7 +63,7 @@ function() {
       description: 'Measures the raw output voltage of the sensor based on soundwaves in the nearby environment. It is not directly giving output in db or SPL. To convert to decibel, use dB = 0.0158x + 49.184.'
     },
     'temperature': {
-      name: 'Temp',
+      name: 'Temperature',
       units: 'C',
       description: ''
     }

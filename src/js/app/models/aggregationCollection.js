@@ -135,10 +135,10 @@ define(function(require, exports, module) {
           var values = [];
           _.each(longest, function(timestamp) {
             if (_.has(times, timestamp)) {
-              values.push(times[timestamp].toFixed(0));
+              values.push(Math.round(times[timestamp]));
             } else {
               // Stopgap vor missing values. Ideally we'd support undefined ranges
-              values.push(0);
+              values.push(null);
             }
           });
 
@@ -146,6 +146,7 @@ define(function(require, exports, module) {
           measures[name].labels = longest;
           measures[name].values.push({
             name: measure.source,
+            color: settings.primaryColor,
             data: values // measure.values
           });
         });
