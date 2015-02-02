@@ -34,7 +34,6 @@ define(function(require, exports, module) {
         attributionControl: false
       });
       L.control.attribution({ prefix: '<a href="http://localdata.com">LocalData</a>'}).addTo(this.map);
-      console.log(this.map);
       new L.Control.Zoom({ position: 'topleft' }).addTo(this.map);
 
       this.map.addControl(L.control.zoom({ position: 'topright' }));

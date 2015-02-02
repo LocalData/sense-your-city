@@ -56,7 +56,9 @@ define(function(require, exports, module) {
 
     var routeController = {
       city: function(name) {
-        console.log("Going to city", name);
+        // TODO: handle showing the map much better
+        var mapChannel = Backbone.Wreqr.radio.channel('map');
+        mapChannel.vent.trigger('show:header');
 
         // Update the map
         var sensors = prepSources(name);

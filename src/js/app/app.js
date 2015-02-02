@@ -55,6 +55,14 @@ define(function(require, exports, module) {
   // Start the map region before anything else
   App.on('before:start', function() {
     App.mapView = new MapView({ id: 'map' });
+
+    var mapChannel = Backbone.Wreqr.radio.channel('map');
+    this.listenTo(mapChannel.vent, 'hide:header', function() {
+      $('header').hide();
+    });
+    this.listenTo(mapChannel.vent, 'show:header', function() {
+      $('header').show();
+    });
   });
 
   App.on('start', start);

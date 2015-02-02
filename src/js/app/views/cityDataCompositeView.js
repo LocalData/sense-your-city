@@ -17,34 +17,38 @@ define(function(require, exports, module) {
   var SourceDataView = require('app/views/sourceDataView');
   var template = require('text!templates/cityData.html');
 
+  var exportChannel = Backbone.Wreqr.radio.channel('export');
+
   var cityDataCompositeView = Marionette.CompositeView.extend({
     template: _.template(template),
+    childViewContainer: '.source-list',
 
     ui: {
+      'toggle': '.action-toggle',
       'minimize': '.action-minimize',
       'maximize': '.action-maximize',
       'data': '.city-data'
     },
 
     events: {
-      'click @ui.minimize': 'minimize',
-      'click @ui.maximize': 'maximize'
+      'click @ui.toggle': 'toggle'
     },
 
-    minimize: function() {
-      this.ui.minimize.hide();
-      this.ui.maximize.show();
-      this.ui.data.hide();
-    },
-
-    maximize: function() {
-      this.ui.minimize.show();
-      this.ui.maximize.hide();
-      this.ui.data.show();
+    toggle: function() {
+      this.ui.minimize.toggle();
+      this.ui.maximize.toggle();
+      this.ui.data.toggle();
     },
 
     initialize: function() {
       this.collection = new SourceCollection(this.model.get('properties').sources);
+      this.listenTo(exportChannel.vent, 'show:city', this.showCity);
+    },
+
+    showCity: function(city) {
+      if (city === this.model.get('properties').name) {
+        this.toggle();
+      }
     },
 
     className: 'city',

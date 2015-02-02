@@ -25,10 +25,11 @@ define(function(require, exports, module) {
 
     var routeController = {
       source: function(id) {
-        console.log("Going to source", id);
+        // TODO: handle showing the map much better
+        var mapChannel = Backbone.Wreqr.radio.channel('map');
+        mapChannel.vent.trigger('show:header');
 
         var rawSource = _.findWhere(settings.sources, { id: id});
-        console.log("Got raw source", rawSource);
         var source = new SourceModel({
           properties: rawSource,
           type: 'Feature',
@@ -67,8 +68,6 @@ define(function(require, exports, module) {
           });
           App.sparklineRegion.show(sparklineView);
         }.bind(this));
-
-
       }
     };
 

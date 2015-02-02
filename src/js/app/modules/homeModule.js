@@ -32,6 +32,10 @@ define(function(require, exports, module) {
         var homeView = new HomeView({});
         App.mainRegion.show(homeView);
 
+        // XXX TODO: handle showing the map much better
+        var mapChannel = Backbone.Wreqr.radio.channel('map');
+        mapChannel.vent.trigger('show:header');
+
         // Show sparklines
         // Show the sparkline of a random source in this city
         var city = new CityModel({ properties: { name: 'San Francisco'}});

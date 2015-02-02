@@ -23,12 +23,7 @@ define(function(require, exports, module) {
 
     className: 'sparkline',
 
-    onBeforeRender: function() {
-      // console.log("Sparkline view", this);
-    },
-
     onRender: function() {
-      console.log("Sparkline:", this.model.toJSON(), this.model.get('name'));
       var graphEl = this.$el.find('.measure-graph').get(0);
 
       var chartOptions = {
