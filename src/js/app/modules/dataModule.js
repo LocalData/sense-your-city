@@ -34,7 +34,6 @@ define(function(require, exports, module) {
         App.mainRegion.show(dataView);
 
         // TODO: find a way to effectively hide the header region.
-        // console.log("Header region", App.headerRegion.$el.hide());
         var mapChannel = Backbone.Wreqr.radio.channel('map');
         mapChannel.vent.trigger('hide:header');
 
@@ -51,7 +50,6 @@ define(function(require, exports, module) {
         }
 
         if (city) {
-          console.log("Scropping?", city);
           top = $elt.position().top;
           window.scrollTo( 0, top);
         }

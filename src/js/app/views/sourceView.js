@@ -63,9 +63,6 @@ define(function(require, exports, module) {
         resolution: '6h'
       };
 
-      //collectionOptions = _.assign(collectionOptions, options);
-      console.log("using options", collectionOptions);
-
       var aggregationCollection = new AggregationCollection([], collectionOptions);
       aggregationCollection.on('add', function() {
         var measureCollection = new MeasureCollection(aggregationCollection.getMeasures());

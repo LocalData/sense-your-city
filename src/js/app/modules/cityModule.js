@@ -29,7 +29,6 @@ define(function(require, exports, module) {
     var sensors = settings.sources;
     var geojson = [];
     sensors = _.where(sensors, { city: city });
-    console.log("Working with", sensors);
 
     _.each(sensors, function(sensor, index) {
       var geo = {
@@ -43,7 +42,6 @@ define(function(require, exports, module) {
       geojson.push(geo);
     });
 
-    console.log("Got geojson", geojson);
     return geojson;
   }
 
@@ -93,7 +91,6 @@ define(function(require, exports, module) {
         var aggregationCollection = new AggregationCollection([], collectionOptions);
         aggregationCollection.on('add', function() {
           var measureCollection = new MeasureCollection(aggregationCollection.getMeasures());
-          console.log("Got measures", measureCollection.toJSON());
           var sparklineView = new SparklineCollectionView({
             model: city,
             collection: measureCollection

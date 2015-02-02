@@ -91,7 +91,6 @@ define(function(require, exports, module) {
       };
 
       collectionOptions = _.assign(collectionOptions, options);
-      console.log("using options", collectionOptions);
 
       var aggregationCollection = new AggregationCollection([], collectionOptions);
       aggregationCollection.on('add', function() {
