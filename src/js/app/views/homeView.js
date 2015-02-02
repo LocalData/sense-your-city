@@ -52,7 +52,7 @@ define(function(require, exports, module) {
         before: '2015-01-27T00:00:00Z',
         resolution: '6h'
       });
-      aggregationCollection.on('add', function() {
+      aggregationCollection.on('ready', function() {
         var measureCollection = new MeasureCollection(aggregationCollection.getMeasures());
         var measuresView = new MeasureCollectionView({
           collection: measureCollection

@@ -18,7 +18,7 @@ define(function(require, exports, module) {
     model: Aggregation,
 
     initialize: function(data, options) {
-      _.bindAll(this, 'getCityData', 'getSourceData');
+      _.bindAll(this, 'getCityData', 'getSourceData', 'ready');
       console.log("Init aggregation collection", options);
       this.options = options;
 
@@ -39,6 +39,7 @@ define(function(require, exports, module) {
         _.each(data, function(d) {
           this.add({ data: d }, { parse: true });
         }.bind(this));
+        this.trigger('ready');
       }.bind(this)).fail(function(error){
         console.log("Error getting aggregation", error);
       });
@@ -56,9 +57,10 @@ define(function(require, exports, module) {
 
     // Fetch the aggreation at a given URL
     // Create a model with the data and add it to this collection
-    getCityData: function(url) {
+    getCityData: function(url, callback) {
       var req = $.get(url).done(function(data){
         this.add({ data: data }, { parse: true });
+        callback();
       }.bind(this)).fail(function(error){
         console.log("Error getting aggregation", error);
       });
@@ -79,14 +81,13 @@ define(function(require, exports, module) {
       }.bind(this));
 
       // Get the data for all of the aggregations.
-      _.each(urls, this.getCityData);
+      // _.each(urls, this.getCityData);
 
       // Alternatively, we can wait until all the data is loaded:
-      // async.each(urls, this.getDataForURL, this.ready);
+      async.each(urls, this.getCityData, this.ready);
     },
 
     ready: function() {
-      console.log("It's ready");
       this.trigger('ready');
     },
 

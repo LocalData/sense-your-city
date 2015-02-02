@@ -93,7 +93,7 @@ define(function(require, exports, module) {
       collectionOptions = _.assign(collectionOptions, options);
 
       var aggregationCollection = new AggregationCollection([], collectionOptions);
-      aggregationCollection.on('add', function() {
+      aggregationCollection.on('ready', function() {
         var measureCollection = new MeasureCollection(aggregationCollection.getMeasures());
         var measuresView = new MeasureCollectionView({
           collection: measureCollection

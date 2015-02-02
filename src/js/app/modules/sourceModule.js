@@ -16,6 +16,9 @@ define(function(require, exports, module) {
   var SourceView = require('app/views/sourceView');
   var SparklineCollectionView = require('app/views/sparklineCollectionView');
 
+  // Templates
+  var sourcePopup = require('text!templates/sourcePopup.html');
+
   var SourceModule = function(SourceModule, App, Backbone, Marionette, $, _) {
     SourceModule.Router = Backbone.Marionette.AppRouter.extend({
       appRoutes: {
@@ -40,7 +43,9 @@ define(function(require, exports, module) {
         });
 
         // Update the map
-        App.mapView.addLocations(source.toJSON());
+        App.mapView.addLocations([source.toJSON()], {
+          template: _.template(sourcePopup)
+        });
 
         // Show the main city data
         var sourceView = new SourceView({
