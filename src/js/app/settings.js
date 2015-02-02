@@ -1,10 +1,10 @@
 /*jslint nomen: true */
 /*globals define: true */
 
-define([],
-
-function() {
+define(function(require, exports, module) {
   'use strict';
+
+  var _ = require('underscore');
 
   var settings = {};
 
@@ -38,7 +38,7 @@ function() {
 
   settings.measureLabels = {
     'airquality_raw': {
-      name: 'Air quality',
+      name: 'Pollution',
       units: 'mV',
       description: 'This sensor measures when harmful target gases are triggered and expresses their combined concentration in raw voltage, resulting in qualitative air quality data.'
     },
@@ -68,6 +68,21 @@ function() {
       description: ''
     }
   };
+
+  settings.blankMeasures = [];
+  _.each(settings.measureLabels, function(measure, name) {
+    settings.blankMeasures.push({
+      labels: ['a'],
+      meta: measure,
+      name: name,
+      values: [{
+        color: '#26e3b9',
+        data: [0],
+        name: ''
+      }]
+    });
+  }.bind(this));
+
 
   settings.cities = [{
     properties: {
