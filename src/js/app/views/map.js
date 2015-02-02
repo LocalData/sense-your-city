@@ -76,7 +76,6 @@ define(function(require, exports, module) {
     },
 
     addLocations: function(data, options) {
-      console.log("adding location", data, options);
       if (options && options.template) {
         this.template = options.template;
       } else {

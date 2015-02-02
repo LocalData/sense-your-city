@@ -91,7 +91,6 @@ define(function(require, exports, module) {
       this.trigger('ready');
     },
 
-
     // Get the aggregations grouped by measure (rather than by source)
     // TODO
     // Rewrite this to be simpler & quicker

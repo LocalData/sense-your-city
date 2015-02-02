@@ -23,7 +23,15 @@ define(function(require, exports, module) {
 
     className: 'sparkline',
 
-    onRender: function() {
+    initialize: function() {
+      this.model.on('change', this.chart);
+    },
+
+    chart: function() {
+      if (this.model.get('values') === undefined) {
+        return;
+      }
+
       var graphEl = this.$el.find('.measure-graph').get(0);
 
       var chartOptions = {
@@ -46,6 +54,10 @@ define(function(require, exports, module) {
         labels: this.model.get('labels'),
         series: this.model.get('values')
       }, chartOptions);
+    },
+
+    onRender: function() {
+      this.chart();
     }
   });
 

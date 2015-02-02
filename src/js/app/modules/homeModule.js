@@ -52,16 +52,17 @@ define(function(require, exports, module) {
         };
 
         var aggregationCollection = new AggregationCollection([], collectionOptions);
-        aggregationCollection.on('add', function() {
-          var measureCollection = new MeasureCollection(aggregationCollection.getMeasures());
-          console.log("Got measures", measureCollection.toJSON());
-          var sparklineView = new SparklineCollectionView({
-            model: city,
-            collection: measureCollection
-          });
-          App.sparklineRegion.show(sparklineView);
-        }.bind(this));
+        var measureCollection = new MeasureCollection([]);
+        var sparklineView = new SparklineCollectionView({
+          model: city,
+          collection: measureCollection
+        });
+        App.sparklineRegion.show(sparklineView);
 
+        aggregationCollection.on('ready', function() {
+          console.log("Got measures", measureCollection.toJSON());
+          measureCollection.add(aggregationCollection.getMeasures());
+        }.bind(this));
       }
     };
 

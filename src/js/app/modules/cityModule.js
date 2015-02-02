@@ -89,13 +89,15 @@ define(function(require, exports, module) {
         };
 
         var aggregationCollection = new AggregationCollection([], collectionOptions);
-        aggregationCollection.on('add', function() {
-          var measureCollection = new MeasureCollection(aggregationCollection.getMeasures());
-          var sparklineView = new SparklineCollectionView({
-            model: city,
-            collection: measureCollection
-          });
-          App.sparklineRegion.show(sparklineView);
+        var measureCollection = new MeasureCollection([]);
+        var sparklineView = new SparklineCollectionView({
+          model: city,
+          collection: measureCollection
+        });
+        App.sparklineRegion.show(sparklineView);
+
+        aggregationCollection.on('ready', function() {
+          measureCollection.add(aggregationCollection.getMeasures());
         }.bind(this));
 
       }

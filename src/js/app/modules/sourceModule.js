@@ -65,13 +65,15 @@ define(function(require, exports, module) {
         };
 
         var aggregationCollection = new AggregationCollection([], collectionOptions);
+        var measureCollection = new MeasureCollection([]);
+        var sparklineView = new SparklineCollectionView({
+          model: source,
+          collection: measureCollection
+        });
+        App.sparklineRegion.show(sparklineView);
+
         aggregationCollection.on('add', function() {
-          var measureCollection = new MeasureCollection(aggregationCollection.getMeasures());
-          var sparklineView = new SparklineCollectionView({
-            model: source,
-            collection: measureCollection
-          });
-          App.sparklineRegion.show(sparklineView);
+          measureCollection.add(aggregationCollection.getMeasures());
         }.bind(this));
       }
     };
