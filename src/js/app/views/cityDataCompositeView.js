@@ -20,6 +20,29 @@ define(function(require, exports, module) {
   var cityDataCompositeView = Marionette.CompositeView.extend({
     template: _.template(template),
 
+    ui: {
+      'minimize': '.action-minimize',
+      'maximize': '.action-maximize',
+      'data': '.city-data'
+    },
+
+    events: {
+      'click @ui.minimize': 'minimize',
+      'click @ui.maximize': 'maximize'
+    },
+
+    minimize: function() {
+      this.ui.minimize.hide();
+      this.ui.maximize.show();
+      this.ui.data.hide();
+    },
+
+    maximize: function() {
+      this.ui.minimize.show();
+      this.ui.maximize.hide();
+      this.ui.data.show();
+    },
+
     initialize: function() {
       this.collection = new SourceCollection(this.model.get('properties').sources);
     },

@@ -8,6 +8,7 @@ require.config({
       'async': 'lib/async',
       'backbone': 'lib/backbone',
       'chartist': 'lib/chartist',
+      'highcharts': 'lib/highcharts.custom',
       'jquery': 'lib/jquery',
       'leaflet': 'lib/leaflet',
       'marionette': 'lib/backbone.marionette',

@@ -1,4 +1,12 @@
 <a name="<%- _.camelCase(name) %>" class="<%- _.camelCase(name) %>"></a>
-<h3><%= name %></h3>
+<h3>
+  <span class="action action-minimize">
+    <i class="fa fa-minus-square-o"></i>
+  </span>
+  <span class="action action-maximize start-hidden">
+    <i class="fa fa-plus-square-o"></i>
+  </span>
+  <%= name %>
+</h3>
 <a class="button" href="http://localdata-sensors-beta.herokuapp.com/api/v1/aggregations.csv?type=sources&op=mean&fields=temperature%2Clight%2Cairquality_raw%2Csound%2Chumidity%2Cdust&from=2015-01-20T00%3A00%3A00Z&before=2015-01-27T00%3A00%3A00Z&resolution=6h&each.sources=<%= id %>"><i class="fa fa-table"></i> CSV: Last week of data at 1 hour</a>
 <a class="button" href="http://localdata-sensors-beta.herokuapp.com/api/v1/aggregations.csv?type=sources&op=mean&fields=temperature%2Clight%2Cairquality_raw%2Csound%2Chumidity%2Cdust&from=2015-01-20T00%3A00%3A00Z&before=2015-01-27T00%3A00%3A00Z&resolution=6h&each.sources=<%= id %>"><i class="fa fa-table"></i> CSV: Last month of data at 6 hours</a>
