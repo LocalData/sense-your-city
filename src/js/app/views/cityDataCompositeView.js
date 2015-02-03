@@ -22,6 +22,7 @@ define(function(require, exports, module) {
   var cityDataCompositeView = Marionette.CompositeView.extend({
     template: _.template(template),
     childViewContainer: '.source-list',
+    tagName: 'tr',
 
     ui: {
       'toggle': '.action-toggle',

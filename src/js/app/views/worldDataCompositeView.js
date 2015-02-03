@@ -17,6 +17,8 @@ define(function(require, exports, module) {
   var template = require('text!templates/entryTable.html');
 
   var WorldDataCompositeView = Backbone.Marionette.CollectionView.extend({
+    template: _.template(template),
+    // childViewContainer: 'tbody',
     childView: TreeView
   });
 

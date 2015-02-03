@@ -20,6 +20,7 @@ define(function(require, exports, module) {
 
   var sourceDataView = Marionette.ItemView.extend({
     template: _.template(template),
+    tagName: 'tr',
 
     ui: {
       'toggle': '.action-source-toggle',

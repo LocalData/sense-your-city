@@ -18,7 +18,8 @@ define(function(require, exports, module) {
 
   var SparklineCollectionView = Backbone.Marionette.CompositeView.extend({
     template: _.template(template),
-    className: 'sparklines',
+    className: 'sparkline-container',
+    childViewContainer: '.sparklines',
     childView: SparklineView
   });
 

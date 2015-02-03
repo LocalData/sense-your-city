@@ -18,23 +18,24 @@ define(function(require, exports, module) {
     model: Aggregation,
 
     initialize: function(data, options) {
-      _.bindAll(this, 'getCityData', 'getSourceData', 'ready');
+      _.bindAll(this, 'createSourceModels', 'getSourceData', 'getCityData', 'ready');
       console.log("Init aggregation collection", options);
       this.options = options;
 
       // If we are getting aggregations of all cities in the world
       if (options.type === 'cities') {
-        this.createWorldModels();
+        this.createCityModels();
       }
 
       // If we are getting aggregations for a list of sources
       if (options.type === 'sources') {
-        this.createCityModels();
+        this.createSourceModels();
       }
     },
 
     getSourceData: function(url) {
-      var req = $.get(url).done(function(data) {
+      var req = $.get(url).done(function(response) {
+        var data = response.data;
         data = _.groupBy(data, 'source');
         _.each(data, function(d) {
           this.add({ data: d }, { parse: true });
@@ -45,11 +46,10 @@ define(function(require, exports, module) {
       });
     },
 
-    createCityModels: function() {
+    createSourceModels: function() {
       var params, url;
-      var options = this.options;
-      options['each.sources'] = options.sources.join(',');
-      delete options.sources;
+      var options = _.pick(this.options, settings.queryFields);
+      options['each.sources'] = this.options.sources.join(',');
       params = $.param(options);
       url = settings.baseUrl + 'aggregations?' + params;
       this.getSourceData(url);
@@ -58,7 +58,8 @@ define(function(require, exports, module) {
     // Fetch the aggreation at a given URL
     // Create a model with the data and add it to this collection
     getCityData: function(url, callback) {
-      var req = $.get(url).done(function(data){
+      var req = $.get(url).done(function(response) {
+        var data = response.data;
         this.add({ data: data }, { parse: true });
         callback();
       }.bind(this)).fail(function(error){
@@ -67,13 +68,13 @@ define(function(require, exports, module) {
     },
 
     // Get an aggregation for every city in the world
-    createWorldModels: function() {
+    createCityModels: function() {
       var params, url, urls;
       urls = [];
 
       // Generate a list of URLs from the list of cities.
       _.each(this.options.cities, function(city) {
-        var options = this.options;
+        var options = _.pick(this.options, settings.queryFields);
         options['over.city'] = city.properties.name;
         params = $.param(options);
         url = settings.baseUrl + 'aggregations?' + params;

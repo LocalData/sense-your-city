@@ -1,4 +1,5 @@
-<div class="<%- _.camelCase(properties.name) %>">
+<tr>
+<td>
   <h2 class="action-toggle">
     <span class="action action-minimize start-hidden">
       <i class="fa fa-minus-square-o"></i>
@@ -8,11 +9,22 @@
     </span>
     <%= properties.name %>
   </h2>
+</td>
+<td>
+  <a class="button" href="http://localdata-sensors-beta.herokuapp.com/api/v1/aggregations.csv?type=sources&op=mean&fields=temperature%2Clight%2Cairquality_raw%2Csound%2Chumidity%2Cdust&from=2015-01-20T00%3A00%3A00Z&before=2015-01-27T00%3A00%3A00Z&resolution=6h&over.city=<%= properties.name %>"><i class="fa fa-table"></i> 10s</a>
+  <a class="button" href="http://localdata-sensors-beta.herokuapp.com/api/v1/aggregations.csv?type=sources&op=mean&fields=temperature%2Clight%2Cairquality_raw%2Csound%2Chumidity%2Cdust&from=2015-01-20T00%3A00%3A00Z&before=2015-01-27T00%3A00%3A00Z&resolution=6h&over.city=<%= properties.name %>"><i class="fa fa-table"></i> 20m</a>
+</td>
+<td>
+  <a class="button" href="http://localdata-sensors-beta.herokuapp.com/api/v1/aggregations.csv?type=sources&op=mean&fields=temperature%2Clight%2Cairquality_raw%2Csound%2Chumidity%2Cdust&from=2015-01-20T00%3A00%3A00Z&before=2015-01-27T00%3A00%3A00Z&resolution=6h&over.city=<%= properties.name %>"><i class="fa fa-table"></i> 10s</a>
+  <a class="button" href="http://localdata-sensors-beta.herokuapp.com/api/v1/aggregations.csv?type=sources&op=mean&fields=temperature%2Clight%2Cairquality_raw%2Csound%2Chumidity%2Cdust&from=2015-01-20T00%3A00%3A00Z&before=2015-01-27T00%3A00%3A00Z&resolution=6h&over.city=<%= properties.name %>"><i class="fa fa-table"></i> 20m</a>
+</td>
+<td>
+  <code><%= properties.name %></code>
+</td>
+</tr>
 
-  <div class="city-data start-hidden">
-    <a class="button" href="http://localdata-sensors-beta.herokuapp.com/api/v1/aggregations.csv?type=sources&op=mean&fields=temperature%2Clight%2Cairquality_raw%2Csound%2Chumidity%2Cdust&from=2015-01-20T00%3A00%3A00Z&before=2015-01-27T00%3A00%3A00Z&resolution=6h&over.city=<%= properties.name %>"><i class="fa fa-table"></i> CSV: Last week of data at 1 hour</a>
-    <a class="button" href="http://localdata-sensors-beta.herokuapp.com/api/v1/aggregations.csv?type=sources&op=mean&fields=temperature%2Clight%2Cairquality_raw%2Csound%2Chumidity%2Cdust&from=2015-01-20T00%3A00%3A00Z&before=2015-01-27T00%3A00%3A00Z&resolution=6h&over.city=<%= properties.name %>"><i class="fa fa-table"></i> CSV: Last month of data at 6 hours</a>
-
-    <div class="source-list"></div>
-  </div>
-</div>
+<tr class="city-data start-hidden">
+  <td colspan="4">
+    <table class="source-list"></table>
+  </td>
+</tr><!-- invalid html, but without the double tr, will not render -->

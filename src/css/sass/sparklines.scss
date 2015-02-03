@@ -1,4 +1,4 @@
-.sparklines {
+.sparkline-container {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -6,6 +6,7 @@
   z-index: 10000;
   background: $background-color;
   color: #fff;
+  -webkit-font-smoothing: subpixel-antialiased;
 
   h2 {
     color: #fff;
@@ -21,8 +22,15 @@
   }
 
   .sparkline {
-    background: lighten($background-color, 3%);
+    background: lighten($background-color, 2%);
     padding: $minipad $pad $minipad $pad;
+    overflow: auto;
+
+    .line {
+      display: inline-block;
+      width: 40%;
+      float: left;
+    }
 
     .name {
       color: #fff;
@@ -31,6 +39,7 @@
     }
 
     .value {
+      display: inline-block;
       color: $primary-color;
       font-size: 2rem;
       line-height: 1em;
@@ -71,10 +80,27 @@
       width: 44%;
       padding: $minipad 3% $minipad 3%;
       display: inline-block;
+      margin-bottom: -4px;
     }
   }
 }
 
 .sparkline:nth-child(even) {
-  background: lighten($background-color, 8%);
+  background: lighten($background-color, 4%);
 }
+
+@media only screen
+and (max-width : 768px) {
+  .sparkline:nth-child(1),
+  .sparkline:nth-child(4),
+  .sparkline:nth-child(5) {
+    background: lighten($background-color, 2%);
+  }
+
+  .sparkline:nth-child(2),
+  .sparkline:nth-child(3),
+  .sparkline:nth-child(6) {
+    background: lighten($background-color, 4%);
+  }
+}
+

@@ -16,7 +16,7 @@ define(function(require, exports, module) {
   var settings = require('app/settings');
 
   // Models
-  var MeasureCollection = require('app/models/measureCollection');
+  var CityModel = require('app/models/city');
   var CityCollection = require('app/models/cityCollection');
 
   // Views
@@ -53,6 +53,7 @@ define(function(require, exports, module) {
       var cities = this.prepCities();
       var cityCollection = new CityCollection(cities);
       var worldDataCompositeView = new WorldDataCompositeView({
+        model: new CityModel({ name: 'placeholder' }),
         collection: cityCollection
       });
       this.getRegion('dataRegion').show(worldDataCompositeView);

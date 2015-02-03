@@ -65,12 +65,24 @@ footer {
   .logo {
     float: right;
   }
+
+  .credits {
+    color: $inactive-color;
+    padding: $pad 0;
+    font-size: $minisize;
+
+    a,
+    a:active,
+    a:visited {
+      color: $inactive-color;
+      border-bottom: 1px solid $inactive-color;
+    }
+  }
 }
 
 .pure-menu.pure-menu-open,
 footer {
   p {
-    display: inline-block;
     font-size: 1.2em;
   }
   a.logo,
@@ -106,6 +118,10 @@ footer {
       margin-bottom: $pad;
 
       .header {
+        h3 {
+          font-weight: normal;
+        }
+
         .description {
           padding-bottom: $pad;
 
@@ -212,53 +228,72 @@ footer {
 }
 
 .data-downloads {
-  margin: $pad;
-  padding: $pad;
-  background: #fff;
-
-  .button {
-    display: inline-block;
-    padding: 5px;
-    margin-right: $pad;
-  }
-
-  .city {
-    padding: $pad 0;
-    background: #fff;
-  }
-
-  h2, h4 {
-    cursor: pointer;
-  }
-
-  h2 {
-    font-size: 2rem;
-  }
-
-  h3 {
-    font-size: 1.5rem;
-    font-weight: 400;
-  }
-
-  .source-list {
-  }
-
-  .source {
-    padding: $pad;
+  section {
+    padding: $pad * 2 10%;
     background: $background-light-color;
 
-    .api {
-      padding-top: $minipad;
+     p.intro {
+      font-size: $hsize;
+    }
+  }
+
+
+
+  section.api {
+    background: $body-color;
+    color: #fff;
+
+    p {
+      color: $inactive-color;
+    }
+  }
+
+  section.data {
+    background: #fff;
+    .button {
+      display: inline-block;
+      padding: 5px;
+      margin-right: $pad;
     }
 
-    h4 {
+    .city {
+      padding: $pad 0;
+    }
+
+    h2, h4 {
+      cursor: pointer;
+    }
+
+    h2 {
+      font-size: 2rem;
+      font-weight: 400;
+    }
+
+    h3 {
       font-size: 1.5rem;
       font-weight: 400;
     }
-  }
 
-  .source:nth-child(odd) {
-    background: lighten($background-light-color, 5%);
+    .source-list {
+    }
+
+    .source {
+      padding: $pad;
+      background: $background-light-color;
+
+      .api {
+        padding-top: $minipad;
+      }
+
+      h4 {
+        font-size: 1.5rem;
+        font-weight: 400;
+      }
+    }
+
+    .source:nth-child(odd) {
+      background: lighten($background-light-color, 5%);
+    }
   }
 
 }

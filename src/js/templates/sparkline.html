@@ -1,12 +1,8 @@
-<div class="pure-g">
-    <div class="pure-u-1-2">
-      <h3 class="name"><%= meta.name %></h3>
-      <div class="measure-graph ct-chart"></div>
-    </div>
-    <div class="pure-u-1-2">
-      <h3 class="value">
-        <%= values[0].data[values[0].data.length -1] %>
-        <span class="unit"><%= meta.units %></span>
-      </h3>
-    </div>
+<div class="line">
+  <h3 class="name"><%= meta.name %></h3>
+  <div class="measure-graph ct-chart"></div>
 </div>
+<h3 class="value">
+  <%= values[0].data[values[0].data.length -1] %>
+  <span class="unit"><%= meta.units %></span>
+</h3>

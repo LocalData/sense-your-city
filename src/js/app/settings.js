@@ -8,7 +8,7 @@ define(function(require, exports, module) {
 
   var settings = {};
 
-  settings.baseUrl = '//localdata-sensors-beta.herokuapp.com/api/v1/';
+  settings.baseUrl = '//sensor-api.localdata.com/api/v1/';
   settings.delay = 10000; // ms between entries (10 seconds)
   settings.baseColor = '#414042';
   settings.primaryColor = '#2fcdd1';
@@ -19,11 +19,13 @@ define(function(require, exports, module) {
 
   // List of fields we want to select
   settings.fieldsString = 'temperature,light,airquality_raw,sound,humidity,dust';
+  settings.queryFields = ['fields', 'from', 'before', 'after', 'until', 'resolution', 'over.city', 'each.sources'];
 
   // Fields we don't graph
   // Some of these are administrative (source, location), some are not useful
   // at the moment (uv, airquality string)
   settings.fieldsToOmit = ['location', 'airquality', 'uv', 'city', 'timestamp', 'source'];
+
 
   settings.baseLayer = '//{s}.tiles.mapbox.com/v3/matth.01691638/{z}/{x}/{y}.png'; // LocalData
 
