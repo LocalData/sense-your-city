@@ -65,7 +65,7 @@ define(function(require, exports, module) {
         };
 
         var aggregationCollection = new AggregationCollection([], collectionOptions);
-        var measureCollection = new MeasureCollection([]);
+        var measureCollection = new MeasureCollection(settings.blankMeasures);
         var sparklineView = new SparklineCollectionView({
           model: source,
           collection: measureCollection
@@ -73,7 +73,7 @@ define(function(require, exports, module) {
         App.sparklineRegion.show(sparklineView);
 
         aggregationCollection.on('add', function() {
-          measureCollection.add(aggregationCollection.getMeasures());
+          measureCollection.reset(aggregationCollection.getMeasures());
         }.bind(this));
       }
     };
