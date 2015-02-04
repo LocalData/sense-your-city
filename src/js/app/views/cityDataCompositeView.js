@@ -41,7 +41,7 @@ define(function(require, exports, module) {
       this.ui.minimize.toggle();
       this.ui.maximize.toggle();
       // Todo -- restructure to be more backbone-ish
-      $('.source ' + _.camelCase(this.model.get('properties').name));
+      $('.source.' + _.camelCase(this.model.get('properties').name)).toggle();
     },
 
     initialize: function() {

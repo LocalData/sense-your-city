@@ -124,6 +124,9 @@ footer {
 
         .action {
           color: $inactive-color;
+          height: 40px;
+          width: 40px;
+          text-align: center;
           font-size: 0.75em; // slightly smaller than its parent
         }
 

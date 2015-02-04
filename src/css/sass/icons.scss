@@ -1,6 +1,6 @@
 .icon {
-  height: 35px;
-  width: 40px;
+  height: 23px;
+  width: 23px;
   display: inline-block;
   background-color: transparent;
 }
@@ -10,9 +10,9 @@
 }
 
 .icon.icon-minus {
-  background: transparent url(../img/icons/minus.svg) no-repeat center center;
+  background: transparent url(../img/icons/minus.svg) no-repeat center 3px;
 }
 
 .icon.icon-plus {
-  background: transparent url(../img/icons/plus.svg) no-repeat center center;
+  background: transparent url(../img/icons/plus.svg) no-repeat center 3px;
 }
