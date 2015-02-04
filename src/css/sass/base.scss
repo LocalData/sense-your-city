@@ -111,6 +111,7 @@ a:active,
 
     .leaflet-control-zoom-in:hover,
     .leaflet-disabled.leaflet-control-zoom-in,
+    .leaflet-disabled.leaflet-control-zoom-in:hover,
     .leaflet-control-zoom-in {
       border-right: 1px solid $body-color;
     }
