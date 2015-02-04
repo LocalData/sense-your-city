@@ -51,7 +51,8 @@ define(function(require, exports, module) {
 
     showCity: function(city) {
       if (city === this.model.get('properties').name) {
-        this.toggle();
+        this.ui.minimize.toggle();
+        this.ui.maximize.toggle();
       }
     }
   });

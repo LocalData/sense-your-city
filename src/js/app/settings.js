@@ -11,6 +11,7 @@ define(function(require, exports, module) {
   settings.baseUrl = '//sensor-api.localdata.com/api/v1/';
   settings.delay = 10000; // ms between entries (10 seconds)
   settings.baseColor = '#414042';
+  settings.seriesColor = '#bcbfc0';
   settings.primaryColor = '#2fcdd1';
 
   settings.api = {
@@ -82,7 +83,7 @@ define(function(require, exports, module) {
       meta: measure,
       name: name,
       values: [{
-        color: '#26e3b9',
+        color: settings.seriesColor,
         data: [0],
         name: ''
       }]
@@ -93,7 +94,7 @@ define(function(require, exports, module) {
   settings.cities = [{
     properties: {
       name: 'Bangalore',
-      color: '#26e3b9'
+      color: settings.seriesColor
     },
     type: 'Feature',
     geometry: {
@@ -103,7 +104,7 @@ define(function(require, exports, module) {
   },{
     properties: {
       name: 'Boston',
-      color: '#26e3b9'
+      color: settings.seriesColor
     },
     type: 'Feature',
     geometry: {
@@ -113,7 +114,7 @@ define(function(require, exports, module) {
   },{
     properties: {
       name: 'Geneva',
-      color: '#26e3b9'
+      color: settings.seriesColor
     },
     type: 'Feature',
     geometry: {
@@ -123,7 +124,7 @@ define(function(require, exports, module) {
   },{
     properties: {
       name: 'Rio de Janeiro',
-      color: '#26e3b9'
+      color: settings.seriesColor
     },
     type: 'Feature',
     geometry: {
@@ -133,7 +134,7 @@ define(function(require, exports, module) {
   },{
     properties: {
       name: 'San Francisco',
-      color: '#26e3b9'
+      color: settings.seriesColor
     },
     type: 'Feature',
     geometry: {
@@ -143,7 +144,7 @@ define(function(require, exports, module) {
   },{
     properties: {
       name: 'Shanghai',
-      color: '#26e3b9'
+      color: settings.seriesColor
     },
     type: 'Feature',
     geometry: {
@@ -153,7 +154,7 @@ define(function(require, exports, module) {
   },{
     properties: {
       name: 'Singapore',
-      color: '#26e3b9'
+      color: settings.seriesColor
     },
     type: 'Feature',
     geometry: {

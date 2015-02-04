@@ -147,7 +147,7 @@ define(function(require, exports, module) {
           measures[name].labels = longest;
           measures[name].values.push({
             name: measure.source,
-            color: settings.primaryColor,
+            color: settings.seriesColor,
             data: values // measure.values
           });
         });

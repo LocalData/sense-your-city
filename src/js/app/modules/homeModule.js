@@ -53,7 +53,6 @@ define(function(require, exports, module) {
 
         var aggregationCollection = new AggregationCollection([], collectionOptions);
         var measureCollection = new MeasureCollection(settings.blankMeasures);
-        console.log("Using", measureCollection.toJSON());
         var sparklineView = new SparklineCollectionView({
           model: city,
           collection: measureCollection
@@ -61,7 +60,6 @@ define(function(require, exports, module) {
         App.sparklineRegion.show(sparklineView);
 
         aggregationCollection.on('ready', function() {
-          console.log("Got measures", aggregationCollection.getMeasures());
           measureCollection.reset(aggregationCollection.getMeasures());
         }.bind(this));
       }

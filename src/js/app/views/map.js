@@ -9,10 +9,13 @@ define(function(require, exports, module) {
   var _ = require('underscore');
   var Backbone = require('backbone');
   var L = require('leaflet');
+  var Marionette = require('marionette');
 
   // App
   var settings = require('app/settings');
   var template = require('text!templates/popup.html');
+
+  var mapChannel = Backbone.Wreqr.radio.channel('map');
 
   var MapView = Backbone.View.extend({
     map: null,
@@ -31,7 +34,8 @@ define(function(require, exports, module) {
         zoom: 15,
         center: [37.77585785035733, -122.41362811351655],
         zoomControl: false,
-        attributionControl: false
+        attributionControl: false,
+        scrollWheelZoom: false
       });
       L.control.attribution({ prefix: '<a href="http://localdata.com">LocalData</a>'}).addTo(this.map);
       new L.Control.Zoom({ position: 'topleft' }).addTo(this.map);
@@ -73,6 +77,20 @@ define(function(require, exports, module) {
       if (feature.properties && feature.properties.name) {
         layer.bindPopup(this.template(feature.properties));
       }
+
+      layer.on('click', function (e) {
+        mapChannel.vent.trigger('click:feature', feature);
+      });
+    },
+
+    handleZoom: function() {
+      // TODO
+      // If zoom is lower than X, show the whole world route
+      // Only change the route if we're zooming out
+
+      // If zoom is higher than X, check if we overlap a city
+      // If so, route to that city
+      // Only change the route if we're zooming in
     },
 
     addLocations: function(data, options) {
@@ -85,7 +103,7 @@ define(function(require, exports, module) {
       this.clear();
       this.layer = L.geoJson(data, {
         pointToLayer: function (feature, latlng) {
-            return L.circleMarker(latlng, settings.geojsonMarkerOptions);
+          return L.circleMarker(latlng, settings.geojsonMarkerOptions);
         },
         onEachFeature: this.addPopup
       }).addTo(this.map);

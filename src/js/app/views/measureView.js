@@ -20,6 +20,8 @@ define(function(require, exports, module) {
   // Templates
   var template = require('text!templates/measure.html');
 
+  var mapChannel = Backbone.Wreqr.radio.channel('map');
+
   var MeasureView = Marionette.ItemView.extend({
     template: _.template(template),
 
@@ -76,6 +78,7 @@ define(function(require, exports, module) {
           enabled: false
         },
         xAxis: {
+          lineColor: '#e6e7e8',
           categories: this.model.get('labels'),
           labels: {
             align: 'left',
@@ -87,6 +90,8 @@ define(function(require, exports, module) {
           tickmarkPlacement: 'on'
         },
         yAxis: {
+          lineColor: '#e6e7e8',
+          gridLineColor: '#e6e7e8',
           startOnTick: false,
           endOnTick: false,
           labels: {
@@ -113,6 +118,29 @@ define(function(require, exports, module) {
       }
 
       $graphEl.highcharts(options);
+      var chart = $graphEl.highcharts();
+      var lastIndex;
+      var seriesIndex = {};
+      _.each(this.model.get('values'), function(s, idx) {
+        seriesIndex[s.name] = idx;
+      });
+
+      this.listenTo(mapChannel.vent, 'click:feature', function(feature) {
+        // Set the last selected series back to the default
+        if(lastIndex) {
+          chart.series[lastIndex].update({
+            color: settings.seriesColor,
+            lineWidth: 2
+          });
+        }
+
+        // Highlight a series
+        lastIndex = seriesIndex[feature.properties.name];
+        chart.series[lastIndex].update({
+          color: settings.primaryColor,
+          lineWidth: 4
+        });
+      });
 
       // TODO
       // Style line on hover / select
