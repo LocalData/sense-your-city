@@ -122,6 +122,11 @@ footer {
           font-weight: normal;
         }
 
+        .action {
+          color: $inactive-color;
+          font-size: 0.75em; // slightly smaller than its parent
+        }
+
         .description {
           padding-bottom: $pad;
 
@@ -227,77 +232,6 @@ footer {
   }
 }
 
-.data-downloads {
-  section {
-    padding: $pad * 2 10%;
-    background: $background-light-color;
-
-     p.intro {
-      font-size: $hsize;
-    }
-  }
-
-
-
-  section.api {
-    background: $body-color;
-    color: #fff;
-
-    p {
-      color: $inactive-color;
-    }
-  }
-
-  section.data {
-    background: #fff;
-    .button {
-      display: inline-block;
-      padding: 5px;
-      margin-right: $pad;
-    }
-
-    .city {
-      padding: $pad 0;
-    }
-
-    h2, h4 {
-      cursor: pointer;
-    }
-
-    h2 {
-      font-size: 2rem;
-      font-weight: 400;
-    }
-
-    h3 {
-      font-size: 1.5rem;
-      font-weight: 400;
-    }
-
-    .source-list {
-    }
-
-    .source {
-      padding: $pad;
-      background: $background-light-color;
-
-      .api {
-        padding-top: $minipad;
-      }
-
-      h4 {
-        font-size: 1.5rem;
-        font-weight: 400;
-      }
-    }
-
-    .source:nth-child(odd) {
-      background: lighten($background-light-color, 5%);
-    }
-  }
-
-}
-
 .overview {
   padding: $pad $pad 0 $pad;
 
@@ -382,8 +316,6 @@ footer {
 
 .action {
   cursor: pointer;
-  color: $inactive-color;
-  font-size: 0.75em; // slightly smaller than its parent
 }
 
 .action.active,

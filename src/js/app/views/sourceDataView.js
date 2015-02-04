@@ -21,9 +21,9 @@ define(function(require, exports, module) {
   var sourceDataView = Marionette.ItemView.extend({
     template: _.template(template),
     tagName: 'tr',
+    className: 'source start-hidden',
 
     ui: {
-      'toggle': '.action-source-toggle',
       'minimize': '.action-minimize',
       'maximize': '.action-maximize',
       'data': '.source-data'
@@ -35,10 +35,19 @@ define(function(require, exports, module) {
 
     initialize: function() {
       this.listenTo(exportChannel.vent, 'show:source', this.showSource);
+      this.listenTo(exportChannel.vent, 'show:city', this.showCity);
     },
 
     showSource: function(source) {
+
       if (source === this.model.get('name')) {
+        this.$el.toggleClass('selected');
+      }
+    },
+
+    showCity: function(city) {
+      console.log("Show me?", city, this.model.toJSON());
+      if (city === this.model.get('city')) {
         this.toggle();
       }
     },
@@ -46,10 +55,13 @@ define(function(require, exports, module) {
     toggle: function() {
       this.ui.minimize.toggle();
       this.ui.maximize.toggle();
-      this.ui.data.toggle();
+      this.$el.toggle();
     },
 
-    className: 'source'
+    onBeforeRender: function() {
+      this.$el.addClass(_.camelCase(this.model.get('name')));
+      this.$el.addClass(_.camelCase(this.model.get('city')));
+    }
   });
 
   return sourceDataView;

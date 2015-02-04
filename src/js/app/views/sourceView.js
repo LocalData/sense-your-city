@@ -14,15 +14,14 @@ define(function(require, exports, module) {
 
   // App
   var settings = require('app/settings');
+  var util = require('app/util');
 
   // Models
   var AggregationCollection = require('app/models/aggregationCollection');
-  var EntryCollection = require('app/models/entryCollection');
   var MeasureCollection = require('app/models/measureCollection');
 
   // Views
   var MeasureCollectionView = require('app/views/measureCollectionView');
-  var EntriesTableView = require('app/views/entriesTableView');
   var ToolsView = require('app/views/toolsView');
 
   // Templates
@@ -38,63 +37,41 @@ define(function(require, exports, module) {
       toolsRegion: '#tools-region'
     },
 
-    displayTime: function(action) {
-      console.log("Got action", action);
+    initialize: function() {
+      _.bindAll(this, 'setGraphs');
     },
 
-    displayGraphs: function() {
-      console.log(this);
-      this.getRegion('graphsRegion').show(this.measuresView, {preventDestroy: true});
-    },
+    setGraphs: function(span) {
+      if (span === undefined) {
+        span = 'day';
+      }
+      var sources = _.filter(settings.sources, { city: this.model.get('properties').name });
 
-    displayTable: function() {
-      console.log(this);
-      this.getRegion('graphsRegion').show(this.entriesView, {preventDestroy: true});
-    },
-
-    onBeforeShow: function() {
       var collectionOptions = {
         type: 'sources',
         sources: [this.model.get('properties').id],
-        op: 'mean',
         fields: settings.fieldsString,
-        from: '2015-01-20T00:00:00Z',
-        before: '2015-01-27T00:00:00Z',
-        resolution: '6h'
+        op: 'mean'
       };
+      _.assign(collectionOptions, util.getTimeRange(span));
 
       var aggregationCollection = new AggregationCollection([], collectionOptions);
-      aggregationCollection.on('add', function() {
+      aggregationCollection.on('ready', function() {
         var measureCollection = new MeasureCollection(aggregationCollection.getMeasures());
         var measuresView = new MeasureCollectionView({
           collection: measureCollection
         });
         this.getRegion('graphsRegion').show(measuresView);
       }.bind(this));
+    },
 
+    onBeforeShow: function() {
       // Get the graphs
-      //var measuresCollection = new MeasureCollection({
-      //  id: this.model.get('properties').id
-      //});
-      //measuresCollection.fetch();
-      //this.measuresView = new MeasureCollectionView({
-      //  collection: measuresCollection
-      //});
-      //this.getRegion('graphsRegion').show(this.measuresView);
-
-      // Create a tableView, but don't display it yet
-      var entryCollection = new EntryCollection({
-        id: this.model.get('properties').id
-      });
-      entryCollection.fetch();
-      this.entriesView = new EntriesTableView({
-        collection: entryCollection
-      });
+      this.setGraphs('day');
 
       // Create the tools view
       var toolsView = new ToolsView({ });
-      toolsView.on('display:time', this.displayTime);
-
+      toolsView.on('time:setRange', this.setGraphs);
       this.getRegion('toolsRegion').show(toolsView);
     }
   });

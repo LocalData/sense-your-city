@@ -16,9 +16,9 @@ define(function(require, exports, module) {
   var TreeView = require('app/views/cityDataCompositeView');
   var template = require('text!templates/entryTable.html');
 
-  var WorldDataCompositeView = Backbone.Marionette.CollectionView.extend({
+  var WorldDataCompositeView = Backbone.Marionette.CompositeView.extend({
     template: _.template(template),
-    // childViewContainer: 'tbody',
+    tagName: 'table',
     childView: TreeView
   });
 

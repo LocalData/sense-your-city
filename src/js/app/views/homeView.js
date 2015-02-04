@@ -14,6 +14,7 @@ define(function(require, exports, module) {
 
   // App
   var settings = require('app/settings');
+  var util = require('app/util');
 
   // Models
   var AggregationCollection = require('app/models/aggregationCollection');
@@ -37,19 +38,24 @@ define(function(require, exports, module) {
       toolsRegion: '#tools-region'
     },
 
-    onBeforeShow: function() {
-      // Get graphs for each city
-      var source = _.findWhere(settings.sources, { id: 'ci4ooqbyw0001021o7p4qiedw' });
+    initialize: function() {
+      _.bindAll(this, 'setGraphs');
+    },
 
-      var aggregationCollection = new AggregationCollection([], {
+    setGraphs: function(span) {
+      if (span === undefined) {
+        span = 'day';
+      }
+
+      var collectionOptions = {
         type: 'cities',
         cities: settings.cities,
-        op: 'mean',
         fields: settings.fieldsString,
-        from: '2015-01-20T00:00:00Z',
-        before: '2015-01-27T00:00:00Z',
-        resolution: '6h'
-      });
+        op: 'mean'
+      };
+      _.assign(collectionOptions, util.getTimeRange(span));
+
+      var aggregationCollection = new AggregationCollection([], collectionOptions);
       aggregationCollection.on('ready', function() {
         var measureCollection = new MeasureCollection(aggregationCollection.getMeasures());
         var measuresView = new MeasureCollectionView({
@@ -57,11 +63,15 @@ define(function(require, exports, module) {
         });
         this.getRegion('graphsRegion').show(measuresView);
       }.bind(this));
+    },
+
+    onBeforeShow: function() {
+      // Get the graphs
+      this.setGraphs('day');
 
       // Show the tools view
-      var cityCollection = new CityCollection(settings.cities);
-      var toolsView = new ToolsView({
-      });
+      var toolsView = new ToolsView({});
+      toolsView.on('time:setRange', this.setGraphs);
       this.getRegion('toolsRegion').show(toolsView);
     }
   });

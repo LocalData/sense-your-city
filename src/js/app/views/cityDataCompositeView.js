@@ -21,14 +21,16 @@ define(function(require, exports, module) {
 
   var cityDataCompositeView = Marionette.CompositeView.extend({
     template: _.template(template),
-    childViewContainer: '.source-list',
-    tagName: 'tr',
+    // childViewContainer: '.source-list',
+    tagName: 'tbody',
+    className: 'city',
+    childView: SourceDataView,
 
     ui: {
       'toggle': '.action-toggle',
       'minimize': '.action-minimize',
       'maximize': '.action-maximize',
-      'data': '.city-data'
+      'data': '.source'
     },
 
     events: {
@@ -38,7 +40,8 @@ define(function(require, exports, module) {
     toggle: function() {
       this.ui.minimize.toggle();
       this.ui.maximize.toggle();
-      this.ui.data.toggle();
+      // Todo -- restructure to be more backbone-ish
+      $('.source ' + _.camelCase(this.model.get('properties').name));
     },
 
     initialize: function() {
@@ -50,10 +53,7 @@ define(function(require, exports, module) {
       if (city === this.model.get('properties').name) {
         this.toggle();
       }
-    },
-
-    className: 'city',
-    childView: SourceDataView
+    }
   });
 
   return cityDataCompositeView;

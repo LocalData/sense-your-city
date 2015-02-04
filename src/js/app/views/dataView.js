@@ -14,6 +14,7 @@ define(function(require, exports, module) {
 
   // App
   var settings = require('app/settings');
+  var util = require('app/util');
 
   // Models
   var CityModel = require('app/models/city');
@@ -34,6 +35,20 @@ define(function(require, exports, module) {
       dataRegion: '#data-region'
     },
 
+    ui: {
+      // Display styles
+      'showMore': '.action-show-more'
+    },
+
+    events: {
+      'click @ui.showMore': 'showMore'
+    },
+
+    showMore: function(event) {
+      $(event.target).hide();
+      $(event.target).parent().find('.more').slideToggle();
+    },
+
     // Attach sources to cities
     // TODO -- abstract this into the City model?
     prepCities: function() {
@@ -42,6 +57,11 @@ define(function(require, exports, module) {
       });
 
       _.each(settings.cities, function(c) {
+        c.properties.base = settings.baseUrl;
+        c.properties.ranges = {
+          dayRange: util.getTimeRange('day'),
+          week: util.getTimeRange('week')
+        };
         c.properties.sources = sources[c.properties.name];
       });
 

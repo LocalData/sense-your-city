@@ -45,7 +45,7 @@ define(function(require, exports, module) {
         }
 
         if (source) {
-          $elt = $('#data-region .source .' + _.camelCase(source));
+          $elt = $('#data-region .source.' + _.camelCase(source));
           exportChannel.vent.trigger('show:source', source);
         }
 

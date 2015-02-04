@@ -87,6 +87,8 @@ define(function(require, exports, module) {
           tickmarkPlacement: 'on'
         },
         yAxis: {
+          startOnTick: false,
+          endOnTick: false,
           labels: {
             title: {
               text: null
@@ -106,7 +108,18 @@ define(function(require, exports, module) {
         series: this.model.get('values')
       };
 
+      if(_.has(this.model.get('meta'), 'min')) {
+        options.yAxis.min = this.model.get('meta').min;
+      }
+
       $graphEl.highcharts(options);
+
+      // TODO
+      // Style line on hover / select
+      // http://jsfiddle.net/gh/get/jquery/1.7.2/highslide-software/highcharts.com/tree/master/samples/highcharts/members/series-update/
+
+
+
 
       // Set up the chart options
       // var chartOptions = {

@@ -1,0 +1,105 @@
+.data-downloads {
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  section {
+    padding: $pad * 2 10%;
+    background: $background-light-color;
+
+    p,
+    li {
+      max-width: 600px;
+    }
+
+    .action,
+    p.intro {
+      font-size: 1.5rem;
+      max-width: inherit;
+    }
+
+    .more {
+      display: none;
+    }
+  }
+
+  section.api {
+    background: $body-color;
+    color: #fff;
+
+    p {
+      color: $background-light-color;
+    }
+  }
+
+  section.sensors {
+    background: #fff;
+  }
+
+  section.data {
+    background: #fff;
+    .button {
+      display: inline-block;
+      padding: 5px;
+      margin-right: $pad;
+    }
+
+    .city {
+      padding: $pad 0;
+    }
+
+    .source-list {
+    }
+
+    .source {
+      padding: $pad;
+
+      .api {
+        padding-top: $minipad;
+      }
+
+      h3 {
+        font-size: 1rem;
+        font-weight: 400;
+        padding-left: $pad;
+      }
+    }
+
+    .source:nth-child(odd) {
+      background: lighten($background-light-color, 5%);
+    }
+  }
+
+  table {
+    width: 100%;
+
+    th {
+      text-align: left;
+      background: $inactive-color;
+      color: #fff;
+      font-weight: normal;
+    }
+
+    tr.city td {
+      padding: $pad $minipad;
+    }
+
+    tr.sensor td {
+      padding: $minipad;
+    }
+
+    tbody tr:hover td {
+      background: $background-light-color;
+    }
+
+    tr.selected td {
+      color: #fff;
+      background: $body-color;
+    }
+
+    h2 {
+      cursor: pointer;
+      font-weight: 400;
+    }
+  }
+}

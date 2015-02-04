@@ -5,6 +5,7 @@ define(function(require, exports, module) {
   'use strict';
 
   var settings = require('app/settings');
+  var util = require('app/util');
 
   // Models
   var AggregationCollection = require('app/models/aggregationCollection');
@@ -45,11 +46,10 @@ define(function(require, exports, module) {
           type: 'cities',
           cities: [city.toJSON()],
           op: 'mean',
-          fields: settings.fieldsString,
-          from: '2015-01-20T00:00:00Z',
-          before: '2015-01-27T00:00:00Z',
-          resolution: '6h'
+          fields: settings.fieldsString
         };
+        _.assign(collectionOptions, util.getTimeRange('day'));
+
 
         var aggregationCollection = new AggregationCollection([], collectionOptions);
         var measureCollection = new MeasureCollection(settings.blankMeasures);

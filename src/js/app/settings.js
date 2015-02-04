@@ -42,21 +42,25 @@ define(function(require, exports, module) {
     'airquality_raw': {
       name: 'Pollution',
       units: 'mV',
+      min: 0,
       description: 'This sensor measures when harmful target gases are triggered and expresses their combined concentration in raw voltage, resulting in qualitative air quality data.'
     },
     'dust': {
       name: 'Dust',
       units: 'pcs/238mL',
+      min: 0,
       description: ' Measures the concentration of PM above 1 micrometer in size, as opposed to weight of PM. This sensor has a detection range of of [0-28’000 pcs/liter].'
     },
     'humidity': {
       name: 'Humidity',
       units: '%',
+      min: 20,
       description: 'Relative humidity is expressed as percentage and measures the current absolute humidity relative to the maximum for that temperature. This sensor can detect RH from 5 to 99% and do so within temperatures from minus 40 to 80 degree celsius. '
     },
     'light': {
       name: 'Light',
       units: 'Lux',
+      min: 0,
       description: 'See more about <a href="http://en.wikipedia.org/wiki/Lux">comparative lux values on Wikipedia</a>'
     },
     'sound': {

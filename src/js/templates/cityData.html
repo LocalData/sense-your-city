@@ -1,30 +1,24 @@
-<tr>
-<td>
-  <h2 class="action-toggle">
-    <span class="action action-minimize start-hidden">
-      <i class="fa fa-minus-square-o"></i>
-    </span>
-    <span class="action action-maximize">
-      <i class="fa fa-plus-square-o"></i>
-    </span>
-    <%= properties.name %>
-  </h2>
-</td>
-<td>
-  <a class="button" href="http://localdata-sensors-beta.herokuapp.com/api/v1/aggregations.csv?type=sources&op=mean&fields=temperature%2Clight%2Cairquality_raw%2Csound%2Chumidity%2Cdust&from=2015-01-20T00%3A00%3A00Z&before=2015-01-27T00%3A00%3A00Z&resolution=6h&over.city=<%= properties.name %>"><i class="fa fa-table"></i> 10s</a>
-  <a class="button" href="http://localdata-sensors-beta.herokuapp.com/api/v1/aggregations.csv?type=sources&op=mean&fields=temperature%2Clight%2Cairquality_raw%2Csound%2Chumidity%2Cdust&from=2015-01-20T00%3A00%3A00Z&before=2015-01-27T00%3A00%3A00Z&resolution=6h&over.city=<%= properties.name %>"><i class="fa fa-table"></i> 20m</a>
-</td>
-<td>
-  <a class="button" href="http://localdata-sensors-beta.herokuapp.com/api/v1/aggregations.csv?type=sources&op=mean&fields=temperature%2Clight%2Cairquality_raw%2Csound%2Chumidity%2Cdust&from=2015-01-20T00%3A00%3A00Z&before=2015-01-27T00%3A00%3A00Z&resolution=6h&over.city=<%= properties.name %>"><i class="fa fa-table"></i> 10s</a>
-  <a class="button" href="http://localdata-sensors-beta.herokuapp.com/api/v1/aggregations.csv?type=sources&op=mean&fields=temperature%2Clight%2Cairquality_raw%2Csound%2Chumidity%2Cdust&from=2015-01-20T00%3A00%3A00Z&before=2015-01-27T00%3A00%3A00Z&resolution=6h&over.city=<%= properties.name %>"><i class="fa fa-table"></i> 20m</a>
-</td>
-<td>
-  <code><%= properties.name %></code>
-</td>
-</tr>
-
-<tr class="city-data start-hidden">
-  <td colspan="4">
-    <table class="source-list"></table>
+<tr class="city <%- _.camelCase(properties.name) %>">
+  <td>
+    <h2 class="action-toggle">
+      <span class="action action-minimize start-hidden">
+        <i class="fa fa-minus-square-o"></i>
+      </span>
+      <span class="action action-maximize">
+        <i class="fa fa-plus-square-o"></i>
+      </span>
+      <%= properties.name %>
+    </h2>
   </td>
-</tr><!-- invalid html, but without the double tr, will not render -->
+  <td>
+    <a class="button" href="<%= properties.base %>aggregations.csv?op=mean&fields=temperature%2Clight%2Cairquality_raw%2Csound%2Chumidity%2Cdust&from=<%= properties.ranges.week.from %>&before=<%= properties.ranges.week.before %>&resolution=<%= properties.ranges.week.resolution %>&over.city=<%= properties.name%>"><i class="fa fa-table"></i> 10s</a>
+    <a class="button" href="<%= properties.base %>aggregations.csv?op=mean&fields=temperature%2Clight%2Cairquality_raw%2Csound%2Chumidity%2Cdust&from=<%= properties.ranges.week.from %>&before=<%= properties.ranges.week.before %>&resolution=<%= properties.ranges.week.resolution %>&over.city=<%= properties.name%>"><i class="fa fa-table"></i> 10s</a>
+  </td>
+  <td>
+    <a class="button" href="<%= properties.base %>aggregations.csv?op=mean&fields=temperature%2Clight%2Cairquality_raw%2Csound%2Chumidity%2Cdust&from=<%= properties.ranges.week.from %>&before=<%= properties.ranges.week.before %>&resolution=<%= properties.ranges.week.resolution %>&over.city=<%= properties.name%>"><i class="fa fa-table"></i> 10s</a>
+    <a class="button" href="<%= properties.base %>aggregations.csv?op=mean&fields=temperature%2Clight%2Cairquality_raw%2Csound%2Chumidity%2Cdust&from=<%= properties.ranges.week.from %>&before=<%= properties.ranges.week.before %>&resolution=<%= properties.ranges.week.resolution %>&over.city=<%= properties.name%>"><i class="fa fa-table"></i> 10s</a>
+  </td>
+  <td>
+    <code><%= properties.name %></code>
+  </td>
+</tr>
