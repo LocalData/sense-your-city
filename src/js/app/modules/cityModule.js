@@ -18,7 +18,6 @@ define(function(require, exports, module) {
 
   // Views
   var CityView = require('app/views/cityView');
-  var SparklineCollectionView = require('app/views/sparklineCollectionView');
 
   // Templates
   var sourcePopup = require('text!templates/sourcePopup.html');
@@ -79,26 +78,7 @@ define(function(require, exports, module) {
         App.mainRegion.show(cityView);
 
         // Show the sparkline of the city
-        var collectionOptions = {
-          type: 'cities',
-          cities: [city.toJSON()],
-          op: 'mean',
-          fields: settings.fieldsString
-        };
-        _.assign(collectionOptions, util.getTimeRange('day'));
-
-        var aggregationCollection = new AggregationCollection([], collectionOptions);
-        var measureCollection = new MeasureCollection(settings.blankMeasures);
-        var sparklineView = new SparklineCollectionView({
-          model: city,
-          collection: measureCollection
-        });
-        App.sparklineRegion.show(sparklineView);
-
-        aggregationCollection.on('ready', function() {
-          measureCollection.reset(aggregationCollection.getMeasures());
-        }.bind(this));
-
+        mapChannel.vent.trigger('change:sparkline', city.toJSON());
       }
     };
 

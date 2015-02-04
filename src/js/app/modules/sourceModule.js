@@ -15,7 +15,6 @@ define(function(require, exports, module) {
 
   // Views
   var SourceView = require('app/views/sourceView');
-  var SparklineCollectionView = require('app/views/sparklineCollectionView');
 
   // Templates
   var sourcePopup = require('text!templates/sourcePopup.html');
@@ -55,25 +54,7 @@ define(function(require, exports, module) {
         App.mainRegion.show(sourceView);
 
         // Show the sparklines
-        var collectionOptions = {
-          type: 'sources',
-          sources: [id],
-          op: 'mean',
-          fields: settings.fieldsString
-        };
-        _.assign(collectionOptions, util.getTimeRange('day'));
-
-        var aggregationCollection = new AggregationCollection([], collectionOptions);
-        var measureCollection = new MeasureCollection(settings.blankMeasures);
-        var sparklineView = new SparklineCollectionView({
-          model: source,
-          collection: measureCollection
-        });
-        App.sparklineRegion.show(sparklineView);
-
-        aggregationCollection.on('add', function() {
-          measureCollection.reset(aggregationCollection.getMeasures());
-        }.bind(this));
+        mapChannel.vent.trigger('change:sparkline', source.toJSON());
       }
     };
 

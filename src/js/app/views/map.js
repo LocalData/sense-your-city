@@ -80,6 +80,7 @@ define(function(require, exports, module) {
 
       layer.on('click', function (e) {
         mapChannel.vent.trigger('click:feature', feature);
+        mapChannel.vent.trigger('change:sparkline', feature);
       });
     },
 

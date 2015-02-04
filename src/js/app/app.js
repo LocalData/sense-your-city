@@ -18,12 +18,16 @@ define(function(require, exports, module) {
   var DataModule = require('app/modules/dataModule');
   var HomeModule = require('app/modules/homeModule');
   var SourceModule = require('app/modules/sourceModule');
+  var SparklineModule = require('app/modules/sparklineModule');
 
   var MapView = require('app/views/map');
 
   // Templates
   var template = require('text!templates/home.html');
 
+  // Channels
+  // exportChannel.vent
+  // mapChannel.vent
 
   var App = new Marionette.Application();
 
@@ -34,6 +38,7 @@ define(function(require, exports, module) {
     toolsRegion: '#tools-region'
   });
 
+  App.module('SparklineModule', SparklineModule);
   App.module('HomeModule', HomeModule);
   App.module('CityModule', CityModule);
   App.module('SourceModule', SourceModule);

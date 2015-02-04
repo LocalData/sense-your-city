@@ -15,9 +15,10 @@ define(function(require, exports, module) {
   // Views
   var HomeView = require('app/views/homeView');
   var MeasureCollectionView = require('app/views/measureCollectionView');
-  var SparklineCollectionView = require('app/views/sparklineCollectionView');
 
   var HomeModule = function(HomeModule, App, Backbone, Marionette, $, _) {
+    var mapChannel = Backbone.Wreqr.radio.channel('map');
+
     HomeModule.Router = Backbone.Marionette.AppRouter.extend({
       appRoutes: {
         '': 'home',
@@ -39,29 +40,9 @@ define(function(require, exports, module) {
 
         // Show sparklines
         // Show the sparkline of a random source in this city
-        var city = new CityModel({ properties: { name: 'San Francisco'}});
-
-        // Show the sparkline of the city
-        var collectionOptions = {
-          type: 'cities',
-          cities: [city.toJSON()],
-          op: 'mean',
-          fields: settings.fieldsString
-        };
-        _.assign(collectionOptions, util.getTimeRange('day'));
-
-
-        var aggregationCollection = new AggregationCollection([], collectionOptions);
-        var measureCollection = new MeasureCollection(settings.blankMeasures);
-        var sparklineView = new SparklineCollectionView({
-          model: city,
-          collection: measureCollection
-        });
-        App.sparklineRegion.show(sparklineView);
-
-        aggregationCollection.on('ready', function() {
-          measureCollection.reset(aggregationCollection.getMeasures());
-        }.bind(this));
+        // changeSparkline({ properties: { name: 'San Francisco'}});
+        // mapChannel.vent.on('click:feature', changeSparkline);
+        mapChannel.vent.trigger('change:sparkline', { properties: { name: 'San Francisco'}});
       }
     };
 
