@@ -166,7 +166,7 @@ footer {
           height: 40px;
           width: 40px;
           font-size: 2rem;
-          z-index: 9999;
+          z-index: 20;
           top: -10px;
           left: -10px;
         }
@@ -309,6 +309,14 @@ footer {
       background: $primary-light-color;
     }
   }
+}
+
+.overview.fixed {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 999;
+  background: $background-light-color;
 }
 
 .tweet {

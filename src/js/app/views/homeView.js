@@ -39,6 +39,11 @@ define(function(require, exports, module) {
       toolsRegion: '#tools-region'
     },
 
+    ui: {
+      'overview': '.overview',
+      'tools': '#tools-region'
+    },
+
     initialize: function() {
       _.bindAll(this, 'displayRange', 'createGraphs', 'back', 'forward', 'setFeature');
       this.listenTo(mapChannel.vent, 'click:feature', this.setFeature);
@@ -94,6 +99,31 @@ define(function(require, exports, module) {
       var range = util.getTimeRange(span);
       _.assign(collectionOptions, range);
       this.createGraphs(collectionOptions);
+    },
+
+    onShow: function() {
+      // Turn the tools fixed when we scroll far enough.
+      var overviewPosition = this.ui.overview.position().top;
+      var overviewHeight = this.ui.overview.height();
+
+      var fixed = false;
+      window.onscroll = function() {
+        if (!fixed) {
+          // If it's not already fixed
+          if (window.pageYOffset >= overviewPosition) {
+            this.ui.overview.addClass('fixed');
+            this.ui.tools.addClass('fixed');
+            this.ui.tools.css({ top: overviewHeight + 'px'});
+            fixed = true;
+          }
+        } else {
+          if (window.pageYOffset < overviewPosition) {
+            this.ui.overview.removeClass('fixed');
+            this.ui.tools.removeClass('fixed');
+            fixed = false;
+          }
+        }
+      }.bind(this);
     },
 
     onBeforeShow: function() {

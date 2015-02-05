@@ -1,63 +1,70 @@
-  .tools {
-    // padding: $minipad $pad - $minipad 0 $pad;
-    padding: $pad 0 $pad - $minipad $pad;
-    overflow: auto;
+.tools {
+  // padding: $minipad $pad - $minipad 0 $pad;
+  padding: $pad 0 $pad - $minipad $pad;
+  overflow: auto;
 
-    @media only screen
-    and (max-width : 768px) {
-      padding-top: 0;
+  @media only screen
+  and (max-width : 768px) {
+    padding-top: 0;
+  }
+
+  .toolbox {
+    background: #fff;
+    padding: 0 $pad;
+    border-right: $pad solid $background-light-color;
+    float: left;
+    font-size: 1rem;
+
+    h3 {
+      display: inline-block;
+      font-size: 1rem;
+      font-weight: normal;
+      color: $inactive-color;
     }
 
-    .toolbox {
-      background: #fff;
-      padding: 0 $pad;
-      border-right: $pad solid $background-light-color;
-      float: left;
-      font-size: 1rem;
+    .button {
+      cursor: pointer;
+      display: inline-block;
+      padding: 0px 8px;
+      line-height: 40px;
+      font-weight: bold;
+      text-transform: uppercase;
+      color: lighten($body-color, 30%);
+    }
 
-      h3 {
-        display: inline-block;
-        font-size: 1rem;
-        font-weight: normal;
-        color: $inactive-color;
-      }
+    .city {
+      display: inline-block;
 
       .button {
-        cursor: pointer;
-        display: inline-block;
-        padding: 0px 8px;
-        line-height: 40px;
-        font-weight: bold;
-        text-transform: uppercase;
-        color: lighten($body-color, 30%);
-      }
-
-      .city {
-        display: inline-block;
-
-        .button {
-          border-left: 3px solid $background-color;
-          font-weight: normal;
-          text-transform: none;
-          background: $background-light-color;
-          margin-right: $minipad;
-        }
-      }
-
-      .button:hover,
-      .button.active
-       {
-        color: $body-color;
+        border-left: 3px solid $background-color;
+        font-weight: normal;
+        text-transform: none;
+        background: $background-light-color;
+        margin-right: $minipad;
       }
     }
 
-    .toolbox.last-updated-tools {
-      color: $inactive-color;
-      background: $background-light-color;
-    }
-
-    .toolbox.city-list {
-      float: none; // expand to fill the remaining space
-      overflow: auto;
+    .button:hover,
+    .button.active
+     {
+      color: $body-color;
     }
   }
+
+  .toolbox.last-updated-tools {
+    color: $inactive-color;
+    background: $background-light-color;
+  }
+
+  .toolbox.city-list {
+    float: none; // expand to fill the remaining space
+    overflow: auto;
+  }
+}
+
+#tools-region.fixed {
+  background-color: $background-light-color;
+  position: fixed;
+  width: 100%;
+  z-index: 25;
+}
