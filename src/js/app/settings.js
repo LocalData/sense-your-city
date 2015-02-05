@@ -78,6 +78,7 @@ define(function(require, exports, module) {
 
   settings.blankMeasures = [];
   _.each(settings.measureLabels, function(measure, name) {
+    measure.loading = true;
     settings.blankMeasures.push({
       labels: ['a'],
       meta: measure,
