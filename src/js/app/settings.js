@@ -9,7 +9,9 @@ define(function(require, exports, module) {
   var settings = {};
 
   settings.baseUrl = '//sensor-api.localdata.com/api/v1/';
+  settings.twitterProxyURL = '//localdata-twitter.herokuapp.com/';
   settings.delay = 10000; // ms between entries (10 seconds)
+  settings.twitterDelay = 60000; // ms between twitter checks (60 seconds)
   settings.baseColor = '#414042';
   settings.seriesColor = '#bcbfc0';
   settings.primaryColor = '#2fcdd1';
@@ -176,6 +178,7 @@ define(function(require, exports, module) {
   },
   {
     "name": "openbangalore",
+    "avatar": "http://localdata-public.s3-website-us-east-1.amazonaws.com/datacanvas/avatars/openbangalore.png",
     "city": "Bangalore",
     "location": [
       77.61856,
@@ -240,6 +243,7 @@ define(function(require, exports, module) {
   {
     "name": "sycsmlp1",
     "city": "Bangalore",
+    "avatar": "http://localdata-public.s3-website-us-east-1.amazonaws.com/datacanvas/avatars/sycsmlp1.png",
     "location": [
       77.570326,
       13.013893
@@ -311,6 +315,7 @@ define(function(require, exports, module) {
   },
   {
     "name": "Sparkling",
+    "avatar": "http://localdata-public.s3-website-us-east-1.amazonaws.com/datacanvas/avatars/swissnex.png",
     "city": "Boston",
     "location": [
       -71.109645,
@@ -446,6 +451,7 @@ define(function(require, exports, module) {
   },
   {
     "name": "Geneva11",
+    "avatar": "http://localdata-public.s3-website-us-east-1.amazonaws.com/datacanvas/avatars/Geneva11.png",
     "city": "Geneva",
     "location": [
       6.13995,
@@ -473,6 +479,7 @@ define(function(require, exports, module) {
   },
   {
     "name": "Geneva15",
+    "avatar": "http://localdata-public.s3-website-us-east-1.amazonaws.com/datacanvas/avatars/Geneva15.jpg",
     "city": "Geneva",
     "location": [
       6.156988953133464,
@@ -536,6 +543,7 @@ define(function(require, exports, module) {
   },
   {
     "name": "swissnexbrazil",
+    "avatar": "http://localdata-public.s3-website-us-east-1.amazonaws.com/datacanvas/avatars/swissnex.png",
     "city": "Rio de Janeiro",
     "location": [
       -43.178667,
@@ -636,6 +644,7 @@ define(function(require, exports, module) {
   {
     "name": "Exploratorium",
     "city": "San Francisco",
+    "avatar": "http://localdata-public.s3-website-us-east-1.amazonaws.com/datacanvas/avatars/Exploratorium.png",
     "location": [
       -122.396751,
       37.802468
@@ -644,6 +653,7 @@ define(function(require, exports, module) {
   },
   {
     "name": "Datavore",
+    "avatar": "http://localdata-public.s3-website-us-east-1.amazonaws.com/datacanvas/avatars/swissnex.png",
     "city": "San Francisco",
     "location": [
       -122.40326249999998,
@@ -653,6 +663,7 @@ define(function(require, exports, module) {
   },
   {
     "name": "Grand Theater",
+    "avatar": "http://localdata-public.s3-website-us-east-1.amazonaws.com/datacanvas/avatars/GrandTheater.png",
     "city": "San Francisco",
     "location": [
       -122.418503,
@@ -662,6 +673,7 @@ define(function(require, exports, module) {
   },
   {
     "name": "mapsense",
+    "avatar": "http://localdata-public.s3-website-us-east-1.amazonaws.com/datacanvas/avatars/mapsense.jpeg",
     "city": "San Francisco",
     "location": [
       -122.41102930000001,
@@ -672,6 +684,7 @@ define(function(require, exports, module) {
   {
     "name": "GehlData",
     "city": "San Francisco",
+    "avatar": "http://localdata-public.s3-website-us-east-1.amazonaws.com/datacanvas/avatars/GehlData.png",
     "location": [
       -122.415348,
       37.758871
@@ -689,6 +702,7 @@ define(function(require, exports, module) {
   },
   {
     "name": "AlleyCat",
+    "avatar": "http://localdata-public.s3-website-us-east-1.amazonaws.com/datacanvas/avatars/localdata.png",
     "city": "San Francisco",
     "location": [
       -122.413649,
@@ -696,15 +710,15 @@ define(function(require, exports, module) {
     ],
     "id": "ci4tmxpz8000002w7au38un50"
   },
-  {
-    "name": "Karl",
-    "city": "San Francisco",
-    "location": [
-      -122.4646211,
-      37.784995
-    ],
-    "id": "ci5735rih000303ye6poau3xu"
-  },
+  // {
+  //   "name": "Karl",
+  //   "city": "San Francisco",
+  //   "location": [
+  //     -122.4646211,
+  //     37.784995
+  //   ],
+  //   "id": "ci5735rih000303ye6poau3xu"
+  // },
   {
     "name": "DataDonut",
     "city": "San Francisco",
@@ -753,6 +767,7 @@ define(function(require, exports, module) {
   {
     "name": "frogsh",
     "city": "Shanghai",
+    "avatar": "http://localdata-public.s3-website-us-east-1.amazonaws.com/datacanvas/avatars/frogsh.jpg",
     "location": [
       121.443609,
       31.233924
@@ -815,6 +830,7 @@ define(function(require, exports, module) {
   },
   {
     "name": "TheMarms",
+    "avatar": "http://localdata-public.s3-website-us-east-1.amazonaws.com/datacanvas/avatars/swissnex.png",
     "city": "Shanghai",
     "location": [
       121.370579,
@@ -941,6 +957,7 @@ define(function(require, exports, module) {
   },
   {
     "name": "swissnexSG",
+    "avatar": "http://localdata-public.s3-website-us-east-1.amazonaws.com/datacanvas/avatars/swissnex.png",
     "city": "Singapore",
     "location": [
       103.792581,

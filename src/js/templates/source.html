@@ -1,5 +1,5 @@
 <div class="overview">
-  <div class="avatar"></div>
+  <div class="avatar" style="<% if(properties.avatar) { %>background: #fff url(<%=properties.avatar %>) no-repeat center center; background-size: auto 80%<% } %>"></div>
   <div class="crumbs">
     <a href="#!/">World view</a>:
     <a href="#!/cities/<%= properties.city %>"><%= properties.city %></a>

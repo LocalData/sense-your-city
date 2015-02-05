@@ -153,22 +153,18 @@ footer {
         overflow: auto;
       }
 
-      // Old chart stuff ==================================================
-
-      .measure-graph {
-        margin-top: $pad;
-        position: relative; // for tooltip positioning
-        min-height: 200px; // todo -- temporary to make loading look smoother
+      .graph-container {
+        position: relative;
 
         .action-time {
           font-weight: 400;
           color: $body-color;
+          text-align: center;
           position: absolute;
           display: inline-block;
           cursor: pointer;
           height: 40px;
           width: 40px;
-          text-align: center;
           font-size: 2rem;
           z-index: 9999;
           top: -10px;
@@ -177,8 +173,19 @@ footer {
 
         .graph-forward {
           left: auto;
-          right: -10px;
+          right: 0px;
         }
+      }
+
+
+      // Old chart stuff ==================================================
+
+      .measure-graph {
+        margin-top: $pad;
+        position: relative; // for tooltip positioning
+        min-height: 200px; // todo -- temporary to make loading look smoother
+
+
 
       }
 

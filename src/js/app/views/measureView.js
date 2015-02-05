@@ -32,13 +32,26 @@ define(function(require, exports, module) {
       'showInfo': '.action-show-info',
       'minimize': '.action-minimize',
       'maximize': '.action-maximize',
-      'description': '.description'
+      'back': '.graph-back',
+      'forward': '.graph-forward',
+      'description': '.description',
+      'loading': '.spinner'
     },
 
     events: {
       'click @ui.showInfo': 'showInfo',
       'click @ui.minimize': 'minimize',
       'click @ui.maximize': 'maximize'
+    },
+
+    triggers: {
+      'click @ui.back': 'time:back',
+      'click @ui.forward': 'time:forward'
+    },
+
+    loading: function() {
+      console.log("Showing loading");
+      this.ui.loading.toggleClass('start-hidden');
     },
 
     showInfo: function(event) {
@@ -84,7 +97,7 @@ define(function(require, exports, module) {
             align: 'left',
             x: 3,
             formatter: function() {
-              return moment(this.value).format("hA") + '<br />' + moment(this.value).format("ddd");
+              return moment(this.value).format("H:mm") + '<br />' + moment(this.value).format("D MMM");
             }
           },
           tickmarkPlacement: 'on'
@@ -141,6 +154,8 @@ define(function(require, exports, module) {
           lineWidth: 4
         });
       });
+
+      this.listenTo(mapChannel.vent, 'graphs:loading', this.loading);
 
       // TODO
       // Style line on hover / select

@@ -19,8 +19,10 @@ define(function(require, exports, module) {
     week -- 6 hour resolution (14 points)
    */
   util.getTimeRange = function(span) {
-    var remainder, from, resolution;
-    var before = moment();
+    var remainder, before, from, resolution;
+
+    before = moment();
+
     if(span === 'hour') {
       // Go 60 minutes back
       // Round to the nearest minute
@@ -44,8 +46,6 @@ define(function(require, exports, module) {
       resolution = '6h';
     }
 
-    // console.log("Set time", span, from.format(FORMAT), before.format(FORMAT), resolution);
-
     return {
       resolution: resolution,
       from: from.format(),
@@ -53,6 +53,68 @@ define(function(require, exports, module) {
     };
   };
 
+
+  util.stepBack = function(options) {
+    var from = moment(options.from);
+    var before = moment(options.before);
+
+    if (options.span === 'hour') {
+      // Go back half an hour
+      from = from.subtract(30, 'minutes');
+      before = before.subtract(30, 'minutes');
+    }
+    if (options.span === 'day' ) {
+      // Go back 18 hours
+      from = from.subtract(18, 'hours');
+      before = before.subtract(18, 'hours');
+
+    }
+    if (options.span === 'week') {
+      // Go back 6 days
+      from = from.subtract(6, 'days');
+      before = before.subtract(6, 'days');
+    }
+
+    return {
+      resolution: options.resolution,
+      from: from.format(),
+      before: before.format()
+    };
+  };
+
+
+  util.stepForward = function(options) {
+    var from = moment(options.from);
+    var before = moment(options.before);
+
+    if (options.span === 'hour') {
+      // Go forward half an hour
+      from = from.add(30, 'minutes');
+      before = before.add(30, 'minutes');
+    }
+    if (options.span === 'day' ) {
+      // Go forward 18 hours
+      from = from.add(18, 'hours');
+      before = before.add(18, 'hours');
+
+    }
+    if (options.span === 'week') {
+      // Go back 6 days
+      from = from.add(6, 'days');
+      before = before.add(6, 'days');
+    }
+
+    // If we're trying to go into the future, reset the timespan.
+    if(before > moment()) {
+      return util.getTimeRange(options.span);
+    }
+
+    return {
+      resolution: options.resolution,
+      from: from.format(),
+      before: before.format()
+    };
+  };
 
   return util;
 });

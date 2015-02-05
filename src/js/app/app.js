@@ -22,6 +22,10 @@ define(function(require, exports, module) {
 
   var MapView = require('app/views/map');
 
+  // Tweets
+  var TweetView = require('app/views/tweetView');
+  var TweetModel = require('app/models/tweet');
+
   // Templates
   var template = require('text!templates/home.html');
 
@@ -35,7 +39,8 @@ define(function(require, exports, module) {
     headerRegion: 'header',
     sparklineRegion: '#sparkline-region',
     mainRegion: '#main-region',
-    toolsRegion: '#tools-region'
+    toolsRegion: '#tools-region',
+    twitterRegion: '#twitter-region'
   });
 
   App.module('SparklineModule', SparklineModule);
@@ -60,6 +65,13 @@ define(function(require, exports, module) {
   // Start the map region before anything else
   App.on('before:start', function() {
     App.mapView = new MapView({ id: 'map' });
+
+    var tweet = new TweetModel();
+    tweet.autoUpdate();
+    var tweetView = new TweetView({
+      model: tweet
+    });
+    App.twitterRegion.show(tweetView);
 
     var mapChannel = Backbone.Wreqr.radio.channel('map');
     this.listenTo(mapChannel.vent, 'hide:header', function() {

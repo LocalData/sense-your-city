@@ -1,0 +1,7 @@
+<% if(text==='') { %>
+<div class="spinner"></div>
+<% } else { %>
+<p><%= text %></p>
+
+<p class="source"><a href="https://twitter.com/<%= username %>/status/<%= id %>">from <%= name %> (<%= username %>)</a></p>
+<% } %>
