@@ -1,33 +1,33 @@
 <section class="welcome">
   <h2>Start Working With the Data</h2>
-  <p class="intro">Below you will find instructions on how to <a href="">access our API</a> as well as
-  download various sets of <a href="">raw CSV data</a>. Additional important information
-    about the sesnors is available. We hope you will get your hands dirty and work with the raw data by submitting a project to our <a href="http://datacanvas.org/sense-your-city/">challenge</a> by March 20, 2015.</p>
+
+  <p class="intro">Please read additional important information about the data. We hope you will get your hands dirty and work with the daw data by summating a project to our challenge by March 20, 2015. Below, you will find instructions on how to access our API as well as download various sets of raw CSV data.</p>
 </section>
 
 <section class="sensors">
   <h2>About the data</h2>
   <p class="intro">For Sense Your City, we have deployed 14 environmental sensor nodes in 7 cities. Each node contains the same 5 sensors that measure air quality, dust, light, sound, temperature, and humidity. These sensors are low-cost and open source, and were assembled and installed in the residences and offices of generous citizens around the world.</p>
 
+  <p>There are external factors that will influence the data in the diverse environments in which our nodes will live for the next several months, and from time to time sensors might go offline or break.</p>
+
   <span class="action action-show-more">
-    <i class="icon icon-plus"></i> More important technical info about the sensors.
+    <i class="icon icon-plus"></i> Please read: more important information about the data.
   </span>
 
   <div class="more">
-    <p>There are external factors that will influence the data in the diverse environments in which our nodes will live for the next several months, and from time to time sensors might go offline or break.</p>
 
-    <p>While exploring this data, please keep this in mind. This data does not reflect precise scientific measurements taken by industrial tools. Instead, this data consists of approximate values sensed by a do-it-yourself, urban environmental sensing system with hopes to compare and tell stories about various urban environments around the world. In many ways, this is an citizen science experiment to explore what can be achieved with readily available sensors, and to create information and art about our cities that is truly inclusive, universally scalable, and fun.</p>
+    <p>While exploring this data, please keep this in mind. This data may not describe the environmental situation as well as industrial tools do. Instead, this data consists of approximate values sensed by a do-it-yourself, urban environmental sensing system with hopes to compare and tell stories about various urban environments around the world. In many ways, this is an citizen science experiment to explore what can be achieved with readily available sensors, and to create information and art about our cities that is truly inclusive, universally scalable, and fun. </p>
 
     <ol>
-      <li>The air quality sensor measures when harmful target gases are triggered and expresses their combined  concentration in raw voltage, resulting in qualitative air quality data. The output is raw voltage and the unit is mV. You can access the <a href="http://www.seeedstudio.com/wiki/images/e/eb/TP-401A_Indoor_Air_quality_gas_sensor.pdf">data sheet for the air quality sensor here</a>.</li>
+      <li>The pollution indicator measures when harmful target gases (such as secondhand smoke, carbon monoxide, alcohol, etc.) are triggered and expresses their combined  concentration in raw voltage. The output is raw voltage and the unit is mV. Higher mV is associated with increased pollutant gases. Peaks may happen around rush hour, when a bus or truck drives by, or during construction. You can access the <a href="http://www.seeedstudio.com/wiki/images/e/eb/TP-401A_Indoor_Air_quality_gas_sensor.pdf">data sheet for the air quality sensor here</a>.</li>
 
-      <li>The dust sensor measures the concentration of particulate matters (PM) above 1 micrometer in size. This sensor has a detection range of of [0-28’000 pcs/liter]. This sensor tells us the concentration of particulate matter per liter of air and the unit is pcs/Liter. pcs stands for pieces, or simply particles. You can access the <a href="http://www.seeedstudio.com/wiki/images/4/4c/Grove_-_Dust_sensor.pdf">data sheet for the dust sensor here</a> (PDF).</li>
+      <li>The dust sensor measures the concentration of particulate matters (PM) above 1 micrometer in diameter. This sensor has a detection range of of [0-28’000 pcs/liter]. This sensor tells us the concentration of particulate matter per liter of air and the unit is pcs/Liter. pcs stands for pieces, or simply particles. You can access the <a href="http://www.seeedstudio.com/wiki/images/4/4c/Grove_-_Dust_sensor.pdf">data sheet for the dust sensor here</a> (PDF).</li>
 
-      <li>The humidity sensor measures relative humidity (RH), which is expressed as percentage and calculates the current absolute humidity relative to the maximum for that temperature. This sensor can detect RH from 5 to 99% and operates within temperatures from minus 40 to 80 degree celsius. You can access the <a href="http://www.hoperf.cn/upload/sensor/TH02_V1.1.pdf">data sheet for the humidity sensor here</a> (PDF).</li>
+      <li>The humidity sensor measures relative humidity (RH), which is expressed as percentage and calculates the absolute humidity relative to the maximum for that temperature. This sensor can detect RH from 5 to 99% and operates within temperatures from minus 40 to 80 degree celsius. You can access the <a href="http://www.hoperf.cn/upload/sensor/TH02_V1.1.pdf">data sheet for the humidity sensor here</a> (PDF).</li>
 
-      <li>The light sensor measures illuminance, measured in lux. Illuminance is a measure of how much luminous flux is spread over a given area, while luminous flux is a measure of the total “amount” of visible light present. See details about <a href="http://en.wikipedia.org/wiki/Lux">comparative lux values on Wikipedia</a>. You can access the <a href="http://www.seeedstudio.com/wiki/images/d/de/TSL2561T.pdf">data sheet for the light sensor here</a> (PDF).</li>
+      <li>The light sensor measures digital light, or illuminance, measured in lux. Illuminance is a measure of how much luminous flux is spread over a given area, while luminous flux is a measure of the total “amount” of visible light present. See details about <a href="http://en.wikipedia.org/wiki/Lux">comparative lux values on Wikipedia</a>. You can access the <a href="http://www.seeedstudio.com/wiki/images/d/de/TSL2561T.pdf">data sheet for the light sensor here</a> (PDF).</li>
 
-      <li>The sound sensor measures the raw output voltage of the sensor based on soundwaves in the nearby environment in mV. It is not directly giving output in db or SPL. To roughly convert these measurements to decibel (dB), use the formula dB = 0.0158x + 49.184, where x is the value output by the sensor. You can access the <a href="http://garden.seeedstudio.com/images/a/ae/LM386.pdf">data sheet for the sound sensor here</a>.</li>
+      <li>The noise sensor measures the raw output voltage of the sensor based on noise in the nearby environment in mV. To roughly convert these measurements to decibel (dB), use the formula dB = 0.0158x + 49.184, where x is the value output by the sensor. You can access the <a href="http://garden.seeedstudio.com/images/a/ae/LM386.pdf">data sheet for the sound sensor here</a>.</li>
     </ol>
 
     <p>For even more extensive information on each sensor contained in our nodes, browse through <a href="http://datacanvas.org/sense-your-city/">Data Canvas: Sense Your City</a>.</p>
@@ -39,15 +39,253 @@
   <p class="intro">The LocalData Sensors API, which drives the Sense Your City visualization site, lets you build you own live visualizations and mashups. This is the best way to access data if you plan to build a web application or a mobile app, if you want to acess specific intervals of raw data, or if you prefer JSON as your data format.</p>
 
   <span class="action action-show-more">
-    <i class="icon icon-plus"></i> More information on using the API.</a>
+    <i class="icon icon-white icon-plus"></i> More information on using the API.</a>
   </span>
 
-  <div class="more">--API Docs here--</div>
+  <div class="more">
+    <p>The API supports two main types of data access:  <strong>raw entries</strong> and <strong>aggregated data</strong>. </p>
+
+    <p>The <strong>aggregation endpoint</strong> lets you access averages useful for accessing data over longer timespans. That endpoint also allows you to fetch data for several devices at once or to combine all of a city's devices into a single data stream.</p>
+
+    <p><strong>Raw entries</strong> are useful for getting the most recent sensor values for a device. Because the Sense Your City devices send data approximately every 10 seconds, longer time ranges can involve impractical amounts of data for browser visualizations or for simple analyses. </p>
+
+    <h3>Accessing the API</h3>
+
+    <p>The hostname for API requests is <code>sensor-api.localdata.com</code>. By default, the API returns JSON data. </p>
+
+    <h3>CSV output</h3>
+
+    <p>To receive CSV-formatted data instead of JSON, you can make the same request with <code>.csv</code> added to the path:</p>
+
+    <p><pre>http://sensor-api.localdata.com/api/v1/sources/ci4tmxpz8000002w7au38un50/entries.csv?count=1&amp;sort=desc</pre></p>
+
+    <h3>Aggregation endpoint</h3>
+
+    <p>We support server-side aggregations, so you can retrieve averages, sums, and other calculations at manageable, known resolutions.  </p>
+
+    <p>Endpoint: <code>http://sensor-api.localdata.com/api/v1/aggregations</code></p>
+
+    <h4>Parameters</h4>
+
+    <p>All parameter are required: </p>
+
+    <ul>
+    <li><code>from</code>: Return responses from the the given time, in ISO 8601 format.</li>
+    <li><code>before</code>: Return responses up to the given time, in ISO 8601 format.</li>
+    </ul>
+
+    <p>Example: <code>from=2015-02-04T00:00:00-0800&amp;before=2015-02-05T00:00:00-0800</code></p>
+
+    <ul>
+    <li><code>fields</code> : A comma-separated list of one or more sensor fields you want. For more technical details on the sensors, see the <em>About the data</em> section above. Valid values are:
+    <ul><li><code>temperature</code></li>
+    <li><code>light</code></li>
+    <li><code>airquality_raw</code></li>
+    <li><code>sound</code>,</li>
+    <li><code>humidity</code></li>
+    <li><code>dust</code></li></ul></li>
+    </ul>
+
+    <p>Example: <code>fields=temperature,sounds</code></p>
+
+    <ul>
+    <li><code>resolution</code>: Specify as a time string. For example <code>1h</code> for an hour, or <code>20m</code> for 20 minutes. The smallest resolution supported is <code>5m</code>. </li>
+    <li><code>op</code>: The aggregation option you want to perform. Values:
+    <ul><li><code>mean</code>: the average (mean) value over the time resolution</li>
+    <li><code>count</code>: the number of raw data points that went into the aggregate value</li>
+    <li><code>max</code>: the maximum value over the time resolution</li>
+    <li><code>min</code>: the minimum value over the time resolution</li>
+    <li><code>sumsq</code>: the sum of squares of values over the time resolution (useful for determining variance/standard deviation)</li></ul></li>
+    <li>Specify if you want data for cities or sources. To find a list of source IDs and city names, see the "Data" section below. Parameters:
+    <ul><li><code>each.sources</code>: a comma-separated list of one or more <strong>individual data sources</strong>.  Example: <code>each.sources=ci4tmxpz8000002w7au38un50</code></li>
+    <li><code>over.city</code>: aggregations across all data sources in <strong>one city</strong>.  Example: <code>over.city=San Francisco</code>.</li></ul></li>
+    </ul>
+
+    <h4>Limits</h4>
+
+    <p>Requests will return at most 1,000 data points. If your query would return more than 1,000 datapoints, you will recieve a <code>RangeError</code> response that looks like this:</p>
+
+    <p><pre>{
+    name: "RangeError",
+    message: "Time range represents more than the maximum 1000 possible results per query"
+    }</pre>
+    There are two solutions: </p>
+
+    <ol>
+    <li>Decrease your <code>resolution</code> to make the number of responses returned smaller. For example, instead of a <code>5m</code> resolution, try <code>10m</code> or <code>30m</code> or <code>6h</code>. </li>
+    <li>If you want a month of data at half-hour resolution, you start your request with a smaller time range. Responses include useful <code>prev</code> and <code>next</code> links to help you get the next set of data. See the examples below for more details.</li>
+    </ol>
+
+    <h4>Example: get 20 minute averages for two sources</h4>
+
+    <p>Let's say we want to get one day of temperature, humidity, and light data at 20-minute resolution for the devices <code>ci4tmxpz8000002w7au38un50</code> and <code>ci4vy1tfy000m02s7v29jkkx4</code> with the following parameters:</p>
+
+    <p><pre>each.sources=ci4tmxpz8000002w7au38un50,ci4vy1tfy000m02s7v29jkkx4
+    fields=temperature,humidity,light
+    op=mean
+    from=2015-02-03T00:00:00Z
+    before=2015-02-04T00:00:00Z
+    resolution=20m</pre></p>
+
+    <p>Pulling those together gives us the following URL:
+    <pre>http://sensor-api.localdata.com/api/v1/aggregations?each.sources=ci4tmxpz8000002w7au38un50,ci4vy1tfy000m02s7v29jkkx4&amp;fields=temperature,humidity,light&amp;op=mean&amp;from=2015-02-03T00:00:00Z&amp;before=2015-02-04T00:00:00Z&amp;resolution=20m</pre></p>
+
+    <p>The response (truncated) will resemble the following:
+    <pre>"links": {
+        "prev": "http://sensor-api.localdata.com/api/v1/aggregations?from=2015-02-02T00:00:00.000Z&amp;before=2015-02-03T00:00:00.000Z&amp;each.sources=ci4tmxpz8000002w7au38un50,ci4vy1tfy000m02s7v29jkkx4&amp;fields=temperature,humidity,light&amp;op=mean&amp;resolution=20m",
+        "next": "http://sensor-api.localdata.com/api/v1/aggregations?from=2015-02-04T00:00:00.000Z&amp;before=2015-02-05T00:00:00.000Z&amp;each.sources=ci4tmxpz8000002w7au38un50,ci4vy1tfy000m02s7v29jkkx4&amp;fields=temperature,humidity,light&amp;op=mean&amp;resolution=20m"
+      },
+      "data": [
+        {
+          "temperature": 25.9585365853659,
+          "humidity": 28.6024390243902,
+          "light": 702.073170731707,
+          "source": "ci4tmxpz8000002w7au38un50",
+          "timestamp": "2015-02-03T00:00:00.000Z"
+        },
+        {
+          "temperature": 25.1368421052631,
+          "humidity": 29.9701754385965,
+          "light": 481.122807017544,
+          "source": "ci4tmxpz8000002w7au38un50",
+          "timestamp": "2015-02-03T00:20:00.000Z"
+        },
+        ...
+      ]
+    }</pre></p>
+
+    <p>As with the raw data queries, you can use the <code>next</code> and <code>prev</code> links from the response to view data for the preceding and following dates. </p>
+
+    <h4>Example: citywide aggregation</h4>
+
+    <p>You can also combine all the data sources from a city together to generate one single stream of data. Instead of speciying <code>each.sources</code>, you specify <code>over.city</code> to get the average/max/etc. for all sources that have the same <code>city</code> field in their metadata. For example, to get overall San Francisco temperature and humidity data:</p>
+
+    <p><pre>http://sensor-api.localdata.com/api/v1/aggregations?op=mean
+      &amp;over.city=San+Francisco
+      &amp;from=2015-02-04T00:00:00-0800
+      &amp;before=2015-02-05T00:00:00-0800
+      &amp;resolution=1h
+      &amp;fields=temperature,humidity</pre></p>
+
+    <p>The response (truncated) will resemble the following:</p>
+
+    <p><pre>{
+      "links": {
+        "prev": "http://sensor-api.localdata.com/api/v1/aggregations?from=2015-02-03T08:00:00.000Z&amp;before=2015-02-04T08:00:00.000Z&amp;op=mean&amp;over.city=San%20Francisco&amp;resolution=1h&amp;fields=temperature,humidity",
+        "next": "http://sensor-api.localdata.com/api/v1/aggregations?from=2015-02-05T08:00:00.000Z&amp;before=2015-02-06T08:00:00.000Z&amp;op=mean&amp;over.city=San%20Francisco&amp;resolution=1h&amp;fields=temperature,humidity"
+      },
+      "data": [
+        {
+          "temperature": 18.9848350253807,
+          "humidity": 54.5180203045685,
+          "city": "San Francisco",
+          "timestamp": "2015-02-04T08:00:00.000Z"
+        },
+        {
+          "temperature": 18.481380620646,
+          "humidity": 55.3447751741608,
+          "city": "San Francisco",
+          "timestamp": "2015-02-04T09:00:00.000Z"
+        },
+        .
+        .
+        .
+      ]
+    }</pre></p>
+
+    <p>Note regarding incomplete data steams: If you specify 5-minute resolution, and if the sensor device was offline for an hour, then the response will not include entries for timestamps in that window.</p>
+
+    <h3>Raw device data</h3>
+
+    <p>You can get raw source data using the <code>entries</code> endpoint. Each source submits data approximately once every 10 seconds. </p>
+
+    <p>Sensor devices don't always submit data at precise intervals, and it may be impractical to retrieve all of the entries for a desired time range -- many visualizations may benefit from using the <em>Aggregations</em> above instead.</p>
+
+    <p>Endpoint: <code>http://sensor-api.localdata.com/api/v1/sources/[id]/entries</code></p>
+
+    <h4>Parameters</h4>
+
+    <p>You must specify a start and end time: </p>
+
+    <ul>
+    <li>An start time, either <code>from</code> or <code>after</code>, in ISO 8601 format:
+    <ul><li><code>from</code>: return responses including the given time</li>
+    <li><code>after</code>: return responses after the given time</li></ul></li>
+    <li>A end time, either  <code>before</code> or <code>until</code>, in ISO 8601 format:
+    <ul><li><code>before</code>: include responses before the given time.</li>
+    <li><code>until</code>:  include points up to &amp; including the given time.</li></ul></li>
+    </ul>
+
+    <p>These parameters are optional: </p>
+
+    <ul>
+    <li><code>count</code>: (default = 100) specify the number of entries to return. Must be less than or equal to 1000.</li>
+    <li><code>sort</code>: (default = <code>asc</code>) return entries in chronological order (<code>asc</code>) or reverse order (<code>desc</code>). For reverse chronological order, entries will start at the end of the time range and proceed backwards.</li>
+    </ul>
+
+    <h4>Example: getting the latest entry for a source</h4>
+
+    <p>With <code>sort=desc</code> and <code>count=1</code>, you can easily receive the latest entry by leaving the time range out entirely:</p>
+
+    <p><pre>http://sensor-api.localdata.com/api/v1/sources/ci4tmxpz8000002w7au38un50/entries?count=1&amp;sort=desc</pre></p>
+
+    <h4>Example: get data from a source for a specific time span</h4>
+
+    <p>The follow URL returns the entries for device <code>ci4tmxpz8000002w7au38un50</code> in a time range (limited to 1000 results), including the first boundary, excluding the second boundary:
+    <pre>http://sensor-api.localdata.com/api/v1/sources/ci4tmxpz8000002w7au38un50/entries?from=2015-01-14T00:00:00-0800&amp;before=2015-01-15T00:00:00-0800</pre></p>
+
+    <p>In addition to the data points, the response body also contains a <code>links</code> object with <code>prev</code> and <code>next</code> fields. If you need to fetch all of the data over the past 12 hours, you can do so by requesting the first 500 (or any number up to 1000) entries from that start time and then following the <code>next</code> link from each successive response.</p>
+
+    <p>The response body will resemble the following:</p>
+
+    <p><pre>{
+      "links": {
+        "prev": "http://sensor-api.localdata.com/api/v1/sources/ci4tmxpz8000002w7au38un50/entries?before=2015-01-14T08:00:07.000Z&amp;count=100",
+        "next": "http://sensor-api.localdata.com/api/v1/sources/ci4tmxpz8000002w7au38un50/entries?after=2015-01-14T08:09:53.000Z&amp;count=100"
+      },
+      "data": [
+        {
+          "source": "ci4tmxpz8000002w7au38un50",
+          "timestamp": "2015-01-14T08:00:07.000Z",
+          "data": {
+            "location": [ -122.413649, 37.775641 ],
+            "airquality": "Fresh",
+            "airquality_raw": 22,
+            "dust": 756.95,
+            "humidity": 38.6,
+            "light": 0,
+            "sound": 1664,
+            "temperature": 22.7,
+            "uv": 272.61
+          }
+        },
+        {
+          "source": "ci4tmxpz8000002w7au38un50",
+          "timestamp": "2015-01-14T08:00:17.000Z",
+          "data": {
+            "location": [ -122.413649, 37.775641 ],
+            "airquality": "Fresh",
+            "airquality_raw": 21,
+            "dust": 756.95,
+            "humidity": 38.5,
+            "light": 0,
+            "sound": 1472,
+            "temperature": 22.6,
+            "uv": 272.61
+          }
+        },
+        ...
+      ]
+    }</pre></p>
+
+  </div> <!-- end API -->
 </section>
 
 <section class="data">
   <h2>Raw data</h2>
-  <p>Some copy about downloading all the data, a single metric across all sensors, a whole cities data, or an individual sensor. Each is downloadable as all the data, the last 7 days of data, and at two resolutions, every 10 seconds and every 20 min.</p>
+  <p>You can download aggregated data in CSV format for every sensor and city. Data
+  is avalable for the last day and week, at 5 minute, 1 hour, and 6 hour resolutions.
+  You can also use city and source IDs with the Sensors API to access data in many different formats.</p>
 
   <div id="data-region">
   </div>

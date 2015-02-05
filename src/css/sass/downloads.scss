@@ -23,12 +23,21 @@
     }
   }
 
+  section.welcome {
+    background: $background-light-color url(../img/nodes.jpg) no-repeat center center;
+    background-size: 100% auto;
+  }
+
   section.api {
     background: $body-color;
     color: #fff;
 
     p {
       color: $background-light-color;
+    }
+
+    ul li {
+      margin-bottom: 0;
     }
   }
 

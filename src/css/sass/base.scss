@@ -28,6 +28,19 @@ h3 {
   font-size: 2rem;
 }
 
+pre,
+code {
+  font-size: 0.9rem;
+  padding: 2px 3px;
+  color: $body-color;
+  background: $background-light-color;
+  border-radius: 3px
+}
+
+pre {
+  padding: $pad;
+}
+
 #main-region {
   p,
   li {

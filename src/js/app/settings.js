@@ -44,35 +44,35 @@ define(function(require, exports, module) {
       name: 'Pollution',
       units: 'mV',
       min: 0,
-      description: 'This sensor measures when harmful target gases are triggered and expresses their combined concentration in raw voltage, resulting in qualitative air quality data.'
+      description: 'Measures when harmful target gases (second hand smoke, carbon monoxide, alcohol etc.) are triggered and expresses their combined concentration in raw voltage. Higher output is associated with increased pollutant gases. Peaks may happen around rush hour, when a bus or truck drives by, or during construction.  More info on the <a href="#!/data">Get Data page</a>.'
     },
     'dust': {
       name: 'Dust',
       units: 'pcs/238mL',
       min: 0,
-      description: ' Measures the concentration of PM above 1 micrometer in size, as opposed to weight of PM. This sensor has a detection range of of [0-28’000 pcs/liter].'
+      description: ' Measures the concentration of PM above 1 micrometer in size, as opposed to weight of PM. This sensor has a detection range of of [0-28’000 pcs/liter].  More info on the <a href="#!/data">Get Data page</a>.'
     },
     'humidity': {
       name: 'Humidity',
       units: '%',
       min: 20,
-      description: 'Relative humidity is expressed as percentage and measures the current absolute humidity relative to the maximum for that temperature. This sensor can detect RH from 5 to 99% and do so within temperatures from minus 40 to 80 degree celsius. '
+      description: 'relative humidity is expressed as percentage and measures the absolute humidity relative to the maximum for that temperature. This sensor can detect RH from 5 to 99%. More info on the <a href="#!/data">Get Data page</a>.'
     },
     'light': {
       name: 'Light',
       units: 'Lux',
       min: 0,
-      description: 'See more about <a href="http://en.wikipedia.org/wiki/Lux">comparative lux values on Wikipedia</a>'
+      description: 'The light sensor measures digital light, or <a href="http://en.wikipedia.org/wiki/Lux">illuminance</a>. More info on the <a href="#!/data">Get Data page</a>.'
     },
     'sound': {
-      name: 'Sound',
+      name: 'Noise',
       units: 'mV',
-      description: 'Measures the raw output voltage of the sensor based on soundwaves in the nearby environment. It is not directly giving output in db or SPL. To convert to decibel, use dB = 0.0158x + 49.184.'
+      description: 'Measures the raw output voltage of the sensor based on noise in the nearby environment. To convert to decibel, use dB = 0.0158x + 49.184. More information on the <a href="#!/data">Get Data page</a>.'
     },
     'temperature': {
       name: 'Temperature',
       units: 'C',
-      description: ''
+      description: 'Unit: degree celsius. More information on the <a href="#!/data">Get Data page</a>.'
     }
   };
 
