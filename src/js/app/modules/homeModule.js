@@ -43,6 +43,7 @@ define(function(require, exports, module) {
         // changeSparkline({ properties: { name: 'San Francisco'}});
         // mapChannel.vent.on('click:feature', changeSparkline);
         mapChannel.vent.trigger('change:sparkline', { properties: { name: 'San Francisco'}});
+        mapChannel.vent.trigger('bread:crumb', {});
       }
     };
 

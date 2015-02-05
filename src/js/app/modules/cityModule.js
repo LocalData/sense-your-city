@@ -57,6 +57,7 @@ define(function(require, exports, module) {
         // TODO: handle showing the map much better
         var mapChannel = Backbone.Wreqr.radio.channel('map');
         mapChannel.vent.trigger('show:header');
+        mapChannel.vent.trigger('bread:crumb', { world: true });
 
         // Update the map
         var sensors = prepSources(name);

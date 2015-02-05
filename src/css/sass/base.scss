@@ -73,6 +73,36 @@ a:active,
     }
   }
 
+  .leaflet-top.leaflet-left .leaflet-control-zoom {
+    clear: none;
+  }
+
+  .leaflet-top.leaflet-left .breadcrumbs {
+    margin-top: 10px;
+    float: right;
+    overflow: auto;
+    z-index: 7;
+    pointer-events: auto;
+
+    .crumb {
+      font-family: $font-family;
+      font-size: 1rem;
+      display: inline-block;
+      font-weight: bold;
+      text-transform: uppercase;
+      height: 42px;
+      line-height: 42px;
+      padding: 0px $pad;
+      background: $background-color;
+      color: $landmass-white;
+      float: left;
+    }
+
+    crumb:hover {
+      color: $primary-color;
+    }
+  }
+
   .leaflet-right .leaflet-control-zoom {
     display: none; // hack -- can't seem to manually hide this zoom control
   }

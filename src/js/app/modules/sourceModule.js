@@ -29,8 +29,6 @@ define(function(require, exports, module) {
     var routeController = {
       source: function(id) {
         // TODO: handle showing the map much better
-        var mapChannel = Backbone.Wreqr.radio.channel('map');
-        mapChannel.vent.trigger('show:header');
 
         var rawSource = _.findWhere(settings.sources, { id: id});
         var source = new SourceModel({
@@ -41,6 +39,10 @@ define(function(require, exports, module) {
             coordinates: rawSource.location
           }
         });
+
+        var mapChannel = Backbone.Wreqr.radio.channel('map');
+        mapChannel.vent.trigger('show:header');
+        mapChannel.vent.trigger('bread:crumb', { world: true, city: source.get('properties').city });
 
         // Update the map
         App.mapView.addLocations([source.toJSON()], {

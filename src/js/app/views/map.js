@@ -14,6 +14,7 @@ define(function(require, exports, module) {
   // App
   var settings = require('app/settings');
   var template = require('text!templates/popup.html');
+  var breadcrumbsTemplate = require('text!templates/breadcrumbs.html');
 
   var mapChannel = Backbone.Wreqr.radio.channel('map');
 
@@ -21,6 +22,7 @@ define(function(require, exports, module) {
     map: null,
     markers: {},
     template: _.template(template),
+    breadcrumbsTemplate: _.template(breadcrumbsTemplate),
 
     initialize: function(options) {
       _.bindAll(this, 'addPopup', 'addLocations');
@@ -40,9 +42,13 @@ define(function(require, exports, module) {
       L.control.attribution({ prefix: '<a href="http://localdata.com">LocalData</a>'}).addTo(this.map);
       new L.Control.Zoom({ position: 'topleft' }).addTo(this.map);
 
+      $('.leaflet-top.leaflet-left').append('<div class="breadcrumbs"></div>');
+
       this.map.addControl(L.control.zoom({ position: 'topright' }));
       this.baseLayer = L.tileLayer(settings.baseLayer);
       this.map.addLayer(this.baseLayer);
+
+      this.listenTo(mapChannel.vent, 'bread:crumb', this.breadCrumb);
 
       return this;
     },
@@ -92,6 +98,18 @@ define(function(require, exports, module) {
       // If zoom is higher than X, check if we overlap a city
       // If so, route to that city
       // Only change the route if we're zooming in
+    },
+
+    breadCrumb: function(options) {
+      if (options.world === undefined) {
+        $('.leaflet-top.leaflet-left .breadcrumbs').empty();
+      } else {
+        $('.leaflet-top.leaflet-left .breadcrumbs').html(this.breadcrumbsTemplate({
+          breadcrumbs: {
+            city: options.city
+          }
+        }));
+      }
     },
 
     addLocations: function(data, options) {
