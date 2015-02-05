@@ -72,7 +72,7 @@
   }
 
   @media only screen
-  and (max-width : 768px) {
+  and (max-width : $max-width) {
     position: static;
     width: auto;
 
@@ -90,7 +90,7 @@
 }
 
 @media only screen
-and (max-width : 768px) {
+and (max-width : $max-width) {
   .sparkline:nth-child(1),
   .sparkline:nth-child(4),
   .sparkline:nth-child(5) {
