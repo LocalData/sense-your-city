@@ -100,6 +100,7 @@ define(function(require, exports, module) {
 
       // Get the longest list of timestamps
       // TODO
+      // This is a terrible way to calculate ranges
       // should compute this using the daterange...
       // With this stupid method we might lose timepoints...
       var longest = [];
@@ -136,7 +137,13 @@ define(function(require, exports, module) {
           var values = [];
           _.each(longest, function(timestamp) {
             if (_.has(times, timestamp)) {
-              values.push(Math.round(times[timestamp]));
+              // Todo -- round at display time
+              if (name === 'temperature') {
+                values.push(Number(times[timestamp].toFixed(1)));
+              } else {
+                values.push(Math.round(times[timestamp]));
+              }
+
             } else {
               // Stopgap vor missing values. Ideally we'd support undefined ranges
               values.push(null);

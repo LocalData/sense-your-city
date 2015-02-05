@@ -59,10 +59,22 @@ define(function(require, exports, module) {
       _.each(settings.cities, function(c) {
         c.properties.base = settings.baseUrl;
         c.properties.ranges = {
-          dayRange: util.getTimeRange('day'),
+          day: util.getTimeRange('day'),
           week: util.getTimeRange('week')
         };
-        c.properties.sources = sources[c.properties.name];
+
+        var sourceList = sources[c.properties.name];
+        _.each(sourceList, function(source, i) {
+          sourceList[i].properties = {
+            base: settings.baseUrl,
+            ranges: {
+              day: util.getTimeRange('day'),
+              week: util.getTimeRange('week')
+            }
+          };
+        });
+
+        c.properties.sources = sourceList;
       });
 
       return settings.cities;

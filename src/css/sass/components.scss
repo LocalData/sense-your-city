@@ -158,7 +158,7 @@ footer {
       .measure-graph {
         margin-top: $pad;
         position: relative; // for tooltip positioning
-        min-height: 150px; // todo -- temporary to make loading look smoother
+        min-height: 200px; // todo -- temporary to make loading look smoother
 
         .action-time {
           font-weight: 400;
