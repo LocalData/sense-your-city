@@ -19,7 +19,6 @@ define(function(require, exports, module) {
 
     initialize: function(data, options) {
       _.bindAll(this, 'createSourceModels', 'getSourceData', 'getCityData', 'ready');
-      console.log("Init aggregation collection", options);
       this.options = options;
 
       // If we are getting aggregations of all cities in the world

@@ -74,11 +74,9 @@ define(function(require, exports, module) {
 
     isEmpty: function() {
       if (this.models.length === 0) {
-        console.log("Length is zero", this.models.length);
         return true;
       }
       if (this.models[0].isEmpty()) {
-        console.log("Model is empty", this.models);
         return true;
       }
       return false;

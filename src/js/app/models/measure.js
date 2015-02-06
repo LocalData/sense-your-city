@@ -19,7 +19,6 @@ define(function(require, exports, module) {
     },
 
     isEmpty: function() {
-      console.log("Is empty?", this.get('values')[0].data);
       if (this.get('values')[0].data.length === 1) {
         return true;
       }

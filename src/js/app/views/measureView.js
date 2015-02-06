@@ -96,6 +96,7 @@ define(function(require, exports, module) {
           labels: {
             align: 'left',
             x: 3,
+            step: 2,
             formatter: function() {
               return moment(this.value).format("H:mm") + '<br />' + moment(this.value).format("D MMM");
             }
