@@ -23,6 +23,22 @@ define(function(require, exports, module) {
   // Templates
   var template = require('text!templates/data.html');
 
+  function getOptions(span, resolution, options) {
+    var params =  {
+      op: 'mean',
+      fields: settings.fieldsString,
+      resolution: resolution
+    };
+    if (options.city) {
+      params['over.city'] = options.city;
+    }
+    if (options.source) {
+      params['each.sources'] = options.source;
+    }
+    _.assign(params, util.getTimeRange(span));
+    return params;
+  }
+
   var DataView = Marionette.LayoutView.extend({
     className: 'data-downloads',
     template: _.template(template),
@@ -52,22 +68,39 @@ define(function(require, exports, module) {
         return s.city;
       });
 
-      _.each(settings.cities, function(c) {
-        c.properties.base = settings.csvBaseUrl;
-        c.properties.ranges = {
-          day: util.getTimeRange('day'),
-          week: util.getTimeRange('week')
-        };
 
+      // Generate download links for each of the cities
+      _.each(settings.cities, function(c) {
+        c.properties.params = {};
+        c.properties.base = settings.csvBaseUrl;
+
+        var day5m = getOptions('day', '5m', { city: c.properties.name });
+        var day1h = getOptions('day', '1h', { city: c.properties.name });
+        var week1h = getOptions('week', '1h', { city: c.properties.name });
+        var week6h = getOptions('week', '6h', { city: c.properties.name });
+
+        c.properties.params.day5m = $.param(day5m);
+        c.properties.params.day1h = $.param(day1h);
+        c.properties.params.week1h = $.param(week1h);
+        c.properties.params.week6h = $.param(week6h);
+
+        // Now generate options for all of the sources in that city
         var sourceList = sources[c.properties.name];
-        _.each(sourceList, function(source, i) {
-          sourceList[i].properties = {
-            base: settings.csvBaseUrl,
-            ranges: {
-              day: util.getTimeRange('day'),
-              week: util.getTimeRange('week')
-            }
-          };
+
+        _.each(sourceList, function(s, i) {
+          s.properties = {};
+          s.properties.params = {};
+          s.properties.base = settings.csvBaseUrl;
+
+          var day5m = getOptions('day', '5m', { source:   s.id });
+          var day1h = getOptions('day', '1h', { source:   s.id });
+          var week1h = getOptions('week', '1h', { source: s.id });
+          var week6h = getOptions('week', '6h', { source: s.id });
+
+          s.properties.params.day5m = $.param(day5m);
+          s.properties.params.day1h = $.param(day1h);
+          s.properties.params.week1h = $.param(week1h);
+          s.properties.params.week6h = $.param(week6h);
         });
 
         c.properties.sources = sourceList;
