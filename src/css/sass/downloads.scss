@@ -36,10 +36,12 @@
       color: $background-light-color;
     }
 
-    ul li {
-      margin-bottom: 0;
+    li {
+      margin: 0!important;
     }
   }
+
+
 
   section.sensors {
     background: #fff;
@@ -93,7 +95,7 @@
       padding: $pad $minipad;
     }
 
-    tr.sensor td {
+    tr.source td {
       padding: $minipad;
     }
 
