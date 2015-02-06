@@ -872,6 +872,7 @@ define(function(require, exports, module) {
   {
     "name": "SECSensor",
     "city": "Singapore",
+    "avatar": "http://localdata-public.s3-website-us-east-1.amazonaws.com/datacanvas/avatars/SECSensor.png",
     "location": [
       103.737863,
       1.335005
