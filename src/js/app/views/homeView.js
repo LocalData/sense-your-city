@@ -133,8 +133,11 @@ define(function(require, exports, module) {
       // Get the graphs
       this.displayRange('day');
 
+      var Throwaway = Backbone.Model.extend({});
       // Show the tools view
-      var toolsView = new ToolsView({});
+      var toolsView = new ToolsView({
+        model: new Throwaway({ showCities: true })
+      });
       toolsView.on('time:setRange', this.displayRange);
       this.getRegion('toolsRegion').show(toolsView);
     }

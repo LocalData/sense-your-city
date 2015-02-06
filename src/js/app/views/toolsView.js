@@ -26,6 +26,12 @@ define(function(require, exports, module) {
     childView: ToolView,
     className: 'tools',
 
+    templateHelpers: {
+      showCityList: function() {
+        return this.showCities;
+      }
+    },
+
     ui: {
       // Display styles
       'displayTools': '.display-tools .button',

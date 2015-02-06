@@ -13,6 +13,7 @@
   <span class="button select-weekly" data-action="week">Week</span>
 </div>
 
+<% if (showCityList()) { %>
 <div class="toolbox city-list">
   <h3>Cities</h3>
   <span class="button city" data-city="Bangalore">Bangalore</span>
@@ -23,7 +24,7 @@
   <span class="button city" data-city="Shanghai">Shanghai</span>
   <span class="button city" data-city="Singapore">Singapore</span>
 </div>
-
+<% } %>
 
 <!-- <div class="toolbox last-updated-tools">
 Last updated: <span class="last-updated"></span>

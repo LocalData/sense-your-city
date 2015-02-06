@@ -29,9 +29,12 @@ define(function(require, exports, module) {
 
     checkInactive: function() {
       if (this.collection.isEmpty()) {
-        console.log("Inactive!");
         this.model.attributes.properties.inactive = true;
-        this.render();
+        try {
+          this.render();
+        } catch(e) {
+
+        }
       }
     }
   });
