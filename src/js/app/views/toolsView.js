@@ -14,6 +14,7 @@ define(function(require, exports, module) {
 
   // App
   var settings = require('app/settings');
+  var mapChannel = Backbone.Wreqr.radio.channel('map');
 
   var ToolView = require('app/views/toolView');
 
@@ -30,6 +31,8 @@ define(function(require, exports, module) {
       'displayTools': '.display-tools .button',
       'selectGraphs:': '.action-select-graphs',
       'selectTable:': '.action-select-table',
+
+      'city': '.city',
 
       // Time ranges
       'timeTools': '.time-tools .button',
@@ -49,7 +52,32 @@ define(function(require, exports, module) {
       // Time ranges
       'click @ui.selectHourly': 'showTime',
       'click @ui.selectDaily': 'showTime',
-      'click @ui.selectWeekly': 'showTime'
+      'click @ui.selectWeekly': 'showTime',
+
+      'click @ui.city': 'showCity'
+    },
+
+    onBeforeRender: function() {
+      this.listenTo(mapChannel.vent, 'click:feature', function(feature) {
+        this.ui.city.removeClass('active');
+        // WTF
+        var $button = $($.find("[data-city='" + feature.properties.name + "']")).addClass('active');
+      });
+    },
+
+    showCity: function(event) {
+      this.ui.city.removeClass('active');
+      $(event.target).addClass('active');
+
+      // Find the city
+      var name = $(event.target).attr('data-city');
+      var feature = _.find(settings.cities, function(c) {
+        return c.properties.name === name;
+      });
+
+      // And event it.
+      mapChannel.vent.trigger('click:feature', feature);
+      mapChannel.vent.trigger('open:popup:feature', feature);
     },
 
     showDisplay: function(event) {

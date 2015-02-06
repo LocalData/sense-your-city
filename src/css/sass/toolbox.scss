@@ -34,6 +34,9 @@
 
     .city {
       display: inline-block;
+      padding: 0px 8px;
+      line-height: 40px;
+      font-weight: bold;
 
       .button {
         border-left: 3px solid $background-color;
@@ -57,7 +60,7 @@
   }
 
   .toolbox.city-list {
-    float: none; // expand to fill the remaining space
+    // float: none; // expand to fill the remaining space
     overflow: auto;
   }
 }

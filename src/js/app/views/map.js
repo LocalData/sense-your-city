@@ -22,11 +22,12 @@ define(function(require, exports, module) {
     map: null,
     markers: {},
     popups: [],
+    popupsByName: {},
     template: _.template(template),
     breadcrumbsTemplate: _.template(breadcrumbsTemplate),
 
     initialize: function(options) {
-      _.bindAll(this, 'addPopup', 'addLocations');
+      _.bindAll(this, 'addPopup', 'openPopup', 'addLocations');
       L.Icon.Default.imagePath = '/js/lib/leaflet/images';
       this.id = options.id || 'map';
       this.render();
@@ -50,6 +51,7 @@ define(function(require, exports, module) {
       this.map.addLayer(this.baseLayer);
 
       this.listenTo(mapChannel.vent, 'bread:crumb', this.breadCrumb);
+      this.listenTo(mapChannel.vent, 'open:popup:feature', this.openPopup);
 
       return this;
     },
@@ -78,6 +80,7 @@ define(function(require, exports, module) {
       if (this.layer) {
         this.map.removeLayer(this.layer);
         this.popups = [];
+        this.popupsByName = {};
       }
     },
 
@@ -87,6 +90,7 @@ define(function(require, exports, module) {
           .setLatLng([feature.geometry.coordinates[1], feature.geometry.coordinates[0]])
           .setContent(this.template(feature.properties));
         layer.bindPopup(popup);
+        this.popupsByName[feature.properties.name] = popup;
         this.popups.push(popup);
         //.openOn(this.map);
         //var pop = layer.bindPopup(this.template(feature.properties));
@@ -119,6 +123,11 @@ define(function(require, exports, module) {
           }
         }));
       }
+    },
+
+    openPopup: function(feature) {
+      this.popupsByName[feature.properties.name].openOn(this.map);
+      mapChannel.vent.trigger('change:sparkline', feature);
     },
 
     addLocations: function(data, options) {
