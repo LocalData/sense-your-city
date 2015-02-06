@@ -11,12 +11,12 @@
     </h2>
   </td>
   <td>
-    <a class="button" href="<%= properties.base %>aggregations.csv?op=mean&fields=temperature%2Clight%2Cairquality_raw%2Csound%2Chumidity%2Cdust&from=<%= properties.ranges.day.from %>&before=<%= properties.ranges.day.before %>&resolution=5m&over.city=<%= properties.name%>"><i class="fa fa-table"></i> 5m</a>
-    <a class="button" href="<%= properties.base %>aggregations.csv?op=mean&fields=temperature%2Clight%2Cairquality_raw%2Csound%2Chumidity%2Cdust&from=<%= properties.ranges.day.from %>&before=<%= properties.ranges.day.before %>&resolution=1h&over.city=<%= properties.name%>"><i class="fa fa-table"></i> 1h</a>
+    <a class="button" href="<%= properties.base %>aggregations?format=csv&op=mean&fields=temperature%2Clight%2Cairquality_raw%2Csound%2Chumidity%2Cdust&from=<%= properties.ranges.day.from %>&before=<%= properties.ranges.day.before %>&resolution=5m&over.city=<%= properties.name%>"><i class="fa fa-table"></i> 5m</a>
+    <a class="button" href="<%= properties.base %>aggregations?format=csv&op=mean&fields=temperature%2Clight%2Cairquality_raw%2Csound%2Chumidity%2Cdust&from=<%= properties.ranges.day.from %>&before=<%= properties.ranges.day.before %>&resolution=1h&over.city=<%= properties.name%>"><i class="fa fa-table"></i> 1h</a>
   </td>
   <td>
-    <a class="button" href="<%= properties.base %>aggregations.csv?op=mean&fields=temperature%2Clight%2Cairquality_raw%2Csound%2Chumidity%2Cdust&from=<%= properties.ranges.week.from %>&before=<%= properties.ranges.week.before %>&resolution=1h&over.city=<%= properties.name%>"><i class="fa fa-table"></i> 1h</a>
-    <a class="button" href="<%= properties.base %>aggregations.csv?op=mean&fields=temperature%2Clight%2Cairquality_raw%2Csound%2Chumidity%2Cdust&from=<%= properties.ranges.week.from %>&before=<%= properties.ranges.week.before %>&resolution=6h&over.city=<%= properties.name%>"><i class="fa fa-table"></i> 6h</a>
+    <a class="button" href="<%= properties.base %>aggregations?format=csv&op=mean&fields=temperature%2Clight%2Cairquality_raw%2Csound%2Chumidity%2Cdust&from=<%= properties.ranges.week.from %>&before=<%= properties.ranges.week.before %>&resolution=1h&over.city=<%= properties.name%>"><i class="fa fa-table"></i> 1h</a>
+    <a class="button" href="<%= properties.base %>aggregations?format=csv&op=mean&fields=temperature%2Clight%2Cairquality_raw%2Csound%2Chumidity%2Cdust&from=<%= properties.ranges.week.from %>&before=<%= properties.ranges.week.before %>&resolution=6h&over.city=<%= properties.name%>"><i class="fa fa-table"></i> 6h</a>
   </td>
   <td>
     <code><%= properties.name %></code>
