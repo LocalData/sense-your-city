@@ -379,6 +379,7 @@ define(function(require, exports, module) {
   },
   {
     "name": "Geneva16",
+    "avatar": "http://localdata-public.s3-website-us-east-1.amazonaws.com/datacanvas/avatars/cern.png",
     "city": "Geneva",
     "location": [
       6.054929,
@@ -693,6 +694,7 @@ define(function(require, exports, module) {
   },
   {
     "name": "a-streetcar-named-data-sensor",
+    "avatar": "http://localdata-public.s3-website-us-east-1.amazonaws.com/datacanvas/avatars/stamen.png",
     "city": "San Francisco",
     "location": [
       -122.42,
@@ -710,6 +712,7 @@ define(function(require, exports, module) {
     ],
     "id": "ci4tmxpz8000002w7au38un50"
   },
+  // Disabled due to lack of updates
   // {
   //   "name": "Karl",
   //   "city": "San Francisco",
@@ -856,6 +859,7 @@ define(function(require, exports, module) {
     ],
     "id": "ci53h7ry60000032pfrgyjdug"
   },
+  // Disabled because the last location is way off
   // {
   //   "name": "SGSnowBox",
   //   "city": "Singapore",

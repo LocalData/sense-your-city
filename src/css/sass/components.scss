@@ -89,11 +89,13 @@ footer {
   a.logo:hover {
     font-size: $minisize;
     color: $active-color;
-    background: transparent url(../img/logo.png) no-repeat 21px $minipad;
-    background-size: auto 43px;
+    background: transparent url(../img/logo.png) no-repeat 21px 9px;
+    background-size: 120px auto;
 
     display: inline-block;
+    width: 100px;
     padding: 45px 20px 5px 20px;
+    text-indent: -9999px
   }
 
   a.logo.logo-grayscale {
