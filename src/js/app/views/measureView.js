@@ -149,6 +149,9 @@ define(function(require, exports, module) {
 
         // Highlight a series
         lastIndex = seriesIndex[feature.properties.name];
+        if(lastIndex === undefined) {
+          return; // no data to highlight
+        }
         chart.series[lastIndex].update({
           color: settings.primaryColor,
           lineWidth: 4
@@ -160,8 +163,6 @@ define(function(require, exports, module) {
       // TODO
       // Style line on hover / select
       // http://jsfiddle.net/gh/get/jquery/1.7.2/highslide-software/highcharts.com/tree/master/samples/highcharts/members/series-update/
-
-
 
 
       // Set up the chart options
