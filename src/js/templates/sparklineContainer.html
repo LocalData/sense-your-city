@@ -1,6 +1,10 @@
 <h2><%= properties.name %></h2>
 <p>Averages over the last 24 hours.</p>
 
+<% if (properties.inactive) { %>
+<h3 class="inactive">This source hasn't reported data for over 24 hours.</h3>
+<% } %>
+
 <div class="sparklines">
 </div>
 

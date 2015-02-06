@@ -16,6 +16,13 @@ define(function(require, exports, module) {
       meta: {},
       values: [],
       labels: []
+    },
+
+    isEmpty: function() {
+      console.log("Is empty?", this.get('values')[0].data);
+      if (this.get('values')[0].data.length === 1) {
+        return true;
+      }
     }
   });
 

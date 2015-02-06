@@ -15,6 +15,14 @@
     overflow: hidden;
   }
 
+  h3.inactive {
+    font-size: 1.5rem;
+    line-height: 1em;
+    text-align: center;
+    color: $inactive-color;
+    padding: $pad;
+  }
+
   p {
     font-size: $minisize;
     margin: $minipad $pad;

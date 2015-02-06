@@ -20,7 +20,20 @@ define(function(require, exports, module) {
     template: _.template(template),
     className: 'sparkline-container',
     childViewContainer: '.sparklines',
-    childView: SparklineView
+    childView: SparklineView,
+
+    initialize: function() {
+      _.bindAll(this, 'checkInactive');
+      this.collection.on('reset', this.checkInactive);
+    },
+
+    checkInactive: function() {
+      if (this.collection.isEmpty()) {
+        console.log("Inactive!");
+        this.model.attributes.properties.inactive = true;
+        this.render();
+      }
+    }
   });
 
   return SparklineCollectionView;
