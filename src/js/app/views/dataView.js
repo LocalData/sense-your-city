@@ -7,9 +7,6 @@ define(function(require, exports, module) {
   // Libs
   var $ = require('jquery');
   var _ = require('underscore');
-  var Backbone = require('backbone');
-  var Chartist = require('chartist');
-  var L = require('leaflet');
   var Marionette = require('marionette');
 
   // App
@@ -21,7 +18,6 @@ define(function(require, exports, module) {
   var CityCollection = require('app/models/cityCollection');
 
   // Views
-  var CityDataCompositeView = require('app/views/cityDataCompositeView');
   var WorldDataCompositeView = require('app/views/worldDataCompositeView');
 
   // Templates
@@ -57,7 +53,7 @@ define(function(require, exports, module) {
       });
 
       _.each(settings.cities, function(c) {
-        c.properties.base = settings.baseUrl;
+        c.properties.base = settings.csvBaseUrl;
         c.properties.ranges = {
           day: util.getTimeRange('day'),
           week: util.getTimeRange('week')
@@ -66,7 +62,7 @@ define(function(require, exports, module) {
         var sourceList = sources[c.properties.name];
         _.each(sourceList, function(source, i) {
           sourceList[i].properties = {
-            base: settings.baseUrl,
+            base: settings.csvBaseUrl,
             ranges: {
               day: util.getTimeRange('day'),
               week: util.getTimeRange('week')
