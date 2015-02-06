@@ -9,7 +9,7 @@ define(function(require, exports, module) {
   var settings = {};
 
   settings.baseUrl = '//sensor-api.localdata.com/api/v1/';
-  settings.csvBaseUrl = '//localdata-sensors.herokuapp.com/api/v1/';
+  settings.csvBaseUrl = '//sensor-api.localdata.com/api/v1/';
   settings.twitterProxyURL = '//localdata-twitter.herokuapp.com/';
   settings.delay = 10000; // ms between entries (10 seconds)
   settings.twitterDelay = 60000; // ms between twitter checks (60 seconds)

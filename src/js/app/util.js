@@ -48,8 +48,8 @@ define(function(require, exports, module) {
 
     return {
       resolution: resolution,
-      from: from.format(),
-      before: before.format()
+      from: from.toISOString(),
+      before: before.toISOString()
     };
   };
 
@@ -77,8 +77,8 @@ define(function(require, exports, module) {
 
     return {
       resolution: options.resolution,
-      from: from.format(),
-      before: before.format()
+      from: from.toISOString(),
+      before: before.toISOString()
     };
   };
 
@@ -111,8 +111,8 @@ define(function(require, exports, module) {
 
     return {
       resolution: options.resolution,
-      from: from.format(),
-      before: before.format()
+      from: from.toISOString(),
+      before: before.toISOString()
     };
   };
 
