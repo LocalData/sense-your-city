@@ -51,7 +51,15 @@ define(function(require, exports, module) {
 
   // Wait for the app to start
   function start(options) {
+    function trackPageview() {
+      var url = Backbone.history.root + Backbone.history.getFragment();
+      if (typeof window.ga == 'function') {
+        window.ga('send', 'pageview', url);
+      }
+    }
+
     if(Backbone.history){
+      Backbone.history.on('route', trackPageview);
       Backbone.history.start();
     }
 
@@ -67,10 +75,10 @@ define(function(require, exports, module) {
     App.mapView = new MapView({ id: 'map' });
 
     var tweet = new TweetModel();
-    tweet.autoUpdate();
     var tweetView = new TweetView({
       model: tweet
     });
+    tweet.autoUpdate();
     App.twitterRegion.show(tweetView);
 
     var mapChannel = Backbone.Wreqr.radio.channel('map');
