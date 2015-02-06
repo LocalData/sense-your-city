@@ -141,7 +141,7 @@ define(function(require, exports, module) {
 
       this.listenTo(mapChannel.vent, 'click:feature', function(feature) {
         // Set the last selected series back to the default
-        if(lastIndex) {
+        if(lastIndex !== undefined) {
           chart.series[lastIndex].update({
             color: settings.seriesColor,
             lineWidth: 2

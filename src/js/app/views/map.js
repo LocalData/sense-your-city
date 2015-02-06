@@ -21,6 +21,7 @@ define(function(require, exports, module) {
   var MapView = Backbone.View.extend({
     map: null,
     markers: {},
+    popups: [],
     template: _.template(template),
     breadcrumbsTemplate: _.template(breadcrumbsTemplate),
 
@@ -76,12 +77,20 @@ define(function(require, exports, module) {
     clear: function() {
       if (this.layer) {
         this.map.removeLayer(this.layer);
+        this.popups = [];
       }
     },
 
     addPopup: function(feature, layer) {
       if (feature.properties && feature.properties.name) {
-        layer.bindPopup(this.template(feature.properties));
+        var popup = L.popup()
+          .setLatLng([feature.geometry.coordinates[1], feature.geometry.coordinates[0]])
+          .setContent(this.template(feature.properties));
+        layer.bindPopup(popup);
+        this.popups.push(popup);
+        //.openOn(this.map);
+        //var pop = layer.bindPopup(this.template(feature.properties));
+        //console.log("Added popip", pop.openOn(this.map));
       }
 
       layer.on('click', function (e) {
@@ -128,6 +137,16 @@ define(function(require, exports, module) {
       }).addTo(this.map);
       // this.map.fitBounds(this.bufferedBounds());
       this.map.fitBounds(this.layer.getBounds());
+
+      // Open the first point on the map
+      this.popups[0].openOn(this.map);
+      mapChannel.vent.trigger('click:feature', data[0]);
+      mapChannel.vent.trigger('change:sparkline', data[0]);
+
+      // If someone asks for the selected feature...
+      mapChannel.reqres.setHandler('current-feature', function() {
+        return data[0];
+      });
     }
   });
 

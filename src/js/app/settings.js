@@ -96,6 +96,16 @@ define(function(require, exports, module) {
 
   settings.cities = [{
     properties: {
+      name: 'San Francisco',
+      color: settings.seriesColor
+    },
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-122.419416, 37.774929]
+    }
+  }, {
+    properties: {
       name: 'Bangalore',
       color: settings.seriesColor
     },
@@ -133,16 +143,6 @@ define(function(require, exports, module) {
     geometry: {
       type: 'Point',
       coordinates: [-43.172896, -22.906847]
-    }
-  },{
-    properties: {
-      name: 'San Francisco',
-      color: settings.seriesColor
-    },
-    type: 'Feature',
-    geometry: {
-      type: 'Point',
-      coordinates: [-122.419416, 37.774929]
     }
   },{
     properties: {

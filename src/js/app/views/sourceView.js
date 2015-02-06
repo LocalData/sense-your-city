@@ -46,6 +46,8 @@ define(function(require, exports, module) {
     initialize: function() {
       _.bindAll(this, 'createGraphs', 'displayRange', 'forward', 'back', 'setFeature');
       this.listenTo(mapChannel.vent, 'click:feature', this.setFeature);
+      // Get whatever feature is selected by default
+      this.selectedFeature = mapChannel.reqres.request('current-feature');
     },
 
     setFeature: function(feature) {
@@ -104,7 +106,7 @@ define(function(require, exports, module) {
     onShow: function() {
       // Turn the tools fixed when we scroll far enough.
       var overviewPosition = this.ui.overview.position().top;
-      var overviewHeight = this.ui.overview.height();
+      var overviewHeight = this.ui.overview.outerHeight();
 
       var fixed = false;
       window.onscroll = function() {
