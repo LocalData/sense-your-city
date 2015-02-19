@@ -66,8 +66,12 @@ define(function(require, exports, module) {
     onBeforeRender: function() {
       this.listenTo(mapChannel.vent, 'click:feature', function(feature) {
         this.ui.city.removeClass('active');
+        // Slugify (more or less) the name, since it can contain anything.
+        // It's probably enough to just escape the name, but now we have
+        // something that could even be an ID.
+        var name = _.kebabCase(feature.properties.name);
         // WTF
-        var $button = $($.find("[data-city='" + feature.properties.name + "']")).addClass('active');
+        $($.find("[data-city='" + name + "']")).addClass('active');
       });
     },
 
@@ -78,7 +82,7 @@ define(function(require, exports, module) {
       // Find the city
       var name = $(event.target).attr('data-city');
       var feature = _.find(settings.cities, function(c) {
-        return c.properties.name === name;
+        return _.kebabCase(c.properties.name) === name;
       });
 
       // And event it.

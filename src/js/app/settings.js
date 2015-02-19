@@ -407,7 +407,7 @@ define(function(require, exports, module) {
     "id": "ci4lr75sm000902ypns4q30xy"
   },
   {
-    "name": "Geneva3",
+    "name": "Laconn'air",
     "city": "Geneva",
     "location": [
       6.035054,
@@ -416,7 +416,7 @@ define(function(require, exports, module) {
     "id": "ci4lr75sf000602ypyfkxnua3"
   },
   {
-    "name": "Geneva4",
+    "name": "OpiOneKenopi",
     "city": "Geneva",
     "location": [
       6.1668213,
@@ -425,7 +425,7 @@ define(function(require, exports, module) {
     "id": "ci4lr75sl000802ypo4qrcjda"
   },
   {
-    "name": "Geneva5",
+    "name": "Orion",
     "city": "Geneva",
     "location": [
       6.145645,
@@ -434,7 +434,7 @@ define(function(require, exports, module) {
     "id": "ci4lr75ob000102yphtjj75f5"
   },
   {
-    "name": "Geneva8",
+    "name": "metabolo",
     "city": "Geneva",
     "location": [
       6.1619939,
@@ -443,7 +443,7 @@ define(function(require, exports, module) {
     "id": "ci4lr75o6000002yp6eolj0rm"
   },
   {
-    "name": "Geneva9",
+    "name": "makegeneve",
     "city": "Geneva",
     "location": [
       6.1414264,
@@ -462,7 +462,7 @@ define(function(require, exports, module) {
     "id": "ci4lr75vd000b02ypdlm6qbly"
   },
   {
-    "name": "Geneva13",
+    "name": "LEClife",
     "city": "Geneva",
     "location": [
       6.211192,
