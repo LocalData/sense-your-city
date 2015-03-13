@@ -35,7 +35,7 @@ define(function(require, exports, module) {
     if (options.source) {
       params['each.sources'] = options.source;
     }
-    _.assign(params, util.getTimeRange(span));
+    params = _.defaults(params, util.getTimeRange(span));
     return params;
   }
 
